@@ -46,7 +46,7 @@
     "href": "proposal.html#glimpse-of-data",
     "title": "Project title",
     "section": "Glimpse of data",
-    "text": "Glimpse of data\n\n# add code here"
+    "text": "Glimpse of data\n\nAAAW_national_covid_history <- read_csv(\"data/AAAW_national-covid-history.csv\")\n\nRows: 420 Columns: 17\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\ndbl  (16): death, deathIncrease, inIcuCumulative, inIcuCurrently, hospitaliz...\ndate  (1): date\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message."
   },
   {
     "objectID": "proposal.html#introduction-and-data-1",
