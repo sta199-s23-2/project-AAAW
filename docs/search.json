@@ -74,7 +74,7 @@
     "href": "proposal.html#glimpse-of-data-1",
     "title": "Project title",
     "section": "Glimpse of data",
-    "text": "Glimpse of data\n\nAAAW_playoff_stats <- read_csv(\"data/AAAW_updatedplayoffStats.csv\")\n\nRows: 10648 Columns: 51\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (3): player, pos, team_id\ndbl (48): season, age, g, gs, mp_per_g, fg_per_g, fga_per_g, fg_pct, fg3_per...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message."
+    "text": "Glimpse of data\n\nAAW_playoff_stats <- read_csv(\"data/AAAW_updatedplayoffStats.csv\")\n\nRows: 10648 Columns: 51\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (3): player, pos, team_id\ndbl (48): season, age, g, gs, mp_per_g, fg_per_g, fga_per_g, fg_pct, fg3_per...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message."
   },
   {
     "objectID": "proposal.html#introduction-and-data-2",
