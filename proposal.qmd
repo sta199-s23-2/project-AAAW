@@ -77,7 +77,7 @@ AAAW_national_covid_history <- read_csv("data/AAAW_national-covid-history.csv")
 ```{r}
 #| label: load-data-2
 
-AAAW_playoff_stats <- read_csv("data/AAAW_updatedplayoffStats.csv")
+# add code here
 ```
 
 # Data 3
