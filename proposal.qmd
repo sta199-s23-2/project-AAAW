@@ -110,6 +110,5 @@ AAW_playoff_stats <- read_csv("data/AAAW_updatedplayoffStats.csv")
 
 ```{r}
 #| label: load-data-3
-
-# add code here
+AAAW_covid_cause <- read_csv('data/Conditions_Contributing_to_COVID-19_Deaths__by_State_and_Age__Provisional_2020-2023.csv')
 ```
