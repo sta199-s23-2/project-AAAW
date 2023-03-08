@@ -67,7 +67,7 @@
     "href": "proposal.html#literature-1",
     "title": "Project title",
     "section": "Literature",
-    "text": "Literature\n\nFind one published credible article on the topic you are interested in researching.\nProvide a one paragraph summary about the article.\nIn 1-2 sentences, explain how your research question builds on / is different than the article you have cited."
+    "text": "Literature\n\nPublished credible article: “Predicting the Outcome of NBA Playoffs Based on the Maximum Entropy Principle” (Cheng et al.)\nCheng et al. developed a machine learning model that utilized maximum entropy principle to predict the outcome of nba play-off results using 14 basic technical features, such as 3 points, field goals, and number of steals. Their model reached an accuracy of 74.4%, which outperformed the previous state-of-the-art with 70% accuracy. The author reasoned that this increase of performance came from the maximum entropy principle as well as their consideration of the team’s last 6 game’s data which gave a more detailed depiction of team’s strength at the specific time before the play-off game.\nAmong the 14 features that they considered, team depth was not included. We believe that the team depth is a great factor that impacts the result of the play-off games. And if our hypothesis is true, the team depth variable could be a valuable addition to Cheng et al.’s machine learning to improve their accuracy."
   },
   {
     "objectID": "proposal.html#glimpse-of-data-1",
