@@ -58,13 +58,13 @@ AAAW_national_covid_history <- read_csv("data/AAAW_national-covid-history.csv")
 
 ## Research question
 
--   Research question: From 1980, who is the strongest team with the best line-up in the NBA play-off?
+-   Research question: How does squad depth effect the play-off results of the NBA championship?
 
--   Importance: Although there are heated debates and many good reasoning to back up the team people support, we are missing a unbiased, statistical method to determine the best NBA play-off line up in the last 33 years. Addressing this question not only provide us a unbiased analysis of the best NBA play-off team, but also allow us to develop a systematic method to better analyze sports data.
+-   Importance: Depth is an often overlooked variable that significantly contributes to the over-all strength of the team. Performing an analysis on this question allow us to develop a systematic method to better understand and assess this often-neglected factor.
 
--   A description of the research topic along with a concise statement of your hypotheses on this topic.
+-   Description & hypotheses: This research aims to develop a systematic way to evaluate team depth using the NBA play-off data from 1950-2022. We will then investigate its effect on the final results of the championship. To evaluate team depth, we will look at variables such as the points by bench players, numbers of bench players, field goal percentage of role players. We will also ask questions such as are the player minutes evenly-spreaded, and are all the positions well-subsituted, to evaluate the depth of the team. Eventually, we will assign relative scores for team depth and evaluate its association with final championship results. We hypothesize that the deeper the team is, the more likely it is going to get higher places because it has plenty of substitutes to get players rest.
 
--   Identify the types of variables in your research question. Categorical? Quantitative?
+-   Identify the types of variables: We will use a mix of categorical and numerical variable to answer this questions. We will look into categorical variables such as player positions and championship results to evaluate the completeness and sucess of the team. We will look into numerical variables such as player minutes, field goal percentage, and numbers of bench player to eventually create a new numerical score that describes the team's overall depth.
 
 ## Literature
 
