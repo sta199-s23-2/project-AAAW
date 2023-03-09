@@ -95,21 +95,21 @@ glimpse(AAAW_playoff_stats)
 
 ## Research question
 
--   Question: What 3 comorbidities were most associated with mortality due to COVID-19.
+-   Question: What 3 co-morbid groups of conditions are most associated with mortality due to COVID-19 and how do these compare to deaths from COVID-19 without additional causes?
 
--   Importance: Identification of diseases and conditions that are most directly related to mortality from COVID-19 provides valuable information regarding how patients should be treated and which individuals should take extra precautions to avoid infection. Treatment plans can be catered to these conditions: for example, an individual that is suffering from a "dangerous" co-morbidity in the context of COVID-19 can be immediately prescribed an antiviral like Nirmatrelvir/ritonavir to avoid complications and mortality.
+-   Importance: Identification of diseases and conditions that are most directly related to mortality from COVID-19 provides valuable information regarding how patients should be treated and which individuals should take extra precautions to avoid infection. Treatment plans can be catered to these conditions: for example, an individual that is suffering from a "dangerous" co-morbidity in the context of COVID-19 can be immediately or prophylacticly prescribed an antiviral like Nirmatrelvir/ritonavir (Pavlovid TM) to avoid complications and mortality if infected.
 
--   Our research topic will focus on determining the 3 co-morbid conditions that are most related to COVID-19 mortality. We will analyze how condition groups and/or conditions impact the incidence of COVID-19 mortality.
+-   Our research topic will focus on determining the 3 co-morbid condition groups that are most related to COVID-19 mortality. We will analyze how condition groups impact the incidence of COVID-19 mortality. We hypothesize that respiratory illnesses will be the predominant co-morbidity because COVID-19 is a respiratory illness, sepsis will be second because it is a common complication of infection, and Vascular and Unspecified Dementia will be third because it is more common among older age groups that are more vulnerable to COVID-19 mortality.
 
--   Identify the types of variables in your research question. Categorical? Quantitative?
+-   COVID-19 deaths is quantitative while Condition Groups are Categorical.
 
 ## Literature
 
--   Find one published credible article on the topic you are interested in researching.
+-   https://jamanetwork.com/journals/jama/fullarticle/2765184 . Richardson S, Hirsch JS, Narasimhan M, et al. Presenting Characteristics, Comorbidities, and Outcomes Among 5700 Patients Hospitalized With COVID-19 in the New York City Area. *JAMA.* 2020;323(20):2052--2059. doi:10.1001/jama.2020.6775
 
--   Provide a one paragraph summary about the article.
+-   This study analyzes the risk of hospitalization by co-morbidity for 5,700 individuals in New York City from March 1, 2020 to April 1,2020. It has been shown that the majority of individuals that are ultimately hospitalized for COVID-19 are of older age and have various co-morbid conditions. The study found that the most common co-morbid conditions among individuals hospitalized with COVID-19 are Hypertension, Obesity, and Diabetes.
 
--   In 1-2 sentences, explain how your research question builds on / is different than the article you have cited.
+-   Our research question builds on this research to generalize the study to the U.S as a whole and determine risk of death rather than hospitalization alone.
 
 ## Glimpse of data
 
