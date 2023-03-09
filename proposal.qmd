@@ -87,15 +87,15 @@ glimpse(AAAW_playoff_stats)
 
 ## Introduction and data
 
--   Identify the source of the data.
+-   National Center For Health Statistics (NCHS)
 
--   State when and how it was originally collected (by the original data curator, not necessarily how you found the data).
+-   This data was last updated March 8, 2023 and created May 8, 2020. It is not specified how the data was collected, but it was likely by surveying COVID-19 infection and death reports that were given to the NCHS.
 
--   Write a brief description of the observations.
+-   Each observation is a time start and end date and COVID-19 deaths classified by age group, condition, jurisdiction, year, and month.
 
 ## Research question
 
--   Question: What 3 co-morbid groups of conditions are most associated with mortality due to COVID-19 and how do these compare to deaths from COVID-19 without additional causes?
+-   Question: What 3 groups of co-morbid conditions are most associated with mortality due to COVID-19 and how do these compare to deaths from COVID-19 without mention of other co-morbid conditions?
 
 -   Importance: Identification of diseases and conditions that are most directly related to mortality from COVID-19 provides valuable information regarding how patients should be treated and which individuals should take extra precautions to avoid infection. Treatment plans can be catered to these conditions: for example, an individual that is suffering from a "dangerous" co-morbidity in the context of COVID-19 can be immediately or prophylacticly prescribed an antiviral like Nirmatrelvir/ritonavir (Pavlovid TM) to avoid complications and mortality if infected.
 
