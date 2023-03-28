@@ -7,7 +7,7 @@ editor: visual
 This project was developed by **AAAW** For [STA 199: Introduction to Data Science](https://sta199-s23-2.github.io/) at Duke University. The team is comprised of the following team members.
 
 -   Akhilesh Chegu: I am a freshman from San Jose, California, and I am intending to major in Neuroscience.
--   Team member 2: One sentence description of Team member 2 (e.g., year, major, etc.).
+-   William Yan: I am a freshman from Plano, Texas, and I am intending to major in Biology.
 -   Team member 3: One sentence description of Team member 3 (e.g., year, major, etc.).
 -   Team member 4: One sentence description of Team member 4 (e.g., year, major, etc.).
 -   ...
