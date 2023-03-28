@@ -1,6 +1,6 @@
 ---
-title: "Project title"
-subtitle: "Proposal"
+title: "Tean AAAW Proposal"
+subtitle: "3 dataset proposal"
 format: html
 editor: visual
 ---
@@ -28,9 +28,23 @@ library(tidyverse)
 
     As time progressed throughout the pandemic, many more tests began being administered. This is evident in the new tests column as the amount of new tests  has a general upward trend. The correlation between new cases (positive tests) and negative PCR tests seems relatively consistent over time. It seems that there are usually 1/3-1/2 the amount of positive tests as there are negative tests. I see that there was a spike in hospitalization in December of 2020. 
 
+    -   The COVID Tracking Project is collecting this data 
+
+-   State when and how it was originally collected (by the original data curator, not necessarily how you found the data).
+
+    -   This data is taken from the websites of state/territory public health authorities. The website states that when there are holes in the data, they use information from official state social media accounts and official announcements and statements by governors or other authorities. Some state's public health dept pages had covid specific pages that had this information.
+
+-   Write a brief description of the observations.
+
+    -   Each observation is a day from Jan 13, 2020 to March 7, 2021 and it follows data in the US for COVID tests, positive/negative results, and hospitalization data across the country.
+
+    -   As time progressed throughout the pandemic, many more tests began being administered. This is evident in the new tests column as the amount of new tests has a general upward trend. The correlation between new cases (positive tests) and negative PCR tests seems relatively consistent over time. It seems that there are usually 1/3-1/2 the amount of positive tests as there are negative tests. I see that there was a spike in hospitalization in December of 2020. 
+
+-   There aren't any major ethical concerns.
+
 ## Research question
 
--   A well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)
+-   Research Question:
 
     Is there a significant correlation between new tests administered on a certain day and deaths on that same day and each day up to two weeks after?
 
@@ -44,7 +58,25 @@ library(tidyverse)
 
     The research topic that we are addressing with this data set is an analysis of common COVID controversies. We are attempting to discern if death rates had any correlation with testing rates. 
 
--   Identify the types of variables in your research question. Categorical? Quantitative?
+    -   Is there a significant correlation between new tests administered on a certain day, positive tests, new hospitalization, and deaths on that same day and each day up to two weeks after?
+
+    -   On what day was there the highest amount of positive tests? And in the four weeks following, was the number of deaths greater than average? 
+
+-   Importance:
+
+    -   The first question is important because there were a lot of controversies raised during the pandemic about testings correlation with death rates. Many believed that mass testing was an effective way to reduce death rates. Many believed that testing was unnecessary and was not a beneficial use of resources. This question would answer if the amount of tests administered impact the amount of COVID deaths and if increased testing reduces the death rate over a span of the two week contagion period.
+
+    -   The second question responds to a similar controversy. Many were arguing that positive cases did not correlate with death rates and that there shouldn't be work done to decrease the amount of positive tests because it wouldn't have a significant health impact on the population. This question would follow the death rate the highest positive test day for the four weeks following that date. This is the time span that most die of the illness after contracting it. If the people arguing against intervention are correct, the average deaths for those days following the greatest positive test day won't be greater than that of the rest of the data for all the other days. 
+
+-   Description and Hypothesis
+
+    -   The research topic that we are addressing with this data set is an analysis of common COVID controversies. We are attempting to discern if death rates had any correlation with testing rates. 
+
+    -   For the first question, we hypothesize that there will be a significant positive correlation between new tests administered on a certain day and deaths on that same day and each day up to two weeks after.
+
+    -   For the second question, we hypothesize that the highest amount of positive test would be towards the end of the dataset (Jan - Feb 2021) based on personal experience going through the year of 2021.
+
+-   Categorical: There is no categorical data for this set. Quantitative: number of deaths a day, number of tests administered a day, number of positive tests, number of negative tests, hospitalization number
 
     -   Categorical: There is no categorical data for this set 
 
@@ -52,7 +84,7 @@ library(tidyverse)
 
 ## Literature
 
--   Find one published credible article on the topic you are interested in researching.
+-   Published article
 
     <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7302472/pdf/mm6924e2.pdf>
 
@@ -61,15 +93,24 @@ library(tidyverse)
 This case surveillance report tracked all US COVID cases from January 22-May 30th of 2020. This report dives more into the demographics of those testing positive for COVID vs the nature of our data set which just gives the exact numerical reports for amount of deaths/tests/etc. This article specifically focuses on underlying conditions that COVID patients had and how that correspond to the severity of their illness (hospitalization vs intensive care vs those who died). It explains the median age of those contracting COVID. It also explains who was most likely to experience the illness asymptomatically. It provides data tables to discern the exact amount of people with pre-existing conditions and sorts them by sex and age. There is a data table reporting cumulative incidence by sex and age. There is also a graph that presents the number of cases and another one with the number of deaths during that same time frame. 
 
 -   In 1-2 sentences, explain how your research question builds on / is different than the article you have cited.
+    -   <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7302472/pdf/mm6924e2.pdf>
+
+-   Summary
+
+    -   This case surveillance report tracked all US COVID cases from January 22-May 30th of 2020. This report dives more into the demographics of those testing positive for COVID vs the nature of our data set which just gives the exact numerical reports for amount of deaths/tests/etc. This article specifically focuses on underlying conditions that COVID patients had and how that correspond to the severity of their illness (hospitalization vs intensive care vs those who died). It explains the median age of those contracting COVID. It also explains who was most likely to experience the illness asymptomatically. It provides data tables to discern the exact amount of people with pre-existing conditions and sorts them by sex and age. There is a data table reporting cumulative incidence by sex and age. There is also a graph that presents the number of cases and another one with the number of deaths during that same time frame. This article, although covering more specificities, does not present monthly testing numbers throughout the peak of the pandemic.
+
+-   Connection
+
+    -   This report explains the demographics and the underlying conditions of the patients, but does not give any timeline for the AMOUNT of people testing positive. It also gives no information about the amount of people getting tested or amount of those who test negative. It only explains the demographics of those who test positive and then what happens to them post positive test. The changing of testing, hospitalization, and death numbers is what our data set adds on to the conversation. 
 
     This article, although covering more specificities, does not present monthly testing numbers throughout the peak of the pandemic. This report explains the demographics and the underlying conditions of the patients, but does not give any timeline for the AMOUNT of people testing positive. It also gives no information about the amount of people getting tested or amount of those who test negative. It only explains the demographics of those who test positive and then what happens to them post positive test. The changing of testing, hospitalization, and death numbers is what our data set adds on to the conversation. 
 
 ## Glimpse of data
 
 ```{r}
-#| label: load-data-1
+#| label: load-national_covid_history_data
 AAAW_national_covid_history <- read_csv("data/AAAW_national-covid-history.csv")
-
+glimpse(AAAW_national_covid_history)
 ```
 
 # Data 2
@@ -78,32 +119,62 @@ AAAW_national_covid_history <- read_csv("data/AAAW_national-covid-history.csv")
 
 -   Identify the source of the data.
 
+    -   This data was collected by Robert Sunderhaft
+
 -   State when and how it was originally collected (by the original data curator, not necessarily how you found the data).
+
+    -   This data was webscraped from Basketball Reference, a large public website with player specific data and statistics, and organized into the dataset later by Robert.
 
 -   Write a brief description of the observations.
 
+    -   The observations are every player who has played in the NBA playoffs from 1950-2022, and relevant statistics from their and their team's playoff run, ranging from identifying information like name and age to simple statistics like field goal percentage and rebounds per game to advanced statistics like VORP and Win Shares per 48 minutes. Some data, like percentages, blocks, turnovers, and other advanced statistics, weren't collected for players early in this dataset, so there are null values instead.
+
+-   There aren't any major ethical concerns.
+
 ## Research question
 
--   A well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)
+-   Research question
 
--   A description of the research topic along with a concise statement of your hypotheses on this topic.
+    -   How does squad depth effect the play-off results of the NBA championship? This will consider more than 3 mutated variables (substitute count, subsitute ppg, and substitute win share).
 
--   Identify the types of variables in your research question. Categorical? Quantitative?
+-   Importance
+
+    -   Depth is the amount and quality of play by the substitutes on a given team. It is an often overlooked variable that significantly contributes to the over-all strength of the team. Performing an analysis on this question allow us to develop a systematic method to better understand and assess this often-neglected factor.
+
+-   Description & hypotheses
+
+    -   This research aims to develop a systematic way to evaluate team depth using the NBA play-off data from 1950-2022. We will then investigate its effect on the final results of the championship. To evaluate team depth, we will look at variables such as the points by bench players, numbers of bench players, field goal percentage of role players. We will also ask questions such as are the player minutes evenly-spreaded, and are all the positions well-subsituted, to evaluate the depth of the team. Eventually, we will assign relative scores for team depth and evaluate its association with final championship results.
+
+    -   We hypothesize that the deeper the team is, the more likely it is going to get higher places because it has plenty of substitutes to get players rest.
+
+-   Identify the types of variables
+
+    -   We will use a mix of categorical and numerical variable to answer this questions. We will look into categorical variables such as player positions and championship results to evaluate the completeness and sucess of the team. We will look into numerical variables such as player minutes, field goal percentage, and numbers of bench player to eventually create a new numerical score that describes the team's overall depth.
 
 ## Literature
 
--   Find one published credible article on the topic you are interested in researching.
+-   Published credible article:
 
--   Provide a one paragraph summary about the article.
+    -   "Predicting the Outcome of NBA Playoffs Based on the Maximum Entropy Principle" (Cheng et al.)
 
--   In 1-2 sentences, explain how your research question builds on / is different than the article you have cited.
+    -   https://www.mdpi.com/1099-4300/18/12/450
+
+-   Summary
+
+    -   Cheng et al. developed a machine learning model that utilized maximum entropy principle to predict the outcome of nba play-off results using 14 basic technical features, such as 3 points, field goals, and number of steals. Their model reached an accuracy of 74.4%, which outperformed the previous state-of-the-art with 70% accuracy. The author reasoned that this increase of performance came from the maximum entropy principle as well as their consideration of the team's last 6 game's data which gave a more detailed depiction of team's strength at the specific time before the play-off game.
+
+-   Connection
+
+    -   Among the 14 features that they considered, team depth was not included. We believe that the team depth is a great factor that impacts the result of the play-off games. And if our hypothesis is true, the team depth variable could be a valuable addition to Cheng et al.'s machine learning to improve their accuracy.
 
 ## Glimpse of data
 
 ```{r}
-#| label: load-data-2
+#| label: load-play-off-data
 
 AAW_playoff_stats <- read_csv("data/AAAW_updatedplayoffStats.csv") 
+AAAW_playoff_stats <- read_csv("data/AAAW_updatedplayoffStats.csv")
+glimpse(AAAW_playoff_stats)
 ```
 
 # Data 3
@@ -112,29 +183,56 @@ AAW_playoff_stats <- read_csv("data/AAAW_updatedplayoffStats.csv")
 
 -   Identify the source of the data.
 
+    -   National Center For Health Statistics (NCHS)
+
 -   State when and how it was originally collected (by the original data curator, not necessarily how you found the data).
 
--   Write a brief description of the observations.
+    -   This data was last updated March 8, 2023 and created May 8, 2020. It is not specified how the data was collected, but it was likely by surveying COVID-19 infection and death reports that were given to the NCHS by different jurisdictions.
+
+-   Description
+
+    -   Each observation is a time start and end date for data collection as COVID-19 deaths. The variables are COVID-19 death, age group, condition, condition group, jurisdiction, year, and month during the time span.
+
+-   There aren't any major ethical concerns for this dataset.
 
 ## Research question
 
--   A well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)
+-   Question
 
--   A description of the research topic along with a concise statement of your hypotheses on this topic.
+    -   What 3 groups of co-morbid conditions are most associated with mortality due to COVID-19 by age group (below 55 and above 55) and how do these compare to deaths from COVID-19 without mention of other co-morbid conditions?
 
--   Identify the types of variables in your research question. Categorical? Quantitative?
+-   Importance
+
+    -   Identification of diseases and conditions that are most directly related to mortality from COVID-19 provides valuable information regarding how patients should be treated and which individuals should take extra precautions to avoid infection. Treatment plans can be catered to these conditions: for example, an individual that is suffering from a "dangerous" co-morbidity in the context of COVID-19 can be immediately or prophylacticly prescribed an antiviral like Nirmatrelvir/ritonavir (Pavlovid TM) to avoid complications and mortality if infected.
+
+-   Description and Hypothesis
+
+    -   Our research topic will focus on determining the 3 co-morbid condition groups that are most related to COVID-19 mortality separated by age. We will analyze how condition groups impact the incidence of COVID-19 mortality for individuals above and below the age of 55 in the United States.
+
+    -   We hypothesize that individuals above the age of 55 years will have comprise the largest group of COVID-19 mortalities. For individuals below 55, we hypothesize respiratory illness, sepsis, and obesity will be the highest risk factors for COVID-19 mortality. COVID-19 is a respiratory illness so we expect that mortality will be most likely in individuals with pre-existing respiratory conditions. Sepsis is a common fatal complication of infection. Obesity is a systemic condition, that dramatically harm treatment outcomes and responses. For individuals above the age of 55 we hypothesize respiratory illnesses will be the predominant co-morbidity because COVID-19 is a respiratory illness, Obesity, and Vascular and Unspecified Dementia will be second and third.
+
+-   Variables
+
+    -   COVID-19 deaths is quantitative while Condition Groups and age groups are Categorical.
 
 ## Literature
 
--   Find one published credible article on the topic you are interested in researching.
+-   Article
 
--   Provide a one paragraph summary about the article.
+    -   https://jamanetwork.com/journals/jama/fullarticle/2765184 . Richardson S, Hirsch JS, Narasimhan M, et al. Presenting Characteristics, Comorbidities, and Outcomes Among 5700 Patients Hospitalized With COVID-19 in the New York City Area. *JAMA.* 2020;323(20):2052--2059. doi:10.1001/jama.2020.6775
 
--   In 1-2 sentences, explain how your research question builds on / is different than the article you have cited.
+-   Summary
+
+    -   This study analyzes the risk of hospitalization by co-morbidity for 5,700 individuals in New York City from March 1, 2020 to April 1,2020. It has been shown that the majority of individuals that are ultimately hospitalized for COVID-19 are of older age and have various co-morbid conditions. The study found that the most common co-morbid conditions among individuals hospitalized with COVID-19 are Hypertension, Obesity, and Diabetes.
+
+-   Connect
+
+    -   Our research question builds on this research to generalize the study to the U.S as a whole and determine risk of death rather than hospitalization alone. Our study will also seperate deaths by age categories to more accurately cater to patients.
 
 ## Glimpse of data
 
 ```{r}
-#| label: load-data-3
+#| label: load-covid-cause-data
 AAAW_covid_cause <- read_csv('data/Conditions_Contributing_to_COVID-19_Deaths__by_State_and_Age__Provisional_2020-2023.csv')
+glimpse(AAAW_covid_cause)
 ```
