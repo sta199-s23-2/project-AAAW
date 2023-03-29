@@ -12,6 +12,7 @@ editor: visual
 library(tidyverse)
 ```
 
+
 # Data 1
 
 ## Introduction and data
@@ -108,11 +109,13 @@ This case surveillance report tracked all US COVID cases from January 22-May 30t
 
 ## Glimpse of data
 
+
 ```{r}
 #| label: load-national_covid_history_data
 AAAW_national_covid_history <- read_csv("data/AAAW_national-covid-history.csv")
 glimpse(AAAW_national_covid_history)
 ```
+
 
 # Data 2
 
@@ -170,6 +173,7 @@ glimpse(AAAW_national_covid_history)
 
 ## Glimpse of data
 
+
 ```{r}
 #| label: load-play-off-data
 
@@ -177,6 +181,7 @@ AAW_playoff_stats <- read_csv("data/AAAW_updatedplayoffStats.csv")
 AAAW_playoff_stats <- read_csv("data/AAAW_updatedplayoffStats.csv")
 glimpse(AAAW_playoff_stats)
 ```
+
 
 # Data 3
 
@@ -232,8 +237,10 @@ glimpse(AAAW_playoff_stats)
 
 ## Glimpse of data
 
+
 ```{r}
 #| label: load-covid-cause-data
 AAAW_covid_cause <- read_csv('data/Conditions_Contributing_to_COVID-19_Deaths__by_State_and_Age__Provisional_2020-2023.csv')
 glimpse(AAAW_covid_cause)
 ```
+
