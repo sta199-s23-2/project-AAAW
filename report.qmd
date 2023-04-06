@@ -107,7 +107,7 @@ Basic_df <- Basic_df |>
 
 Basic_df |>
   group_by(Championship) |>
-  summarize(mean(Basic_depth), sd(Basic_depth))
+  summarize(mean(Basic_depth))
 
 ```
 
@@ -121,4 +121,44 @@ Basic_df |>
   geom_boxplot() +
   theme(legend.position = "none")
 
+```
+
+Part 2: Advanced Stats
+
+```{r}
+#| label: group-by-team-advanced
+
+Qual_player_df_adv <- NBA_df |>
+  filter(per >= 15 | ws_per_48 >= 0.1) |>
+  group_by(team_id) |>
+  summarise(count_qual = n())
+
+Adv_df <- Qual_player_df_adv |>
+  left_join(All_rot_players_df, by = "team_id")
+```
+
+```{r}
+#| label: champ-label-advanced
+Adv_df <- Adv_df |>
+  mutate(Adv_depth = count_qual / count_rot,
+         Championship = if_else(team_id %in% c("1990DET", "1991CHI", "1992CHI", "1993CHI", "1994HOU", "1995HOU", "1996CHI", "1997CHI", "1998CHI", "1999SAS", "2000LAL", "2001LAL", "2002LAL", "2003SAS", "2004DET", "2005SAS", "2006MIA", "2007SAS", "2008BOS", "2009LAL", "2010LAL", "2011DAL", "2012MIA", "2013MIA", "2014SAS", "2015GSW", "2016CLE", "2017GSW", "2018GSW", "2019TOR", "2020LAL", "2021MIL", "2022GSW"), "Champ", "No Champ" ))
+```
+
+```{r}
+#| label: adv-summarystat-depth
+
+Adv_df |>
+  group_by(Championship) |>
+  summarize(mean(Adv_depth))
+```
+
+```{r}
+#| label: adv-barplot-depth
+
+Adv_df |>
+  ggplot(
+    aes(x = Adv_depth, y = Championship, fill = Championship)
+  ) +
+  geom_boxplot() +
+  theme(legend.position = "none")
 ```

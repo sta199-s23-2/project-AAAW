@@ -338,13 +338,13 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Basic_df <span class="sc">|&gt;</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Championship) <span class="sc">|&gt;</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">mean</span>(Basic_depth), <span class="fu">sd</span>(Basic_depth))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">mean</span>(Basic_depth))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 3
-  Championship `mean(Basic_depth)` `sd(Basic_depth)`
-  &lt;chr&gt;                      &lt;dbl&gt;             &lt;dbl&gt;
-1 Champ                      0.755             0.122
-2 No Champ                   0.720             0.145</code></pre>
+<pre><code># A tibble: 2 × 2
+  Championship `mean(Basic_depth)`
+  &lt;chr&gt;                      &lt;dbl&gt;
+1 Champ                      0.755
+2 No Champ                   0.720</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -356,6 +356,44 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/basic-barplot-depth-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Part 2: Advanced Stats</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Qual_player_df_adv <span class="ot">&lt;-</span> NBA_df <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(per <span class="sc">&gt;=</span> <span class="dv">15</span> <span class="sc">|</span> ws_per_48 <span class="sc">&gt;=</span> <span class="fl">0.1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(team_id) <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count_qual =</span> <span class="fu">n</span>())</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>Adv_df <span class="ot">&lt;-</span> Qual_player_df_adv <span class="sc">|&gt;</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(All_rot_players_df, <span class="at">by =</span> <span class="st">"team_id"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Adv_df <span class="ot">&lt;-</span> Adv_df <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Adv_depth =</span> count_qual <span class="sc">/</span> count_rot,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">Championship =</span> <span class="fu">if_else</span>(team_id <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"1990DET"</span>, <span class="st">"1991CHI"</span>, <span class="st">"1992CHI"</span>, <span class="st">"1993CHI"</span>, <span class="st">"1994HOU"</span>, <span class="st">"1995HOU"</span>, <span class="st">"1996CHI"</span>, <span class="st">"1997CHI"</span>, <span class="st">"1998CHI"</span>, <span class="st">"1999SAS"</span>, <span class="st">"2000LAL"</span>, <span class="st">"2001LAL"</span>, <span class="st">"2002LAL"</span>, <span class="st">"2003SAS"</span>, <span class="st">"2004DET"</span>, <span class="st">"2005SAS"</span>, <span class="st">"2006MIA"</span>, <span class="st">"2007SAS"</span>, <span class="st">"2008BOS"</span>, <span class="st">"2009LAL"</span>, <span class="st">"2010LAL"</span>, <span class="st">"2011DAL"</span>, <span class="st">"2012MIA"</span>, <span class="st">"2013MIA"</span>, <span class="st">"2014SAS"</span>, <span class="st">"2015GSW"</span>, <span class="st">"2016CLE"</span>, <span class="st">"2017GSW"</span>, <span class="st">"2018GSW"</span>, <span class="st">"2019TOR"</span>, <span class="st">"2020LAL"</span>, <span class="st">"2021MIL"</span>, <span class="st">"2022GSW"</span>), <span class="st">"Champ"</span>, <span class="st">"No Champ"</span> ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>Adv_df <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Championship) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">mean</span>(Adv_depth))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  Championship `mean(Adv_depth)`
+  &lt;chr&gt;                    &lt;dbl&gt;
+1 Champ                    0.751
+2 No Champ                 0.506</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>Adv_df <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Adv_depth, <span class="at">y =</span> Championship, <span class="at">fill =</span> Championship)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="report_files/figure-html/adv-barplot-depth-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 
