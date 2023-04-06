@@ -48,8 +48,54 @@ NBA_df <- NBA_df |>
   
 ```
 
+Part 1: Basic stats
+
+```{r}
+#| label: data-wrangling-for-basic-stats
+
+NBA_df_basic <- NBA_df |>
+  mutate(pp_36 = pts_per_g / mp_per_g * 36,
+         rp_36 = trb_per_g / mp_per_g * 36,
+         ap_36 = ast_per_g / mp_per_g * 36)
+```
+
+```{r}
+#| label: dist_basic_stats
+
+NBA_df_basic |>
+  ggplot(aes(x = pp_36)) +
+  geom_histogram(binwidth = 1)
+
+NBA_df_basic |>
+  ggplot(aes(x = rp_36)) +
+  geom_histogram(binwidth = 0.5)
+
+NBA_df_basic |>
+  ggplot(aes(x = ap_36)) +
+  geom_histogram(binwidth = 0.2)
+
+```
+
 ```{r}
 #| label:  create-team-based
+
+Qual_player_df_basic <- NBA_df_basic |>
+  filter(pp_36 > 16 | rp_36 > 6.5 | ap_36 > 3.5) |>
+  group_by(team_id) |>
+  summarise(count_qual = n())
+
+
+All_rot_players_df <- NBA_df |>
+  group_by(team_id) |>
+  summarise(count_rot = n())
+
+Basic_df <- Qual_player_df_basic |>
+  left_join(All_rot_players_df, by = "team_id")
+
+Basic_df |>
+  mutate(Basic_depth = count_qual / count_rot,
+         championship = if_else(""))
+
 ```
 
 Add project writeup here.
