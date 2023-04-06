@@ -7,4 +7,18 @@ execute:
   echo: true
 ---
 
+```{r}
+#| label: load-pkgs
+#| message: false
+
+library(tidyverse)
+```
+
+```{r}
+#| label: load-play-off-data
+
+AAAW_playoff_stats <- read_csv("data/AAAW_updatedplayoffStats.csv")
+glimpse(AAAW_playoff_stats)
+```
+
 Add project writeup here.
