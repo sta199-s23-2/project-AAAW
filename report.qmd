@@ -21,4 +21,35 @@ AAAW_playoff_stats <- read_csv("data/AAAW_updatedplayoffStats.csv")
 glimpse(AAAW_playoff_stats)
 ```
 
+```{r}
+#| label: get-above-1990
+
+NBA_df <- AAAW_playoff_stats |>
+  filter(season >= 1990)
+
+```
+
+```{r}
+#| label: create-unique-teams
+
+NBA_df <- NBA_df |>
+  mutate(team_id = paste(season, team_id, sep = ""))
+
+head(NBA_df)
+
+```
+
+```{r}
+#| label: filter-noises
+
+NBA_df <- NBA_df |>
+  filter(g >= 4,
+         mp_per_g >= 10)
+  
+```
+
+```{r}
+#| label:  create-team-based
+```
+
 Add project writeup here.
