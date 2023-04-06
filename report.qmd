@@ -162,3 +162,49 @@ Adv_df |>
   geom_boxplot() +
   theme(legend.position = "none")
 ```
+
+Part 3: Combo
+
+```{r}
+#| label: group-by-team-combo
+
+NBA_df_combo <- NBA_df |>
+  mutate(pp_36 = pts_per_g / mp_per_g * 36,
+         rp_36 = trb_per_g / mp_per_g * 36,
+         ap_36 = ast_per_g / mp_per_g * 36)
+
+Qual_player_df_combo <- NBA_df_combo |>
+  filter(pp_36 > 16 | rp_36 > 6.5 | ap_36 > 3.5, 
+         per >= 15 | ws_per_48 >= 0.1) |>
+  group_by(team_id) |>
+  summarise(count_qual = n())
+
+Combo_df <- Qual_player_df_combo |>
+  left_join(All_rot_players_df, by = "team_id")
+```
+
+```{r}
+#| label: champ-label-combo
+Combo_df <- Combo_df |>
+  mutate(Combo_depth = count_qual / count_rot,
+         Championship = if_else(team_id %in% c("1990DET", "1991CHI", "1992CHI", "1993CHI", "1994HOU", "1995HOU", "1996CHI", "1997CHI", "1998CHI", "1999SAS", "2000LAL", "2001LAL", "2002LAL", "2003SAS", "2004DET", "2005SAS", "2006MIA", "2007SAS", "2008BOS", "2009LAL", "2010LAL", "2011DAL", "2012MIA", "2013MIA", "2014SAS", "2015GSW", "2016CLE", "2017GSW", "2018GSW", "2019TOR", "2020LAL", "2021MIL", "2022GSW"), "Champ", "No Champ" ))
+```
+
+```{r}
+#| label: combo-summarystat-depth
+
+Combo_df |>
+  group_by(Championship) |>
+  summarize(mean(Combo_depth))
+```
+
+```{r}
+#| label: combo-barplot-depth
+
+Combo_df |>
+  ggplot(
+    aes(x = Combo_depth, y = Championship, fill = Championship)
+  ) +
+  geom_boxplot() +
+  theme(legend.position = "none")
+```

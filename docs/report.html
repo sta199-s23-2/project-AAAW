@@ -396,6 +396,50 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 <p><img src="report_files/figure-html/adv-barplot-depth-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Part 3: Combo</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>NBA_df_combo <span class="ot">&lt;-</span> NBA_df <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pp_36 =</span> pts_per_g <span class="sc">/</span> mp_per_g <span class="sc">*</span> <span class="dv">36</span>,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">rp_36 =</span> trb_per_g <span class="sc">/</span> mp_per_g <span class="sc">*</span> <span class="dv">36</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">ap_36 =</span> ast_per_g <span class="sc">/</span> mp_per_g <span class="sc">*</span> <span class="dv">36</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>Qual_player_df_combo <span class="ot">&lt;-</span> NBA_df_combo <span class="sc">|&gt;</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pp_36 <span class="sc">&gt;</span> <span class="dv">16</span> <span class="sc">|</span> rp_36 <span class="sc">&gt;</span> <span class="fl">6.5</span> <span class="sc">|</span> ap_36 <span class="sc">&gt;</span> <span class="fl">3.5</span>, </span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>         per <span class="sc">&gt;=</span> <span class="dv">15</span> <span class="sc">|</span> ws_per_48 <span class="sc">&gt;=</span> <span class="fl">0.1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(team_id) <span class="sc">|&gt;</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count_qual =</span> <span class="fu">n</span>())</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>Combo_df <span class="ot">&lt;-</span> Qual_player_df_combo <span class="sc">|&gt;</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(All_rot_players_df, <span class="at">by =</span> <span class="st">"team_id"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>Combo_df <span class="ot">&lt;-</span> Combo_df <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Combo_depth =</span> count_qual <span class="sc">/</span> count_rot,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">Championship =</span> <span class="fu">if_else</span>(team_id <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"1990DET"</span>, <span class="st">"1991CHI"</span>, <span class="st">"1992CHI"</span>, <span class="st">"1993CHI"</span>, <span class="st">"1994HOU"</span>, <span class="st">"1995HOU"</span>, <span class="st">"1996CHI"</span>, <span class="st">"1997CHI"</span>, <span class="st">"1998CHI"</span>, <span class="st">"1999SAS"</span>, <span class="st">"2000LAL"</span>, <span class="st">"2001LAL"</span>, <span class="st">"2002LAL"</span>, <span class="st">"2003SAS"</span>, <span class="st">"2004DET"</span>, <span class="st">"2005SAS"</span>, <span class="st">"2006MIA"</span>, <span class="st">"2007SAS"</span>, <span class="st">"2008BOS"</span>, <span class="st">"2009LAL"</span>, <span class="st">"2010LAL"</span>, <span class="st">"2011DAL"</span>, <span class="st">"2012MIA"</span>, <span class="st">"2013MIA"</span>, <span class="st">"2014SAS"</span>, <span class="st">"2015GSW"</span>, <span class="st">"2016CLE"</span>, <span class="st">"2017GSW"</span>, <span class="st">"2018GSW"</span>, <span class="st">"2019TOR"</span>, <span class="st">"2020LAL"</span>, <span class="st">"2021MIL"</span>, <span class="st">"2022GSW"</span>), <span class="st">"Champ"</span>, <span class="st">"No Champ"</span> ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>Combo_df <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Championship) <span class="sc">|&gt;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">mean</span>(Combo_depth))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  Championship `mean(Combo_depth)`
+  &lt;chr&gt;                      &lt;dbl&gt;
+1 Champ                      0.627
+2 No Champ                   0.439</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>Combo_df <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Combo_depth, <span class="at">y =</span> Championship, <span class="at">fill =</span> Championship)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="report_files/figure-html/combo-barplot-depth-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 
 
 
