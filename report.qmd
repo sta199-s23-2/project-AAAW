@@ -96,14 +96,29 @@ Basic_df <- Qual_player_df_basic |>
 ```
 
 ```{r}
-Basic_df |>
+#| label: champ-label
+Basic_df <- Basic_df |>
   mutate(Basic_depth = count_qual / count_rot,
          Championship = if_else(team_id %in% c("1990DET", "1991CHI", "1992CHI", "1993CHI", "1994HOU", "1995HOU", "1996CHI", "1997CHI", "1998CHI", "1999SAS", "2000LAL", "2001LAL", "2002LAL", "2003SAS", "2004DET", "2005SAS", "2006MIA", "2007SAS", "2008BOS", "2009LAL", "2010LAL", "2011DAL", "2012MIA", "2013MIA", "2014SAS", "2015GSW", "2016CLE", "2017GSW", "2018GSW", "2019TOR", "2020LAL", "2021MIL", "2022GSW"), "Champ", "No Champ" ))
 ```
 
 ```{r}
-c("1990DET", "1991CHI", "1992CHI", "1993CHI", "1994HOU", "1995HOU", "1996CHI", "1997CHI", "1998CHI", "1999SAS", "2000LAL", "2001LAL", "2002LAL", "2003SAS", "2004DET", "2005SAS", "2006MIA", "2007SAS", "2008BOS", "2009LAL", "2010LAL", "2011DAL", "2012MIA", "2013MIA", "2014SAS", "2015GSW", "2016CLE", "2017GSW", "2018GSW", "2019TOR", "2020LAL", "2021MIL", "2022GSW") %in% Basic_df$team_id
+#| label: basic-summarystat-depth
+
+Basic_df |>
+  group_by(Championship) |>
+  summarize(mean(Basic_depth), sd(Basic_depth))
 
 ```
 
-Add project writeup here.
+```{r}
+#| label: basic-barplot-depth
+
+Basic_df |>
+  ggplot(
+    aes(x = Basic_depth, y = Championship, fill = Championship)
+  ) +
+  geom_boxplot() +
+  theme(legend.position = "none")
+
+```

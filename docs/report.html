@@ -331,35 +331,33 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 <span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(All_rot_players_df, <span class="at">by =</span> <span class="st">"team_id"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Basic_df <span class="sc">|&gt;</span></span>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Basic_df <span class="ot">&lt;-</span> Basic_df <span class="sc">|&gt;</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Basic_depth =</span> count_qual <span class="sc">/</span> count_rot,</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">Championship =</span> <span class="fu">if_else</span>(team_id <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"1990DET"</span>, <span class="st">"1991CHI"</span>, <span class="st">"1992CHI"</span>, <span class="st">"1993CHI"</span>, <span class="st">"1994HOU"</span>, <span class="st">"1995HOU"</span>, <span class="st">"1996CHI"</span>, <span class="st">"1997CHI"</span>, <span class="st">"1998CHI"</span>, <span class="st">"1999SAS"</span>, <span class="st">"2000LAL"</span>, <span class="st">"2001LAL"</span>, <span class="st">"2002LAL"</span>, <span class="st">"2003SAS"</span>, <span class="st">"2004DET"</span>, <span class="st">"2005SAS"</span>, <span class="st">"2006MIA"</span>, <span class="st">"2007SAS"</span>, <span class="st">"2008BOS"</span>, <span class="st">"2009LAL"</span>, <span class="st">"2010LAL"</span>, <span class="st">"2011DAL"</span>, <span class="st">"2012MIA"</span>, <span class="st">"2013MIA"</span>, <span class="st">"2014SAS"</span>, <span class="st">"2015GSW"</span>, <span class="st">"2016CLE"</span>, <span class="st">"2017GSW"</span>, <span class="st">"2018GSW"</span>, <span class="st">"2019TOR"</span>, <span class="st">"2020LAL"</span>, <span class="st">"2021MIL"</span>, <span class="st">"2022GSW"</span>), <span class="st">"Champ"</span>, <span class="st">"No Champ"</span> ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Basic_df <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Championship) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">mean</span>(Basic_depth), <span class="fu">sd</span>(Basic_depth))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 496 × 5
-   team_id count_qual count_rot Basic_depth Championship
-   &lt;chr&gt;        &lt;int&gt;     &lt;int&gt;       &lt;dbl&gt; &lt;chr&gt;       
- 1 1990BOS          7         8       0.875 No Champ    
- 2 1990CHI          7         9       0.778 No Champ    
- 3 1990CLE          5         7       0.714 No Champ    
- 4 1990DET          8         8       1     Champ       
- 5 1990HOU          5         7       0.714 No Champ    
- 6 1990LAL          6         8       0.75  No Champ    
- 7 1990MIL          6         7       0.857 No Champ    
- 8 1990NYK          6         8       0.75  No Champ    
- 9 1990PHI          5         7       0.714 No Champ    
-10 1990PHO          6         7       0.857 No Champ    
-# … with 486 more rows</code></pre>
+<pre><code># A tibble: 2 × 3
+  Championship `mean(Basic_depth)` `sd(Basic_depth)`
+  &lt;chr&gt;                      &lt;dbl&gt;             &lt;dbl&gt;
+1 Champ                      0.755             0.122
+2 No Champ                   0.720             0.145</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"1990DET"</span>, <span class="st">"1991CHI"</span>, <span class="st">"1992CHI"</span>, <span class="st">"1993CHI"</span>, <span class="st">"1994HOU"</span>, <span class="st">"1995HOU"</span>, <span class="st">"1996CHI"</span>, <span class="st">"1997CHI"</span>, <span class="st">"1998CHI"</span>, <span class="st">"1999SAS"</span>, <span class="st">"2000LAL"</span>, <span class="st">"2001LAL"</span>, <span class="st">"2002LAL"</span>, <span class="st">"2003SAS"</span>, <span class="st">"2004DET"</span>, <span class="st">"2005SAS"</span>, <span class="st">"2006MIA"</span>, <span class="st">"2007SAS"</span>, <span class="st">"2008BOS"</span>, <span class="st">"2009LAL"</span>, <span class="st">"2010LAL"</span>, <span class="st">"2011DAL"</span>, <span class="st">"2012MIA"</span>, <span class="st">"2013MIA"</span>, <span class="st">"2014SAS"</span>, <span class="st">"2015GSW"</span>, <span class="st">"2016CLE"</span>, <span class="st">"2017GSW"</span>, <span class="st">"2018GSW"</span>, <span class="st">"2019TOR"</span>, <span class="st">"2020LAL"</span>, <span class="st">"2021MIL"</span>, <span class="st">"2022GSW"</span>) <span class="sc">%in%</span> Basic_df<span class="sc">$</span>team_id</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
-[16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
-[31] TRUE TRUE TRUE</code></pre>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Basic_df <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Basic_depth, <span class="at">y =</span> Championship, <span class="at">fill =</span> Championship)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="report_files/figure-html/basic-barplot-depth-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Add project writeup here.</p>
 
 
 
