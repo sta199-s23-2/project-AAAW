@@ -75,7 +75,7 @@ NBA_df <- NBA_df |>
 
 Methodology
 
-### Data Cleaning (Done Above) 
+### Data Cleaning (Done Above)
 
 1.  Reorder the dataset in such a way that it is done by team by year. Filter out all players who played less than 10 minutes per game and all years before 1990.
 
@@ -109,9 +109,8 @@ OR
 
     2.  This is already calculated in the dataset
 
-```{=html}
 <!-- -->
-```
+
 3.  Combo: players must meet both the requirement of basic stats and advanced stats to be considered as quality player
 
 \

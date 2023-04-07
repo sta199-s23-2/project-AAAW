@@ -163,7 +163,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#data-cleaning-done-above" id="toc-data-cleaning-done-above" class="nav-link active" data-scroll-target="#data-cleaning-done-above">Data Cleaning (Done Above)</a></li>
+  <li><a href="#quantification-of-team-depth-using-basic-stats-advanced-stats-and-combo-stats" id="toc-quantification-of-team-depth-using-basic-stats-advanced-stats-and-combo-stats" class="nav-link" data-scroll-target="#quantification-of-team-depth-using-basic-stats-advanced-stats-and-combo-stats">Quantification of Team Depth using Basic Stats, Advanced Stats, and Combo Stats</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -189,6 +196,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Introduction:</p>
+<p>The National Basketball Association (NBA) is the most popular premiere basketball league in the world. It produces data from every one of the 400-500 players in the league every season, leading to several million datapoints across NBA history. Every year, many models are developed to evaluate team strength and predict the success of the team.</p>
+<p>Team depth is the overall quality of players in a sports team, especially those besides the team’s star players. A team with good depth has competent players on both their starting lineup and their bench, which allows the team to withstand injuries and to have more flexibility for strategic adjustments. However, despite the importance of team depth, there is no established metric to measure it in the NBA. Quantitative analysis of the connection between team depth and team success is still missing. It is an often overlooked variable that significantly contributes to the over-all strength of the team. Performing an analysis on this question allow us to develop a systematic method to better understand and assess this often-neglected factor.</p>
+<p>In this study, we investigate if the championship winning teams have a greater depth than the rest of the field using NBA play-off data from 1990-2022 collected by Robert Sunderhaft, who webscraped it from Basketball Reference, a public database of NBA statistics collated by Sports Reference LLC. In the dataset, we use 3 different methods to quantify team depth: (1) Basic statistics approach, (2) Advanced statistics, (3) Combo of Basic and Advanced statistics. We hypothesize that with all 3 measurements, the depths of championship winning teams would be significantly higher than those of the other teams because team depth has a positive effect on the team’s performance. If this hypothesis holds true and the team depth does have an effect on championship, we will identify the quantification of team depth that resulted in the smallest p value (greatest significant difference). We will then fit this team depth metric to a logistic model to predict whether the team wins the championship, showing the real-life application of our statistical finding.</p>
+<p>Data background</p>
+<p>This research aims to develop a systematic way to evaluate team depth using the NBA play-off data from 1950-2022. We will then investigate its effect on the final results of the championship. To evaluate team depth, we will look at variables such as the points by bench players, numbers of bench players, field goal percentage of role players. We will also ask questions such as are the player minutes evenly-spreaded, and are all the positions well-subsituted, to evaluate the depth of the team. Eventually, we will assign relative scores for team depth and evaluate its association with final championship results.</p>
+<p>The only ethical issue that arises with this use of this data set is that “basketball skill” is not a guaranteed, easily predictable variable and can change with each game. For example, a player can have an off day and thus have a dip in stats. That is why there is a high probability that any quality of play predictions made based off of these statistics is largely speculatory and could vary for any given game.</p>
+<p>Another issue that arises is that some data, like percentages, blocks, turnovers, and other advanced statistics, weren’t collected for players early in this dataset, so there are null values instead.</p>
+<p>In regards to this specific data set and the questions that we are addressing, the null hypothesis states that the true squad depth for champions minus the true squad depth for non-champions will equal zero, meaning that there is no statistical difference between the two measured teams. Our alternate hypothesis is that the true squad depth for champions minus the true squad depth for non-champions will be greater than zero, signifying a significant statistical relationship. This means that we can reject the null hypothesis if we were to get a p-value less than .05 and we cannot fail to reject it if it is greater than .05.</p>
+<p>Literature Review: Published credible article: “Predicting the Outcome of NBA Playoffs Based on the Maximum Entropy Principle” (Cheng et al.) https://www.mdpi.com/1099-4300/18/12/450</p>
+<p>Summary</p>
+<p>Cheng et al.&nbsp;developed a machine learning model that utilized maximum entropy principle to predict the outcome of nba play-off results using 14 basic technical features, such as 3 points, field goals, and number of steals. Their model reached an accuracy of 74.4%, which outperformed the previous state-of-the-art with 70% accuracy. The author reasoned that this increase of performance came from the maximum entropy principle as well as their consideration of the team’s last 6 game’s data which gave a more detailed depiction of team’s strength at the specific time before the play-off game. Among the 14 features that they considered, team depth was not included. We believe that the team depth is a great factor that impacts the result of the play-off games. And if our hypothesis is true, the team depth variable could be a valuable addition to Cheng et al.’s machine learning to improve their accuracy.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>AAAW_playoff_stats <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/AAAW_updatedplayoffStats.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -291,6 +310,50 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(g <span class="sc">&gt;=</span> <span class="dv">4</span>,</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>         mp_per_g <span class="sc">&gt;=</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Methodology</p>
+<section id="data-cleaning-done-above" class="level3">
+<h3 class="anchored" data-anchor-id="data-cleaning-done-above">Data Cleaning (Done Above)</h3>
+<ol type="1">
+<li><p>Reorder the dataset in such a way that it is done by team by year. Filter out all players who played less than 10 minutes per game and all years before 1990.</p></li>
+<li><p>Append new row of champions by year</p></li>
+</ol>
+</section>
+<section id="quantification-of-team-depth-using-basic-stats-advanced-stats-and-combo-stats" class="level3">
+<h3 class="anchored" data-anchor-id="quantification-of-team-depth-using-basic-stats-advanced-stats-and-combo-stats">Quantification of Team Depth using Basic Stats, Advanced Stats, and Combo Stats</h3>
+<p>We quantify team depth use this general equation: #Quality Player / #Rotation Player (players with more than 10 minutes per game on average). We propose 3 different ways to define quality player, thus creating 3 ways to quantify team depth</p>
+<ol type="1">
+<li><p>Basic Stats:&nbsp;</p>
+<ol type="1">
+<li><p>Points Per 36 minutes: (points per game / minutes per game) *36 &gt; 16 OR</p></li>
+<li><p>Rebounds Per 36 minutes: (rebounds per game / minutes per game) *36 &gt; 6.5 OR</p></li>
+<li><p>Assists Per 36 minutes: (assists per game / minutes per game) *36 &gt; 3.5</p></li>
+</ol></li>
+<li><p>Advanced Stats</p>
+<ol type="1">
+<li><p>Player Efficiency Rating &gt;=15&nbsp;</p>
+<ol type="1">
+<li><p>Player Efficiency Rating = (PTS + REB + AST + STL + BLK − Missed FG − Missed FT - TO) / GP.</p></li>
+<li><p>This is already calculated in the dataset.</p></li>
+</ol></li>
+</ol></li>
+</ol>
+<p>OR</p>
+<ol start="2" type="1">
+<li><p>Win Share per 48 min &gt; 0.1</p>
+<ol type="1">
+<li><p>Based on the statistical contribution of everyone on the team, the total number of wins on the team gets proportionally distributed to each player, and we calculate the win shares each player contributed per 48 minutes (1 game)</p></li>
+<li><p>This is already calculated in the dataset</p></li>
+</ol></li>
+</ol>
+<!-- -->
+<ol start="3" type="1">
+<li>Combo: players must meet both the requirement of basic stats and advanced stats to be considered as quality player</li>
+</ol>
+<p><br>
+</p>
+<p>We will use these 3 methods to define quality players and subsequently team depth (#Quality Players / #Rotation Players). These 3 quantifications of team depth will each be tested to see if championship winning teams would have a significantly higher team depth.</p>
+<p><br>
+</p>
 <p>Part 1: Basic stats</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>NBA_df_basic <span class="ot">&lt;-</span> NBA_df <span class="sc">|&gt;</span></span>
@@ -422,7 +485,7 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 <pre><code># A tibble: 1 × 1
   p_value
     &lt;dbl&gt;
-1   0.067</code></pre>
+1   0.045</code></pre>
 </div>
 </div>
 <p>Part 2: Advanced Stats</p>
@@ -654,6 +717,7 @@ approximation based on the number of `reps` chosen in the `generate()` step. See
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
