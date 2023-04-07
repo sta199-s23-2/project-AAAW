@@ -12,6 +12,7 @@ execute:
 #| message: false
 
 library(tidyverse)
+library(tidymodels)
 ```
 
 ```{r}
@@ -92,15 +93,45 @@ All_rot_players_df <- NBA_df |>
 Basic_df <- Qual_player_df_basic |>
   left_join(All_rot_players_df, by = "team_id")
 
-
+Basic_df
 ```
 
 ```{r}
 #| label: champ-label
 Basic_df <- Basic_df |>
   mutate(Basic_depth = count_qual / count_rot,
-         Championship = if_else(team_id %in% c("1990DET", "1991CHI", "1992CHI", "1993CHI", "1994HOU", "1995HOU", "1996CHI", "1997CHI", "1998CHI", "1999SAS", "2000LAL", "2001LAL", "2002LAL", "2003SAS", "2004DET", "2005SAS", "2006MIA", "2007SAS", "2008BOS", "2009LAL", "2010LAL", "2011DAL", "2012MIA", "2013MIA", "2014SAS", "2015GSW", "2016CLE", "2017GSW", "2018GSW", "2019TOR", "2020LAL", "2021MIL", "2022GSW"), "Champ", "No Champ" ))
+         Championship = if_else(team_id %in% c("1990DET", "1991CHI", "1992CHI", "1993CHI", "1994HOU", "1995HOU", "1996CHI", "1997CHI", "1998CHI", "1999SAS", "2000LAL", "2001LAL", "2002LAL", "2003SAS", "2004DET", "2005SAS", "2006MIA", "2007SAS", "2008BOS", "2009LAL", "2010LAL", "2011DAL", "2012MIA", "2013MIA", "2014SAS", "2015GSW", "2016CLE", "2017GSW", "2018GSW", "2019TOR", "2020LAL", "2021MIL", "2022GSW"), "Champ", "Not Champ" ))
 ```
+
+```{r}
+#| label: basic-barplot-depth
+Basic_df |>
+  ggplot(
+    aes(x = Championship, y = Basic_depth,  fill = Championship)
+  ) +
+  geom_boxplot() +
+  theme(legend.position = "none") +
+  labs(title = "Basic Depth of Champions vs Non-Champions",
+       x = "Team",
+       y = "Team Depth (Defined by Basic Stats)")
+
+```
+
+```{r}
+#| label: basic-violin-depth
+
+Basic_df |>
+  ggplot(
+    aes(x = Championship, y = Basic_depth,  fill = Championship)
+  ) +
+  geom_violin() +
+  theme(legend.position = "none") +
+  labs(title = "Basic Depth of Champions vs Non-Champions",
+       x = "Team",
+       y = "Team Depth (Defined by Basic Stats)")
+```
+
+Statistical Test
 
 ```{r}
 #| label: basic-summarystat-depth
@@ -108,19 +139,36 @@ Basic_df <- Basic_df |>
 Basic_df |>
   group_by(Championship) |>
   summarize(mean(Basic_depth))
+```
+
+$\bar{x_c} - \bar{x_n}$ = 0.04
+
+```{r}
+#| label: bootstrap-basic
+
+null_dist_basic <- Basic_df |>
+  specify(response = Basic_depth, explanatory = Championship) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 1000, type = "permute") |>
+  calculate(stat = "diff in means", order = c("Champ", "Not Champ"))
 
 ```
 
 ```{r}
-#| label: basic-barplot-depth
+#| label: null-vis-basic
+visualize(null_dist_basic) +
+ shade_p_value(obs_stat = 0.04, direction = "greater") +
+  labs(title = "Null Distribution of (Champion Depth - Non-Champion Depth) 
+using Basic Statistics",
+      x = "Difference (Champion Depth - Non-Champion Depth)",
+      y = "Frequency")
 
-Basic_df |>
-  ggplot(
-    aes(x = Basic_depth, y = Championship, fill = Championship)
-  ) +
-  geom_boxplot() +
-  theme(legend.position = "none")
+```
 
+```{r}
+#| label: p-basic
+null_dist_basic |>
+  get_p_value(obs_stat = 0.04, direction = "right")
 ```
 
 Part 2: Advanced Stats
@@ -157,7 +205,7 @@ Adv_df |>
 
 Adv_df |>
   ggplot(
-    aes(x = Adv_depth, y = Championship, fill = Championship)
+    aes(x = Championship, y = Adv_depth,  fill = Championship)
   ) +
   geom_boxplot() +
   theme(legend.position = "none")
