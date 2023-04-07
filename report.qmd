@@ -347,3 +347,39 @@ using Basic Statistics",
 null_dist_combo |>
   get_p_value(obs_stat = 0.19, direction = "right")
 ```
+
+Model Fitting
+
+```{r}
+#| label: model-adv-stat
+
+Adv_df <- Adv_df |>
+  mutate (Championship = as.factor(Championship))
+
+Champ_model <- logistic_reg() |>
+  set_engine('glm') |>
+  fit(Championship ~ Adv_depth, data = Adv_df, family = 'binomial') 
+```
+
+```{r}
+#| label: model-equation
+
+Champ_model |>
+  tidy()
+```
+
+```{r}
+#| label: model-vis
+Adv_df <- Adv_df |>
+  mutate(pred_prob = predict(Champ_model$fit, type = "response"))
+
+ggplot(data = Adv_df) + 
+  geom_point(aes(x = Adv_depth, y = as.numeric(Championship) -1, 
+                        color = Championship)) + 
+  geom_line(aes(x = Adv_depth, y = pred_prob)) + 
+  labs(title = "Logistic Model of Adv_depth on Championship",
+       x = "Team Depth from Advanced Statistics", 
+       y = "Probability of Team Winning Championship", 
+       color = "Champion or Not"
+       )
+```
