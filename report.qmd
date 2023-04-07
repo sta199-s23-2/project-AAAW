@@ -15,6 +15,30 @@ library(tidyverse)
 library(tidymodels)
 ```
 
+Introduction:
+
+The National Basketball Association (NBA) is the most popular premiere basketball league in the world. It produces data from every one of the 400-500 players in the league every season, leading to several million datapoints across NBA history. Every year, many models are developed to evaluate team strength and predict the success of the team.
+
+Team depth is the overall quality of players in a sports team, especially those besides the team's star players. A team with good depth has competent players on both their starting lineup and their bench, which allows the team to withstand injuries and to have more flexibility for strategic adjustments. However, despite the importance of team depth, there is no established metric to measure it in the NBA. Quantitative analysis of the connection between team depth and team success is still missing. It is an often overlooked variable that significantly contributes to the over-all strength of the team. Performing an analysis on this question allow us to develop a systematic method to better understand and assess this often-neglected factor.
+
+In this study, we investigate if the championship winning teams have a greater depth than the rest of the field using NBA play-off data from 1990-2022 collected by Robert Sunderhaft, who webscraped it from Basketball Reference, a public database of NBA statistics collated by Sports Reference LLC. In the dataset, we use 3 different methods to quantify team depth: (1) Basic statistics approach, (2) Advanced statistics, (3) Combo of Basic and Advanced statistics. We hypothesize that with all 3 measurements, the depths of championship winning teams would be significantly higher than those of the other teams because team depth has a positive effect on the team's performance. If this hypothesis holds true and the team depth does have an effect on championship, we will identify the quantification of team depth that resulted in the smallest p value (greatest significant difference). We will then fit this team depth metric to a logistic model to predict whether the team wins the championship, showing the real-life application of our statistical finding.
+
+Data background
+
+This research aims to develop a systematic way to evaluate team depth using the NBA play-off data from 1950-2022. We will then investigate its effect on the final results of the championship. To evaluate team depth, we will look at variables such as the points by bench players, numbers of bench players, field goal percentage of role players. We will also ask questions such as are the player minutes evenly-spreaded, and are all the positions well-subsituted, to evaluate the depth of the team. Eventually, we will assign relative scores for team depth and evaluate its association with final championship results.
+
+The only ethical issue that arises with this use of this data set is that "basketball skill" is not a guaranteed, easily predictable variable and can change with each game. For example, a player can have an off day and thus have a dip in stats. That is why there is a high probability that any quality of play predictions made based off of these statistics is largely speculatory and could vary for any given game.
+
+Another issue that arises is that some data, like percentages, blocks, turnovers, and other advanced statistics, weren't collected for players early in this dataset, so there are null values instead.
+
+In regards to this specific data set and the questions that we are addressing, the null hypothesis states that the true squad depth for champions minus the true squad depth for non-champions will equal zero, meaning that there is no statistical difference between the two measured teams. Our alternate hypothesis is that the true squad depth for champions minus the true squad depth for non-champions will be greater than zero, signifying a significant statistical relationship. This means that we can reject the null hypothesis if we were to get a p-value less than .05 and we cannot fail to reject it if it is greater than .05.
+
+Literature Review: Published credible article: "Predicting the Outcome of NBA Playoffs Based on the Maximum Entropy Principle" (Cheng et al.) https://www.mdpi.com/1099-4300/18/12/450
+
+Summary
+
+Cheng et al. developed a machine learning model that utilized maximum entropy principle to predict the outcome of nba play-off results using 14 basic technical features, such as 3 points, field goals, and number of steals. Their model reached an accuracy of 74.4%, which outperformed the previous state-of-the-art with 70% accuracy. The author reasoned that this increase of performance came from the maximum entropy principle as well as their consideration of the team's last 6 game's data which gave a more detailed depiction of team's strength at the specific time before the play-off game. Among the 14 features that they considered, team depth was not included. We believe that the team depth is a great factor that impacts the result of the play-off games. And if our hypothesis is true, the team depth variable could be a valuable addition to Cheng et al.'s machine learning to improve their accuracy.
+
 ```{r}
 #| label: load-play-off-data
 
@@ -48,6 +72,53 @@ NBA_df <- NBA_df |>
          mp_per_g >= 10)
   
 ```
+
+Methodology
+
+### Data Cleaning (Done Above) 
+
+1.  Reorder the dataset in such a way that it is done by team by year. Filter out all players who played less than 10 minutes per game and all years before 1990.
+
+2.  Append new row of champions by year
+
+### Quantification of Team Depth using Basic Stats, Advanced Stats, and Combo Stats
+
+We quantify team depth use this general equation: #Quality Player / #Rotation Player (players with more than 10 minutes per game on average). We propose 3 different ways to define quality player, thus creating 3 ways to quantify team depth
+
+1.  Basic Stats: 
+
+    1.  Points Per 36 minutes: (points per game / minutes per game) \*36 \> 16 OR
+
+    2.  Rebounds Per 36 minutes: (rebounds per game / minutes per game) \*36 \> 6.5 OR
+
+    3.  Assists Per 36 minutes: (assists per game / minutes per game) \*36 \> 3.5
+
+2.  Advanced Stats
+
+    1.  Player Efficiency Rating \>=15 
+
+        1.  Player Efficiency Rating = (PTS + REB + AST + STL + BLK − Missed FG − Missed FT - TO) / GP.
+
+        2.  This is already calculated in the dataset.
+
+OR
+
+2.  Win Share per 48 min \> 0.1
+
+    1.  Based on the statistical contribution of everyone on the team, the total number of wins on the team gets proportionally distributed to each player, and we calculate the win shares each player contributed per 48 minutes (1 game)
+
+    2.  This is already calculated in the dataset
+
+```{=html}
+<!-- -->
+```
+3.  Combo: players must meet both the requirement of basic stats and advanced stats to be considered as quality player
+
+\
+
+We will use these 3 methods to define quality players and subsequently team depth (#Quality Players / #Rotation Players). These 3 quantifications of team depth will each be tested to see if championship winning teams would have a significantly higher team depth.
+
+\
 
 Part 1: Basic stats
 
