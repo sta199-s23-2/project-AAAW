@@ -12,6 +12,7 @@ execute:
 #| message: false
 
 library(tidyverse)
+library(tidymodels)
 ```
 
 ```{r}
@@ -92,15 +93,45 @@ All_rot_players_df <- NBA_df |>
 Basic_df <- Qual_player_df_basic |>
   left_join(All_rot_players_df, by = "team_id")
 
-
+Basic_df
 ```
 
 ```{r}
 #| label: champ-label
 Basic_df <- Basic_df |>
   mutate(Basic_depth = count_qual / count_rot,
-         Championship = if_else(team_id %in% c("1990DET", "1991CHI", "1992CHI", "1993CHI", "1994HOU", "1995HOU", "1996CHI", "1997CHI", "1998CHI", "1999SAS", "2000LAL", "2001LAL", "2002LAL", "2003SAS", "2004DET", "2005SAS", "2006MIA", "2007SAS", "2008BOS", "2009LAL", "2010LAL", "2011DAL", "2012MIA", "2013MIA", "2014SAS", "2015GSW", "2016CLE", "2017GSW", "2018GSW", "2019TOR", "2020LAL", "2021MIL", "2022GSW"), "Champ", "No Champ" ))
+         Championship = if_else(team_id %in% c("1990DET", "1991CHI", "1992CHI", "1993CHI", "1994HOU", "1995HOU", "1996CHI", "1997CHI", "1998CHI", "1999SAS", "2000LAL", "2001LAL", "2002LAL", "2003SAS", "2004DET", "2005SAS", "2006MIA", "2007SAS", "2008BOS", "2009LAL", "2010LAL", "2011DAL", "2012MIA", "2013MIA", "2014SAS", "2015GSW", "2016CLE", "2017GSW", "2018GSW", "2019TOR", "2020LAL", "2021MIL", "2022GSW"), "Champ", "Not Champ" ))
 ```
+
+```{r}
+#| label: basic-barplot-depth
+Basic_df |>
+  ggplot(
+    aes(x = Championship, y = Basic_depth,  fill = Championship)
+  ) +
+  geom_boxplot() +
+  theme(legend.position = "none") +
+  labs(title = "Basic Depth of Champions vs Non-Champions",
+       x = "Team",
+       y = "Team Depth (Defined by Basic Stats)")
+
+```
+
+```{r}
+#| label: basic-violin-depth
+
+Basic_df |>
+  ggplot(
+    aes(x = Championship, y = Basic_depth,  fill = Championship)
+  ) +
+  geom_violin() +
+  theme(legend.position = "none") +
+  labs(title = "Basic Depth of Champions vs Non-Champions",
+       x = "Team",
+       y = "Team Depth (Defined by Basic Stats)")
+```
+
+Statistical Test
 
 ```{r}
 #| label: basic-summarystat-depth
@@ -108,19 +139,36 @@ Basic_df <- Basic_df |>
 Basic_df |>
   group_by(Championship) |>
   summarize(mean(Basic_depth))
+```
+
+$\bar{x_c} - \bar{x_n}$ = 0.04
+
+```{r}
+#| label: bootstrap-basic
+
+null_dist_basic <- Basic_df |>
+  specify(response = Basic_depth, explanatory = Championship) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 1000, type = "permute") |>
+  calculate(stat = "diff in means", order = c("Champ", "Not Champ"))
 
 ```
 
 ```{r}
-#| label: basic-barplot-depth
+#| label: null-vis-basic
+visualize(null_dist_basic) +
+ shade_p_value(obs_stat = 0.04, direction = "greater") +
+  labs(title = "Null Distribution of (Champion Depth - Non-Champion Depth) 
+using Basic Statistics",
+      x = "Difference (Champion Depth - Non-Champion Depth)",
+      y = "Frequency")
 
-Basic_df |>
-  ggplot(
-    aes(x = Basic_depth, y = Championship, fill = Championship)
-  ) +
-  geom_boxplot() +
-  theme(legend.position = "none")
+```
 
+```{r}
+#| label: p-basic
+null_dist_basic |>
+  get_p_value(obs_stat = 0.04, direction = "right")
 ```
 
 Part 2: Advanced Stats
@@ -141,7 +189,35 @@ Adv_df <- Qual_player_df_adv |>
 #| label: champ-label-advanced
 Adv_df <- Adv_df |>
   mutate(Adv_depth = count_qual / count_rot,
-         Championship = if_else(team_id %in% c("1990DET", "1991CHI", "1992CHI", "1993CHI", "1994HOU", "1995HOU", "1996CHI", "1997CHI", "1998CHI", "1999SAS", "2000LAL", "2001LAL", "2002LAL", "2003SAS", "2004DET", "2005SAS", "2006MIA", "2007SAS", "2008BOS", "2009LAL", "2010LAL", "2011DAL", "2012MIA", "2013MIA", "2014SAS", "2015GSW", "2016CLE", "2017GSW", "2018GSW", "2019TOR", "2020LAL", "2021MIL", "2022GSW"), "Champ", "No Champ" ))
+         Championship = if_else(team_id %in% c("1990DET", "1991CHI", "1992CHI", "1993CHI", "1994HOU", "1995HOU", "1996CHI", "1997CHI", "1998CHI", "1999SAS", "2000LAL", "2001LAL", "2002LAL", "2003SAS", "2004DET", "2005SAS", "2006MIA", "2007SAS", "2008BOS", "2009LAL", "2010LAL", "2011DAL", "2012MIA", "2013MIA", "2014SAS", "2015GSW", "2016CLE", "2017GSW", "2018GSW", "2019TOR", "2020LAL", "2021MIL", "2022GSW"), "Champ", "Not Champ" ))
+```
+
+```{r}
+#| label: adv-barplot-depth
+
+Adv_df |>
+  ggplot(
+    aes(x = Championship, y = Adv_depth,  fill = Championship)
+  ) +
+  geom_boxplot() +
+  theme(legend.position = "none") +
+  labs(title = "Advanved Depth of Champions vs Non-Champions",
+       x = "Team",
+       y = "Team Depth (Defined by Adv Stats)")
+```
+
+```{r}
+#| label: adv-violinplot-depth
+
+Adv_df |>
+  ggplot(
+    aes(x = Championship, y = Adv_depth,  fill = Championship)
+  ) +
+  geom_violin() +
+  theme(legend.position = "none") +
+  labs(title = "Advanved Depth of Champions vs Non-Champions",
+       x = "Team",
+       y = "Team Depth (Defined by Adv Stats)")
 ```
 
 ```{r}
@@ -152,15 +228,33 @@ Adv_df |>
   summarize(mean(Adv_depth))
 ```
 
-```{r}
-#| label: adv-barplot-depth
+$\bar{x_c} - \bar{x_n}$ = 0.25
 
-Adv_df |>
-  ggplot(
-    aes(x = Adv_depth, y = Championship, fill = Championship)
-  ) +
-  geom_boxplot() +
-  theme(legend.position = "none")
+```{r}
+#| label: bootstrap-adv
+
+null_dist_adv <- Adv_df |>
+  specify(response = Adv_depth, explanatory = Championship) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 1000, type = "permute") |>
+  calculate(stat = "diff in means", order = c("Champ", "Not Champ"))
+```
+
+```{r}
+#| label: null-vis-adv
+visualize(null_dist_adv) +
+ shade_p_value(obs_stat = 0.25, direction = "greater") +
+  labs(title = "Advanced Distribution of (Champion Depth - Non-Champion Depth) 
+using Basic Statistics",
+      x = "Difference (Champion Depth - Non-Champion Depth)",
+      y = "Frequency")
+
+```
+
+```{r}
+#| label: p-adv
+null_dist_adv |>
+  get_p_value(obs_stat = 0.25, direction = "right")
 ```
 
 Part 3: Combo
@@ -187,7 +281,35 @@ Combo_df <- Qual_player_df_combo |>
 #| label: champ-label-combo
 Combo_df <- Combo_df |>
   mutate(Combo_depth = count_qual / count_rot,
-         Championship = if_else(team_id %in% c("1990DET", "1991CHI", "1992CHI", "1993CHI", "1994HOU", "1995HOU", "1996CHI", "1997CHI", "1998CHI", "1999SAS", "2000LAL", "2001LAL", "2002LAL", "2003SAS", "2004DET", "2005SAS", "2006MIA", "2007SAS", "2008BOS", "2009LAL", "2010LAL", "2011DAL", "2012MIA", "2013MIA", "2014SAS", "2015GSW", "2016CLE", "2017GSW", "2018GSW", "2019TOR", "2020LAL", "2021MIL", "2022GSW"), "Champ", "No Champ" ))
+         Championship = if_else(team_id %in% c("1990DET", "1991CHI", "1992CHI", "1993CHI", "1994HOU", "1995HOU", "1996CHI", "1997CHI", "1998CHI", "1999SAS", "2000LAL", "2001LAL", "2002LAL", "2003SAS", "2004DET", "2005SAS", "2006MIA", "2007SAS", "2008BOS", "2009LAL", "2010LAL", "2011DAL", "2012MIA", "2013MIA", "2014SAS", "2015GSW", "2016CLE", "2017GSW", "2018GSW", "2019TOR", "2020LAL", "2021MIL", "2022GSW"), "Champ", "Not Champ" ))
+```
+
+```{r}
+#| label: combo-barplot-depth
+
+Combo_df |>
+  ggplot(
+    aes(x = Championship, y = Combo_depth,  fill = Championship)
+  ) +
+  geom_boxplot() +
+  theme(legend.position = "none") +
+  labs(title = "Combo Depth of Champions vs Non-Champions",
+       x = "Team",
+       y = "Team Depth (Defined by Combo Stats)")
+```
+
+```{r}
+#| label: combo-violin-depth
+
+Combo_df |>
+  ggplot(
+    aes(x = Championship, y = Combo_depth,  fill = Championship)
+  ) +
+  geom_violin() +
+  theme(legend.position = "none") +
+  labs(title = "Combo Depth of Champions vs Non-Champions",
+       x = "Team",
+       y = "Team Depth (Defined by Combo Stats)")
 ```
 
 ```{r}
@@ -198,13 +320,66 @@ Combo_df |>
   summarize(mean(Combo_depth))
 ```
 
-```{r}
-#| label: combo-barplot-depth
+$\bar{x_c} - \bar{x_n}$ = 0.19
 
-Combo_df |>
-  ggplot(
-    aes(x = Combo_depth, y = Championship, fill = Championship)
-  ) +
-  geom_boxplot() +
-  theme(legend.position = "none")
+```{r}
+#| label: bootstrap-combo
+
+null_dist_combo <- Combo_df |>
+  specify(response = Combo_depth, explanatory = Championship) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 1000, type = "permute") |>
+  calculate(stat = "diff in means", order = c("Champ", "Not Champ"))
+```
+
+```{r}
+#| label: null-vis-combo
+visualize(null_dist_combo) +
+ shade_p_value(obs_stat = 0.19, direction = "greater") +
+  labs(title = "Combo Distribution of (Champion Depth - Non-Champion Depth) 
+using Basic Statistics",
+      x = "Difference (Champion Depth - Non-Champion Depth)",
+      y = "Frequency")
+```
+
+```{r}
+#| label: p-combo
+null_dist_combo |>
+  get_p_value(obs_stat = 0.19, direction = "right")
+```
+
+Model Fitting
+
+```{r}
+#| label: model-adv-stat
+
+Adv_df <- Adv_df |>
+  mutate (Championship = as.factor(Championship))
+
+Champ_model <- logistic_reg() |>
+  set_engine('glm') |>
+  fit(Championship ~ Adv_depth, data = Adv_df, family = 'binomial') 
+```
+
+```{r}
+#| label: model-equation
+
+Champ_model |>
+  tidy()
+```
+
+```{r}
+#| label: model-vis
+Adv_df <- Adv_df |>
+  mutate(pred_prob = predict(Champ_model$fit, type = "response"))
+
+ggplot(data = Adv_df) + 
+  geom_point(aes(x = Adv_depth, y = as.numeric(Championship) -1, 
+                        color = Championship)) + 
+  geom_line(aes(x = Adv_depth, y = pred_prob)) + 
+  labs(title = "Logistic Model of Adv_depth on Championship",
+       x = "Team Depth from Advanced Statistics", 
+       y = "Probability of Team Winning Championship", 
+       color = "Champion or Not"
+       )
 ```
