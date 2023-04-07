@@ -129,15 +129,33 @@ NBA_df_basic <- NBA_df |>
 
 NBA_df_basic |>
   ggplot(aes(x = pp_36)) +
-  geom_histogram(binwidth = 1)
+  geom_histogram(binwidth = 1, fill = "blue") +
+  labs(
+    x = "Points Per 36 Minutes",
+    y = "Number of Players",
+    title = "Distribution of Points Per 36 Minutes Across
+    NBA Playoff Players"
+  )
 
 NBA_df_basic |>
   ggplot(aes(x = rp_36)) +
-  geom_histogram(binwidth = 0.5)
+  geom_histogram(binwidth = 0.5, fill = "orange") +
+  labs(
+    x = "Rebounds Per 36 Minutes",
+    y = "Number of Players",
+    title = "Distribution of Rebounds Per 36 Minutes Across
+    NBA Playoff Players"
+  )
 
 NBA_df_basic |>
   ggplot(aes(x = ap_36)) +
-  geom_histogram(binwidth = 0.2)
+  geom_histogram(binwidth = 0.3, fill = "red") +
+  labs(
+    x = "Assists Per 36 Minutes",
+    y = "Number of Players",
+    title = "Distribution of Assists Per 36 Minutes Across
+    NBA Playoff Players"
+  )
 
 ```
 
@@ -213,10 +231,11 @@ Basic_df |>
   summarize(mean(Basic_depth))
 ```
 
-$\bar{x_c} - \bar{x_n}$ = 0.04
+$\bar{x_c} - \bar{x_n}$ = 0.035
 
 ```{r}
 #| label: bootstrap-basic
+set.seed(4723)
 
 null_dist_basic <- Basic_df |>
   specify(response = Basic_depth, explanatory = Championship) |>
@@ -229,7 +248,7 @@ null_dist_basic <- Basic_df |>
 ```{r}
 #| label: null-vis-basic
 visualize(null_dist_basic) +
- shade_p_value(obs_stat = 0.04, direction = "greater") +
+ shade_p_value(obs_stat = 0.035, direction = "greater") +
   labs(title = "Null Distribution of (Champion Depth - Non-Champion Depth) 
 using Basic Statistics",
       x = "Difference (Champion Depth - Non-Champion Depth)",
@@ -242,10 +261,10 @@ As shown above, there is a moderate likelihood that there is a mean difference g
 ```{r}
 #| label: p-basic
 null_dist_basic |>
-  get_p_value(obs_stat = 0.04, direction = "right")
+  get_p_value(obs_stat = 0.035, direction = "right")
 ```
 
-The p value informs us of the probability of observing the results of a statistical test, given that the null hypothesis is true. The p value tells us that the probability of observing a squad depth difference greater than zero for champion and non-champion teams is 0.067, given that the null hypothesis is true and there is no difference between squad depth for these categories. Our determined p-value is above our value for alpha (0.05), allowing us to determine that there is not enough evidence to reject the null hypothesis and there is not a difference observed in team depth for champions and non-champions for the basic model. 
+The p value informs us of the probability of observing the results of a statistical test, given that the null hypothesis is true. The p value tells us that the probability of observing a squad depth difference greater than zero for champion and non-champion teams is 0.078, given that the null hypothesis is true and there is no difference between squad depth for these categories. Our determined p-value is above our value for alpha (0.05), allowing us to determine that there is not enough evidence to reject the null hypothesis and there is not a difference observed in team depth for champions and non-champions for the basic model. 
 
 Overall Conclusion:
 
@@ -316,10 +335,11 @@ Adv_df |>
   summarize(mean(Adv_depth))
 ```
 
-$\bar{x_c} - \bar{x_n}$ = 0.25
+$\bar{x_c} - \bar{x_n}$ = 0.245
 
 ```{r}
 #| label: bootstrap-adv
+set.seed(4723)
 
 null_dist_adv <- Adv_df |>
   specify(response = Adv_depth, explanatory = Championship) |>
@@ -331,7 +351,7 @@ null_dist_adv <- Adv_df |>
 ```{r}
 #| label: null-vis-adv
 visualize(null_dist_adv) +
- shade_p_value(obs_stat = 0.25, direction = "greater") +
+ shade_p_value(obs_stat = 0.245, direction = "greater") +
   labs(title = "Advanced Distribution of (Champion Depth - Non-Champion Depth) 
 using Basic Statistics",
       x = "Difference (Champion Depth - Non-Champion Depth)",
@@ -344,7 +364,7 @@ In the null distribution above, we see that there is functionally 0 probability 
 ```{r}
 #| label: p-adv
 null_dist_adv |>
-  get_p_value(obs_stat = 0.25, direction = "right")
+  get_p_value(obs_stat = 0.245, direction = "right")
 ```
 
 The p value informs us of the probability of observing the results of a statistical test, given that the null hypothesis is true. The p value tells us that the probability of observing a squad depth difference greater than zero for champion and non-champion teams is \< 0.001, given that the null hypothesis is true and there is no difference between squad depth for these categories. Our determined p-value is below our value for alpha (0.05), allowing us to reject the null hypothesis and conclude our alternate hypothesis that there is a significant difference in team depth for champions and non-champions for the basic model. Specifically, champion team depth is significantly higher than non-champion team depth.
@@ -419,10 +439,11 @@ Combo_df |>
   summarize(mean(Combo_depth))
 ```
 
-$\bar{x_c} - \bar{x_n}$ = 0.19
+$\bar{x_c} - \bar{x_n}$ = 0.188
 
 ```{r}
 #| label: bootstrap-combo
+set.seed(4723)
 
 null_dist_combo <- Combo_df |>
   specify(response = Combo_depth, explanatory = Championship) |>
@@ -434,7 +455,7 @@ null_dist_combo <- Combo_df |>
 ```{r}
 #| label: null-vis-combo
 visualize(null_dist_combo) +
- shade_p_value(obs_stat = 0.19, direction = "greater") +
+ shade_p_value(obs_stat = 0.188, direction = "greater") +
   labs(title = "Combo Distribution of (Champion Depth - Non-Champion Depth) 
 using Basic Statistics",
       x = "Difference (Champion Depth - Non-Champion Depth)",
@@ -444,7 +465,7 @@ using Basic Statistics",
 ```{r}
 #| label: p-combo
 null_dist_combo |>
-  get_p_value(obs_stat = 0.19, direction = "right")
+  get_p_value(obs_stat = 0.188, direction = "right")
 ```
 
 Model Fitting
@@ -478,9 +499,8 @@ ggplot(data = Adv_df) +
   geom_line(aes(x = Adv_depth, y = pred_prob)) + 
   labs(title = "Logistic Model of Adv_depth on Championship",
        x = "Team Depth from Advanced Statistics", 
-       y = "Probability of Team Winning Championship", 
+       y = "Probability of Team Not Winning Championship", 
        color = "Champion or Not"
        )
 ```
- 
-## 
+
