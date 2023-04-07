@@ -159,6 +159,8 @@ NBA_df_basic |>
 
 ```
 
+
+
 ```{r}
 #| label:  create-team-based
 
@@ -282,6 +284,31 @@ Qual_player_df_adv <- NBA_df |>
 
 Adv_df <- Qual_player_df_adv |>
   left_join(All_rot_players_df, by = "team_id")
+```
+
+```{r}
+#| label: dist_adv_stats
+
+NBA_df |>
+  ggplot(aes(x = per)) +
+  geom_histogram(binwidth = 1, fill = "blue") +
+  labs(
+    x = "Player Efficiency Rating",
+    y = "Number of Players",
+    title = "Distribution of Player Efficiency Rating Across
+    NBA Playoff Players"
+  )
+
+NBA_df |>
+  ggplot(aes(x = ws_per_48)) +
+  geom_histogram(binwidth = 0.02, fill = "orange") +
+  labs(
+    x = "Win Shares Per 48 Minutes",
+    y = "Number of Players",
+    title = "Distribution of Win Shares Per 48 Minutes Across
+    NBA Playoff Players"
+  )
+
 ```
 
 ```{r}
