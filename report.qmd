@@ -113,13 +113,9 @@ OR
 
 3.  Combo: players must meet both the requirement of basic stats and advanced stats to be considered as quality player
 
-\
-
 We will use these 3 methods to define quality players and subsequently team depth (#Quality Players / #Rotation Players). These 3 quantifications of team depth will each be tested to see if championship winning teams would have a significantly higher team depth.
 
-\
-
-Part 1: Basic stats
+# Part 1: Basic stats
 
 ```{r}
 #| label: data-wrangling-for-basic-stats
@@ -173,6 +169,8 @@ Basic_df <- Basic_df |>
          Championship = if_else(team_id %in% c("1990DET", "1991CHI", "1992CHI", "1993CHI", "1994HOU", "1995HOU", "1996CHI", "1997CHI", "1998CHI", "1999SAS", "2000LAL", "2001LAL", "2002LAL", "2003SAS", "2004DET", "2005SAS", "2006MIA", "2007SAS", "2008BOS", "2009LAL", "2010LAL", "2011DAL", "2012MIA", "2013MIA", "2014SAS", "2015GSW", "2016CLE", "2017GSW", "2018GSW", "2019TOR", "2020LAL", "2021MIL", "2022GSW"), "Champ", "Not Champ" ))
 ```
 
+### Results Part 1 
+
 ```{r}
 #| label: basic-barplot-depth
 Basic_df |>
@@ -187,6 +185,8 @@ Basic_df |>
 
 ```
 
+The box-plot above shows that there is a limited difference in team depth between champion and non champion teams. It appears that for champion teams, team depth has a tighter spread, a slightly higher median value than for non-champion teams, and quartiles are similarly clustered around the median for both categories.
+
 ```{r}
 #| label: basic-violin-depth
 
@@ -200,6 +200,8 @@ Basic_df |>
        x = "Team",
        y = "Team Depth (Defined by Basic Stats)")
 ```
+
+As shown in the violin plot, non-champ teams have a larger spread when it comes to team depth, but most of the data is distributed very similarly to champion teams. There does appear to be a slightly higher number of champion teams that have a squad depth over 0.8
 
 Statistical Test
 
@@ -235,13 +237,21 @@ using Basic Statistics",
 
 ```
 
+As shown above, there is a moderate likelihood that there is a mean difference greater than the observed mean difference in team depth when the null hypothesis is true. This is specifically shown in that when the true population mean is defined as 0, a medium portion of the distribution will have a mean difference that is greater than the observed mean difference for our sample. 
+
 ```{r}
 #| label: p-basic
 null_dist_basic |>
   get_p_value(obs_stat = 0.04, direction = "right")
 ```
 
-Part 2: Advanced Stats
+The p value informs us of the probability of observing the results of a statistical test, given that the null hypothesis is true. The p value tells us that the probability of observing a squad depth difference greater than zero for champion and non-champion teams is 0.067, given that the null hypothesis is true and there is no difference between squad depth for these categories. Our determined p-value is above our value for alpha (0.05), allowing us to determine that there is not enough evidence to reject the null hypothesis and there is not a difference observed in team depth for champions and non-champions for the basic model. 
+
+Overall Conclusion:
+
+The box plot and violin plot show that both champion and non-champion teams have a similar distribution of team depth scores. Furthermore, our statistical testing led us to fail to reject the null hypothesis that there is no difference in the true mean squad depths. Thus, we can conclude that the basic model for predicting squad depth does not appear to align with the outcome of championships.
+
+# Part 2: Advanced Stats
 
 ```{r}
 #| label: group-by-team-advanced
@@ -261,6 +271,8 @@ Adv_df <- Adv_df |>
   mutate(Adv_depth = count_qual / count_rot,
          Championship = if_else(team_id %in% c("1990DET", "1991CHI", "1992CHI", "1993CHI", "1994HOU", "1995HOU", "1996CHI", "1997CHI", "1998CHI", "1999SAS", "2000LAL", "2001LAL", "2002LAL", "2003SAS", "2004DET", "2005SAS", "2006MIA", "2007SAS", "2008BOS", "2009LAL", "2010LAL", "2011DAL", "2012MIA", "2013MIA", "2014SAS", "2015GSW", "2016CLE", "2017GSW", "2018GSW", "2019TOR", "2020LAL", "2021MIL", "2022GSW"), "Champ", "Not Champ" ))
 ```
+
+### Results Part 2
 
 ```{r}
 #| label: adv-barplot-depth
@@ -353,6 +365,8 @@ Combo_df <- Combo_df |>
   mutate(Combo_depth = count_qual / count_rot,
          Championship = if_else(team_id %in% c("1990DET", "1991CHI", "1992CHI", "1993CHI", "1994HOU", "1995HOU", "1996CHI", "1997CHI", "1998CHI", "1999SAS", "2000LAL", "2001LAL", "2002LAL", "2003SAS", "2004DET", "2005SAS", "2006MIA", "2007SAS", "2008BOS", "2009LAL", "2010LAL", "2011DAL", "2012MIA", "2013MIA", "2014SAS", "2015GSW", "2016CLE", "2017GSW", "2018GSW", "2019TOR", "2020LAL", "2021MIL", "2022GSW"), "Champ", "Not Champ" ))
 ```
+
+### Results Part 3
 
 ```{r}
 #| label: combo-barplot-depth
@@ -454,4 +468,4 @@ ggplot(data = Adv_df) +
        )
 ```
 
-HelloTester
+## 
