@@ -408,6 +408,9 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 <p><img src="report_files/figure-html/dist_basic_stats-3.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>The points per 36 minutes distribution is approximately normally distributed with a center of around 12 pp36.</p>
+<p>The rebounds per 36 minutes distribution is right skewed with a median of approximately 5 rp36 and a mean of around 6 rp36.</p>
+<p>The assists per 36 minutes distribution is right skewed with a median of approximately 2.5 ap36 and a mean of around 3 ap36.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Qual_player_df_basic <span class="ot">&lt;-</span> NBA_df_basic <span class="sc">|&gt;</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pp_36 <span class="sc">&gt;</span> <span class="dv">16</span> <span class="sc">|</span> rp_36 <span class="sc">&gt;</span> <span class="fl">6.5</span> <span class="sc">|</span> ap_36 <span class="sc">&gt;</span> <span class="fl">3.5</span>) <span class="sc">|&gt;</span></span>
@@ -565,6 +568,8 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 <p><img src="report_files/figure-html/dist_adv_stats-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>The PER distribution is approximately normal with a center at around 13.</p>
+<p>The WS/48 distribution is approximately normal with a center at around 0.1.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>Adv_df <span class="ot">&lt;-</span> Adv_df <span class="sc">|&gt;</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Adv_depth =</span> count_qual <span class="sc">/</span> count_rot,</span>

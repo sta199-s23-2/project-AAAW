@@ -159,7 +159,11 @@ NBA_df_basic |>
 
 ```
 
+The points per 36 minutes distribution is approximately normally distributed with a center of around 12 pp36.
 
+The rebounds per 36 minutes distribution is right skewed with a median of approximately 5 rp36 and a mean of around 6 rp36.
+
+The assists per 36 minutes distribution is right skewed with a median of approximately 2.5 ap36 and a mean of around 3 ap36.
 
 ```{r}
 #| label:  create-team-based
@@ -310,6 +314,10 @@ NBA_df |>
   )
 
 ```
+
+The PER distribution is approximately normal with a center at around 13.
+
+The WS/48 distribution is approximately normal with a center at around 0.1.
 
 ```{r}
 #| label: champ-label-advanced
