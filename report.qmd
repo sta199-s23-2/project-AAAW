@@ -44,8 +44,6 @@ Cheng et al. developed a machine learning model that utilized maximum entropy pr
 
 Among the 14 features that they considered, team depth was not included. We believe that the team depth is a great factor that impacts the result of the play-off games. And if our hypothesis is true, the team depth variable could be a valuable addition to Cheng et al.'s machine learning to improve their accuracy.
 
-\
-
 ```{r}
 #| label: load-play-off-data
 
@@ -79,6 +77,49 @@ NBA_df <- NBA_df |>
          mp_per_g >= 10)
   
 ```
+
+**Methodology**
+
+### Data Cleaning (Done Above) 
+
+1.  Reorder the dataset in such a way that it is done by team by year. Filter out all players who played less than 10 minutes per game and all years before 1990.
+
+2.  Append new row of champions by year
+
+### Quantification of Team Depth using Basic Stats, Advanced Stats, and Combo Stats
+
+We quantify team depth use this general equation: #Quality Player / #Rotation Player (players with more than 10 minutes per game on average). We propose 3 different ways to define quality player, thus creating 3 ways to quantify team depth
+
+1.  Basic Stats: 
+
+    1.  Points Per 36 minutes: (points per game / minutes per game) \*36 \> 16 OR
+
+    2.  Rebounds Per 36 minutes: (rebounds per game / minutes per game) \*36 \> 6.5 OR
+
+    3.  Assists Per 36 minutes: (assists per game / minutes per game) \*36 \> 3.5
+
+2.  Advanced Stats
+
+    1.  Player Efficiency Rating \>=15 
+
+        1.  Player Efficiency Rating = (PTS + REB + AST + STL + BLK − Missed FG − Missed FT - TO) / GP.
+
+        2.  This is already calculated in the dataset.
+
+OR
+
+2.  Win Share per 48 min \> 0.1
+
+    1.  Based on the statistical contribution of everyone on the team, the total number of wins on the team gets proportionally distributed to each player, and we calculate the win shares each player contributed per 48 minutes (1 game)
+
+    2.  This is already calculated in the dataset
+
+```{=html}
+<!-- -->
+```
+3.  Combo: players must meet both the requirement of basic stats and advanced stats to be considered as quality player
+
+We will use these 3 methods to define quality players and subsequently team depth (#Quality Players / #Rotation Players). These 3 quantifications of team depth will each be tested to see if championship winning teams would have a significantly higher team depth.
 
 Part 1: Basic stats
 
