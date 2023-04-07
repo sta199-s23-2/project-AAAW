@@ -73,7 +73,7 @@ NBA_df <- NBA_df |>
   
 ```
 
-Methodology
+# Methodology
 
 ### Data Cleaning (Done Above)
 
@@ -108,8 +108,6 @@ OR
     1.  Based on the statistical contribution of everyone on the team, the total number of wins on the team gets proportionally distributed to each player, and we calculate the win shares each player contributed per 48 minutes (1 game)
 
     2.  This is already calculated in the dataset
-
-<!-- -->
 
 3.  Combo: players must meet both the requirement of basic stats and advanced stats to be considered as quality player
 
@@ -170,6 +168,8 @@ Basic_df <- Basic_df |>
 ```
 
 ### Results Part 1 
+
+In this section, we evaluate the results of our basic model\'s calculation of team depth of championship winning teams and other teams. We expect that teams that win championships are likely better than teams that do not and should thus have a higher team depth. We want to determine whether there is an appreciable difference in squad depth for teams that win championships and teams that do not for our basic model. 
 
 ```{r}
 #| label: basic-barplot-depth
@@ -274,6 +274,8 @@ Adv_df <- Adv_df |>
 
 ### Results Part 2
 
+In this section, we evaluate the results of our advanced model\'s calculation of team depth of championship winning teams and other teams. We expect that teams that win championships are likely better than teams that do not across their entire lineup and should thus have a higher team depth. We want to determine whether there is an appreciable difference in squad depth for teams that win championships and teams that do not for our basic model.
+
 ```{r}
 #| label: adv-barplot-depth
 
@@ -288,6 +290,8 @@ Adv_df |>
        y = "Team Depth (Defined by Adv Stats)")
 ```
 
+As shown in the box plot, there is a substantial difference in the team depth for champion and non-champion teams. The median squad depth of champion teams and non champion teams is approximately 0.75 and 0.5 respectively, and 1st and 3rd quartiles do not overlap between the two categories. The squad depth for champion teams has a much smaller spread relative to that of the non-champion teams.
+
 ```{r}
 #| label: adv-violinplot-depth
 
@@ -297,10 +301,12 @@ Adv_df |>
   ) +
   geom_violin() +
   theme(legend.position = "none") +
-  labs(title = "Advanved Depth of Champions vs Non-Champions",
+  labs(title = "Advanced Depth of Champions vs Non-Champions",
        x = "Team",
        y = "Team Depth (Defined by Adv Stats)")
 ```
+
+The violin plot showcases that there is limited overlap in the distributions of team depth for champion and non-champion teams. Furthermore, a substantial portion of the non-champion teams have a squad depth that is lower than the minimum value of squad depth for champion teams
 
 ```{r}
 #| label: adv-summarystat-depth
@@ -333,11 +339,20 @@ using Basic Statistics",
 
 ```
 
+In the null distribution above, we see that there is functionally 0 probability that when the null hypothesis is true that our true mean difference is greater than what we observed in our sample, which is consistent with our p \< 0.001 calculation from earlier.
+
 ```{r}
 #| label: p-adv
 null_dist_adv |>
   get_p_value(obs_stat = 0.25, direction = "right")
 ```
+
+The p value informs us of the probability of observing the results of a statistical test, given that the null hypothesis is true. The p value tells us that the probability of observing a squad depth difference greater than zero for champion and non-champion teams is \< 0.001, given that the null hypothesis is true and there is no difference between squad depth for these categories. Our determined p-value is below our value for alpha (0.05), allowing us to reject the null hypothesis and conclude our alternate hypothesis that there is a significant difference in team depth for champions and non-champions for the basic model. Specifically, champion team depth is significantly higher than non-champion team depth.
+
+\
+Overall Conclusions:
+
+Our box plot and violin plot provide evidence that there is a substantial difference in the distribution of team depth values for champions and non-champions and that champions generally had a higher team depth value as determined by our advance model. Furthermore, our hypothesis testing allowed us to conclude that there is enough evidence to reject the null hypothesis that there is no difference in true mean team depths between the categories. Thus, we can conclude the alternate hypothesis that there is a significant difference in team depth for champion and non-champion teams.
 
 Part 3: Combo
 
