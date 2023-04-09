@@ -93,21 +93,21 @@ If our hypothesis holds true and the team depth does have an effect on champions
 
 **Legend**:
 
-+-------------+-----------------------------------------------------------------------------------------------------------------------------------+
-| $H_0$       | Null Hypothesis: The true squad depth for champions minus the true squad depth for non-champions will equal zero.                 |
-+=============+===================================================================================================================================+
-| $H_a$       | Alternate hypothesis: The true squad depth for champions minus the true squad depth for non-champions will be greater than zero.  |
-+-------------+-----------------------------------------------------------------------------------------------------------------------------------+
-| $\bar{x_c}$ | Sample mean squad depth for champions                                                                                             |
-+-------------+-----------------------------------------------------------------------------------------------------------------------------------+
-| $\bar{x_n}$ | Sample mean squad depth for champions                                                                                             |
-+-------------+-----------------------------------------------------------------------------------------------------------------------------------+
-| $\mu_c$     | Population mean squad depth for champions                                                                                         |
-|             |                                                                                                                                   |
-|             | \                                                                                                                                 |
-+-------------+-----------------------------------------------------------------------------------------------------------------------------------+
-| $\mu_n$     | Population mean squad depth for non-champions                                                                                     |
-+-------------+-----------------------------------------------------------------------------------------------------------------------------------+
++-------------+----------------------------------------------------------------------------------------------------------------------------------+
+| $H_0$       | Null Hypothesis: The true squad depth for champions minus the true squad depth for non-champions will equal zero.                |
++=============+==================================================================================================================================+
+| $H_a$       | Alternate hypothesis: The true squad depth for champions minus the true squad depth for non-champions will be greater than zero. |
++-------------+----------------------------------------------------------------------------------------------------------------------------------+
+| $\bar{x_c}$ | Sample mean squad depth for champions                                                                                            |
++-------------+----------------------------------------------------------------------------------------------------------------------------------+
+| $\bar{x_n}$ | Sample mean squad depth for champions                                                                                            |
++-------------+----------------------------------------------------------------------------------------------------------------------------------+
+| $\mu_c$     | Population mean squad depth for champions                                                                                        |
+|             |                                                                                                                                  |
+|             | \                                                                                                                                |
++-------------+----------------------------------------------------------------------------------------------------------------------------------+
+| $\mu_n$     | Population mean squad depth for non-champions                                                                                    |
++-------------+----------------------------------------------------------------------------------------------------------------------------------+
 
 For now, let's start with visualizing and analyzing each group of stats.
 
@@ -133,7 +133,7 @@ To calculate Basic Depth per team:
 
 2.  Denominator = #players in rotation(played \>=10 ppg)
 
-3.  This should be a number between 0 and 1 that measures the proportion of \"quality\" players in the team\'s rotation
+3.  This should be a number between 0 and 1 that measures the proportion of "quality" players in the team's rotation
 
 Citation: [https://www.basketballreference.com/leagues/NBA_2021_per_minute.html](https://www.basketball-reference.com/leagues/NBA_2021_per_minute.html) 
 
@@ -221,7 +221,7 @@ Basic_df <- Basic_df |>
 
 ### Results Part 1: Analysis of Basic Depth of Championship Winning Teams vs Other Playoff Teams
 
-In this section, we evaluate the results of our basic model\'s calculation of team depth of championship winning teams and other teams. We expect that teams that win championships are likely better than teams that do not and should thus have a higher team depth. We want to determine whether there is an appreciable difference in squad depth for teams that win championships and teams that do not for our basic model.  
+In this section, we evaluate the results of our basic model's calculation of team depth of championship winning teams and other teams. We expect that teams that win championships are likely better than teams that do not and should thus have a higher team depth. We want to determine whether there is an appreciable difference in squad depth for teams that win championships and teams that do not for our basic model.  
 
 ```{r}
 #| label: basic-barplot-depth
@@ -338,7 +338,7 @@ To calculate Advanced Depth per team:
 
 2.  Denominator = #players in rotation (played \>=10 ppg)
 
-3.  This should be a number between 0 and 1 that measures the proportion of \"quality\" players in the team\'s rotation but based on advanced stats this time
+3.  This should be a number between 0 and 1 that measures the proportion of "quality" players in the team's rotation but based on advanced stats this time
 
 ```{r}
 #| label: group-by-team-advanced
@@ -390,7 +390,7 @@ Adv_df <- Adv_df |>
 
 ### Results Part 2
 
-In this section, we evaluate the results of our advanced model\'s calculation of team depth of championship winning teams and other teams. We expect that teams that win championships are likely better than teams that do not across their entire lineup and should thus have a higher team depth. We want to determine whether there is an appreciable difference in squad depth for teams that win championships and teams that do not for our basic model.
+In this section, we evaluate the results of our advanced model's calculation of team depth of championship winning teams and other teams. We expect that teams that win championships are likely better than teams that do not across their entire lineup and should thus have a higher team depth. We want to determine whether there is an appreciable difference in squad depth for teams that win championships and teams that do not for our basic model.
 
 ```{r}
 #| label: adv-barplot-depth
@@ -548,7 +548,7 @@ Combo_df |>
        y = "Team Depth (Defined by Combo Stats)")
 ```
 
-For the champ team the highest frequency of squad depth falls around .60 again, and for not champ teams it falls around .50, suggesting that the champ team\'s combo depth is higher than the other teams. Further, what we get from this graph is a more widespread, normal distribution of all squad depths, justifying the use of permute shuffling statistical tests.
+For the champ team the highest frequency of squad depth falls around .60 again, and for not champ teams it falls around .50, suggesting that the champ team's combo depth is higher than the other teams. Further, what we get from this graph is a more widespread, normal distribution of all squad depths, justifying the use of permute shuffling statistical tests.
 
 ```{r}
 #| label: combo-summarystat-depth

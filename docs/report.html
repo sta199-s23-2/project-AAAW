@@ -414,7 +414,7 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 <ol type="1">
 <li><p>Numerator = #players who met the pp36 threshold | #players who met the rp36 threshold | #players who met the ap36 threshold</p></li>
 <li><p>Denominator = #players in rotation(played &gt;=10 ppg)</p></li>
-<li><p>This should be a number between 0 and 1 that measures the proportion of "quality" players in the team's rotation</p></li>
+<li><p>This should be a number between 0 and 1 that measures the proportion of “quality” players in the team’s rotation</p></li>
 </ol>
 <p>Citation: <a href="https://www.basketball-reference.com/leagues/NBA_2021_per_minute.html">https://www.basketballreference.com/leagues/NBA_2021_per_minute.html</a>&nbsp;</p>
 <div class="cell">
@@ -509,7 +509,7 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 </div>
 <section id="results-part-1-analysis-of-basic-depth-of-championship-winning-teams-vs-other-playoff-teams" class="level3">
 <h3 class="anchored" data-anchor-id="results-part-1-analysis-of-basic-depth-of-championship-winning-teams-vs-other-playoff-teams">Results Part 1: Analysis of Basic Depth of Championship Winning Teams vs Other Playoff Teams</h3>
-<p>In this section, we evaluate the results of our basic model's calculation of team depth of championship winning teams and other teams. We expect that teams that win championships are likely better than teams that do not and should thus have a higher team depth. We want to determine whether there is an appreciable difference in squad depth for teams that win championships and teams that do not for our basic model. &nbsp;</p>
+<p>In this section, we evaluate the results of our basic model’s calculation of team depth of championship winning teams and other teams. We expect that teams that win championships are likely better than teams that do not and should thus have a higher team depth. We want to determine whether there is an appreciable difference in squad depth for teams that win championships and teams that do not for our basic model. &nbsp;</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Basic_df <span class="sc">|&gt;</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
@@ -615,7 +615,7 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 <ol type="1">
 <li><p>Numerator = #players who met the PER threshold | #players who met the WS48 threshold</p></li>
 <li><p>Denominator = #players in rotation (played &gt;=10 ppg)</p></li>
-<li><p>This should be a number between 0 and 1 that measures the proportion of "quality" players in the team's rotation but based on advanced stats this time</p></li>
+<li><p>This should be a number between 0 and 1 that measures the proportion of “quality” players in the team’s rotation but based on advanced stats this time</p></li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>Qual_player_df_adv <span class="ot">&lt;-</span> NBA_df <span class="sc">|&gt;</span></span>
@@ -661,7 +661,7 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 </div>
 <section id="results-part-2" class="level3">
 <h3 class="anchored" data-anchor-id="results-part-2">Results Part 2</h3>
-<p>In this section, we evaluate the results of our advanced model's calculation of team depth of championship winning teams and other teams. We expect that teams that win championships are likely better than teams that do not across their entire lineup and should thus have a higher team depth. We want to determine whether there is an appreciable difference in squad depth for teams that win championships and teams that do not for our basic model.</p>
+<p>In this section, we evaluate the results of our advanced model’s calculation of team depth of championship winning teams and other teams. We expect that teams that win championships are likely better than teams that do not across their entire lineup and should thus have a higher team depth. We want to determine whether there is an appreciable difference in squad depth for teams that win championships and teams that do not for our basic model.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>Adv_df <span class="sc">|&gt;</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
@@ -819,7 +819,7 @@ approximation based on the number of `reps` chosen in the `generate()` step. See
 <p><img src="report_files/figure-html/combo-violin-depth-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>For the champ team the highest frequency of squad depth falls around .60 again, and for not champ teams it falls around .50, suggesting that the champ team's combo depth is higher than the other teams. Further, what we get from this graph is a more widespread, normal distribution of all squad depths, justifying the use of permute shuffling statistical tests.</p>
+<p>For the champ team the highest frequency of squad depth falls around .60 again, and for not champ teams it falls around .50, suggesting that the champ team’s combo depth is higher than the other teams. Further, what we get from this graph is a more widespread, normal distribution of all squad depths, justifying the use of permute shuffling statistical tests.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>Combo_df <span class="sc">|&gt;</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Championship) <span class="sc">|&gt;</span></span>
