@@ -643,6 +643,91 @@ ggplot(data = Adv_df) +
 
 The y axis is the probability of the team not winning the championship. We can see the dots are representing what the actual observation is whether a team wins a championship or not. Overall, the logistic model has good accuracy as it captures the general trend that a lower team depth leads to higher probability of not winning a championship. However, from the distribution of the dots, teams with advanced team depth \> 0.5 contains both championship and non-championship teams, making it hard for the model to predict the success of the team purely based on the team depth.
 
+```{r}
+#| label: train-test-split
+
+set.seed(5) #Make sure we have the same random numbers
+Adv_df <- Adv_df |>
+  mutate (Championship = as.factor(Championship))
+
+Adv_split <- initial_split(Adv_df, prop = 0.60) #training will get 80%, testing get 20% data
+
+train_data <- training(Adv_split) #define train data
+test_data <- testing(Adv_split) #define test data
+
+Combo_df <- Combo_df |>
+  mutate (Championship = as.factor(Championship))
+
+Combo_split <- initial_split(Combo_df, prop = 0.60) #training will get 80%, testing get 20% data
+
+train_data_c <- training(Combo_split) #define train data
+test_data_c <- testing(Combo_split) #define test data
+```
+
+```{r}
+#| label: model
+
+Adv_model <- logistic_reg() |>
+  set_engine('glm') |>
+  fit(Championship ~ Adv_depth, data = train_data, family = 'binomial')
+
+glance(Adv_model)$AIC
+
+Combo_model <- logistic_reg() |>
+  set_engine('glm') |>
+  fit(Championship ~ Combo_depth, data = train_data_c, family = 'binomial')
+
+glance(Combo_model)$AIC
+
+
+```
+
+```{r}
+#| label: prediction
+
+pred <- predict(Adv_model, test_data, type = "prob") |> # use the value to predict the probability of spam
+  bind_cols(test_data |> select(Championship))
+
+pred_c <- predict(Combo_model, test_data_c, type = "prob") |> # use the value to predict the probability of spam
+  bind_cols(test_data_c |> select(Championship))
+```
+
+```{r}
+#| label: ROC curve
+
+pred |>
+  roc_curve(
+    truth = Championship,
+    `.pred_Not Champ`,
+    event_level = "second" #which level is a success? spam
+    ) |>
+  autoplot() +
+  labs(title = "ROC of Adv_depth model")
+
+pred |>
+  roc_auc(
+    truth = Championship,
+    `.pred_Not Champ`,
+    event_level = "second" #which level is a success? spam
+    )
+
+pred_c |>
+  roc_curve(
+    truth = Championship,
+    `.pred_Not Champ`,
+    event_level = "second" #which level is a success? spam
+    ) |>
+  autoplot() +
+  labs(title = "ROC of Combo_depth model")
+
+pred_c |>
+  roc_auc(
+    truth = Championship,
+    `.pred_Not Champ`,
+    event_level = "second" #which level is a success? spam
+    )
+```
+
 ## Conclusion
 
 In conclusion, while the analysis team depth using basic statistics did not show significant difference between the team depth of champion and non-champion teams, analysis using both advanced approach and combo approach showed that the championship winning teams have significantly higher team depth than non-champion teams. Since the quantification of team depth is specifically tuned to NBA statistics, the results are not generalizable to other leagues. If The NBA season is not independent of each other because players play for the same team across multiple seasons, this means that our result can only be applicable to our dataset or similar dataset for the play-off from 1990 to 2021.
