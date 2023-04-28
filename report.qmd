@@ -4,7 +4,7 @@ subtitle: "by Team AAAW: Akhilesh Chegu, William Yan, Anthony Tarakji, Audrey Pa
 format: html
 editor: visual
 execute:
-  echo: true
+  echo: false
 ---
 
 ```{r}
@@ -17,15 +17,25 @@ library(tidymodels)
 
 # Introduction:
 
-The National Basketball Association (NBA) is the most popular premiere basketball league in the world (https://www.history.com/this-day-in-history/nba-is-born). It produces data from every one of the 400-500 players in the league every season, leading to several million data points across NBA history (https://www.nba.com/stats). Every year, many models are developed to evaluate team strength and predict the success of the team.
+The National Basketball Association (NBA) is the most popular premiere basketball league in the world[^1]. It produces data from every one of the 400-500 players in the league every season, leading to several million data points across NBA history[^2]. Every year, many models are developed to evaluate team strength and predict the success of the team.
 
-Team depth is the overall quality of players in a sports team, especially those besides the team's star players. (https://www.elartedf.com/examining-squad-depth-importance/). A team with good depth has competent players on both their starting lineup and their bench, which allows the team to withstand injuries and to have more flexibility for strategic adjustments. However, despite the importance of team depth, there is no established metric to measure it in the NBA. Quantitative analysis of the connection between team depth and team success is still missing. Many current models that predict the winner of the NBA did not consider team depth as a factor. For instance, the state-of-the-art NBA prediction model developed by Cheng et al used 14 basic technical features, such as 3 points, field goals, and number of steals without considering the team depth (https://www.mdpi.com/1099-4300/18/12/450). We believe that the team depth is an important factor that greatly impacts the result of the play-off games. Performing an analysis on this question allows us to develop a systematic method to better understand and assess this often-neglected factor.
+[^1]: https://www.history.com/this-day-in-history/nba-is-born
+
+[^2]: https://www.nba.com/stats
+
+Team depth is the overall quality of players in a sports team, especially those besides the team's star players[^3]. A team with good depth has competent players on both their starting lineup and their bench, which allows the team to withstand injuries and to have more flexibility for strategic adjustments. However, despite the importance of team depth, there is no established metric to measure it in the NBA. Quantitative analysis of the connection between team depth and team success is still missing. Many current models that predict the winner of the NBA did not consider team depth as a factor. For instance, the state-of-the-art NBA prediction model developed by Cheng et al used 14 basic technical features, such as 3 points, field goals, and number of steals without considering the team depth[^4]. We believe that the team depth is an important factor that greatly impacts the result of the play-off games. Performing an analysis on this question allows us to develop a systematic method to better understand and assess this often-neglected factor.
+
+[^3]: https://www.elartedf.com/examining-squad-depth-importance/
+
+[^4]: https://www.mdpi.com/1099-4300/18/12/450
 
 In this study, we investigate if the championship winning teams have a significantly greater team depth than the rest of the field. We measure team depth in 3 different methods to quantify team depth: (1) Basic statistics approach, (2) Advanced statistics, (3) Combo of Basic and Advanced statistics. We hypothesize that with all 3 measurements, the depths of championship winning teams would be significantly higher than those of the other teams because team depth has a positive effect on the team's performance. We will create a model to predict championship win using team depth, demonstrating the real world value of our findings.
 
-NBA play-off data (https://www.kaggle.com/datasets/robertsunderhaft/nba-playoffs) from 1990-2022 was collected by Robert Sunderhaft, who web-scraped it from Basketball Reference, a public database of NBA statistics collated by Sports Reference LLC. He constantly updates the dataset and the last update was 9 months ago. We consider basic quantitative statistics such as points per game, assists per game, and rebounds per game to construct team depth in the basics statistics approach. We consider advanced quantitative statistics such as Player Efficiency Rating and win share to construct team depth in the advanced statistics approach. We use all basic and advanced statistics in the combo approach. Championship win data was not in the initial dataset but will be manually labeled. This will be the categorical data that our logistic model will be predicting.
+NBA play-off data[^5] from 1990-2022 was collected by Robert Sunderhaft, who web-scraped it from Basketball Reference, a public database of NBA statistics collated by Sports Reference LLC. He constantly updates the dataset and the last update was 9 months ago. We consider basic quantitative statistics such as points per game, assists per game, and rebounds per game to construct team depth in the basics statistics approach. We consider advanced quantitative statistics such as Player Efficiency Rating and win share to construct team depth in the advanced statistics approach. We use all basic and advanced statistics in the combo approach. Information as to whether or not any given team won a championship was not in the initial dataset, but will be manually added using a list of past NBA champions. This column will also be the categorical data that our logistic model will be predicting.
 
-Although there are no obvious ethical issues with the NBA data, there are some functional limitations. For instance, the "basketball skill" is not a guaranteed variable and can change with each game. Another issue that arises is that some data, like percentages, blocks, turnovers, and other advanced statistics, weren't collected for players early in this dataset, so there are null values instead.
+[^5]: https://www.kaggle.com/datasets/robertsunderhaft/nba-playoffs
+
+Although there are no obvious ethical issues with the NBA data, there are some functional limitations. For instance, the "basketball skill" of a given player is not an easily definable variable and can change with each game. To combat this, we clearly defined mathematical formulas for squad depth through three strategies (simple statistics, advanced statistics, and combined statistics). Another issue that arises is that some data, like percentages, blocks, turnovers, and certain advanced statistics, weren't collected for players in the early years of this dataset, so there are null values instead. To avoid this issue, we selected only those players who played after 1990, when all data values were calculated. Furthermore, for each specific squad depth calculation, we dropped NAs to ensure better analysis and predictive ability.
 
 In regards to the specific hypothesis that we are addressing, the null hypothesis states that the true squad depth for champions minus the true squad depth for non-champions will equal zero, meaning that there is no statistical difference between the two measured teams. Our alternate hypothesis is that the true squad depth for champions minus the true squad depth for non-champions will be greater than zero, signifying a significant statistical relationship. This means that we can reject the null hypothesis if we were to get a p-value less than .05 and we cannot fail to reject it if it is greater than .05.
 
@@ -33,7 +43,25 @@ $H_0:$ $\mu_{champ} - \mu_{nochamp} = 0$
 
 $H_A:$ $\mu_{champ} - \mu_{nochamp} > 0$
 
-# Methodology
+**Legend**:
+
++--------------+----------------------------------------------------------------------------------------------------------------------------------+
+| $H_0$        | Null Hypothesis: The true squad depth for champions minus the true squad depth for non-champions will equal zero.                |
++==============+==================================================================================================================================+
+| $H_a$        | Alternate hypothesis: The true squad depth for champions minus the true squad depth for non-champions will be greater than zero. |
++--------------+----------------------------------------------------------------------------------------------------------------------------------+
+| $\bar{x_c}$  | Sample mean squad depth for champions                                                                                            |
++--------------+----------------------------------------------------------------------------------------------------------------------------------+
+| $\bar{x_n}$  | Sample mean squad depth for champions                                                                                            |
++--------------+----------------------------------------------------------------------------------------------------------------------------------+
+| $\mu_c$      | Population mean squad depth for champions                                                                                        |
+|              |                                                                                                                                  |
+|              | \                                                                                                                                |
++--------------+----------------------------------------------------------------------------------------------------------------------------------+
+| $\mu_n$      | Population mean squad depth for non-champions                                                                                    |
++--------------+----------------------------------------------------------------------------------------------------------------------------------+
+
+## Data Wrangling
 
 ```{r}
 #| label: load-play-off-data
@@ -83,59 +111,47 @@ Rotation players are those with more than 10 minutes per game on average).
 
 We propose 3 different ways to define quality player, thus creating 3 ways to quantify team depth (Basic Depth, Advanced Depth, Combo Depth).
 
+# Methodology
+
 ### Analysis Methods: Permute with Normal distribution for diff in means
 
-Permuting allows us to construct a null distribution by randomizing the observations by Championship and Non-championship. Permuting to test for significance also allows us to measure the quality of the inference we make.  Specifically, in this case, we use constructed datasest of the null hypothesis (depth_championship - depth_nonchampions == 0) by the permute approach. This process is repeated for the basic, advanced, and combo stats. We use permute shuffling to construct the probability that the observed difference in depth parameters is as different as or more different than they are between championship and non-championship teams. The permute shuffling allows us to randomize the observation which will minimize the effect of confounding variables on the mean team depth. Additionally, using permute shuffling is justified by the fact that there are 33 championship winning teams and 400+ non-championship winning teams, giving a big enough n for both to make the comparison viable.
+Permuting allows us to construct a null distribution by randomizing the observations by whether a team won a championship (Championship) or not(Non-championship). Permuting to test for significance also allows us to measure the quality of the inference we make. Specifically, in this case, we use a modified data set to adjust the existing data to the theoretical null hypothesis (so that depth_championship - depth_nonchampions == 0) to set up the permute approach. This process is repeated for the basic, advanced, and combo stats. We use permute shuffling to construct the probability that the observed difference in squad depth (for basic, advanced, and combo) is as different as or more different than they are between the championship and non-championship teams in the synthesized null distribution. The permute shuffling allows us to randomize the observations which will minimize the effect of confounding variables, such as year-specific rule changes, on the mean team depth. Additionally, using permute shuffling is justified by the fact that there are 33 championship-winning teams and 400+ non-championship-winning teams, giving a big enough n for both to make the comparison viable.
 
 ### Modeling
 
-If our hypothesis holds true and the team depth does have an effect on championship, we will identify the quantification of team depth that resulted in the smallest p value (greatest significant difference). We will then fit this team depth metric to a logistic model to predict whether the team wins the championship, showing the real-life application of our statistical finding.
+If our alternate hypothesis holds true and the squad depth is significantly higher for championship teams, we will identify the quantification of team depth that resulted in the smallest p-value (greatest significant difference). We will then fit this team depth metric to a logistic model to predict whether the team wins the championship, showing the real-life application of our statistical finding.
 
 **Legend**:
-
-+-------------+----------------------------------------------------------------------------------------------------------------------------------+
-| $H_0$       | Null Hypothesis: The true squad depth for champions minus the true squad depth for non-champions will equal zero.                |
-+=============+==================================================================================================================================+
-| $H_a$       | Alternate hypothesis: The true squad depth for champions minus the true squad depth for non-champions will be greater than zero. |
-+-------------+----------------------------------------------------------------------------------------------------------------------------------+
-| $\bar{x_c}$ | Sample mean squad depth for champions                                                                                            |
-+-------------+----------------------------------------------------------------------------------------------------------------------------------+
-| $\bar{x_n}$ | Sample mean squad depth for champions                                                                                            |
-+-------------+----------------------------------------------------------------------------------------------------------------------------------+
-| $\mu_c$     | Population mean squad depth for champions                                                                                        |
-|             |                                                                                                                                  |
-|             | \                                                                                                                                |
-+-------------+----------------------------------------------------------------------------------------------------------------------------------+
-| $\mu_n$     | Population mean squad depth for non-champions                                                                                    |
-+-------------+----------------------------------------------------------------------------------------------------------------------------------+
 
 For now, let's start with visualizing and analyzing each group of stats.
 
 # Part 1: Basic stats
 
-Categories:
+Categories and their Respective Thresholds:
 
 1.  Points Per 36 minutes: (points per game / minutes per game) \*36 \> 16
 
-    1.  \> \~60th percentile of pp36 from website below 
+    1.  16 pp36 is approximately the 60th percentile of pp36, per basketball reference[^6], so we decided to use it as our threshold. 
 
 2.  Rebounds Per 36 minutes: (rebounds per game / minutes per game) \*36 \> 6.5
 
-    1.  \> \~60th percentile of rp36 from website below
+    1.  6.5 rp36 is approximately the 60th percentile of rp36 from website below, per basketball reference.
 
 3.  Assists Per 36 minutes: (assists per game / minutes per game) \*36 \> 3.5
 
-    1.  \> \~60th percentile of ap36 from website below
+    1.  3.5 ap36 is approximately the 60th percentile of ap36 from website below, per basketball reference.
+
+[^6]: [https://www.basketballreference.com/leagues/NBA_2021_per_minute.html](https://www.basketball-reference.com/leagues/NBA_2021_per_minute.html)
+
+We used the 60th percentile as our threshold value for these basic statistics because we wanted to selectively choose for players who were substantially better than average (thus not making the threshold the 50th percentile) but also not being so selective that the squad depth statistics are nearly 0. However, the specific choice of using the 60th percentile in that range (as supposed to 55th or 67th for example) was an arbitrary choice.
 
 To calculate Basic Depth per team:
 
 1.  Numerator = #players who met the pp36 threshold \| #players who met the rp36 threshold \| #players who met the ap36 threshold
 
-2.  Denominator = #players in rotation(played \>=10 ppg)
+2.  Denominator = #players in rotation (played \>=10 minutes per game)
 
-3.  This should be a number between 0 and 1 that measures the proportion of "quality" players in the team's rotation
-
-Citation: [https://www.basketballreference.com/leagues/NBA_2021_per_minute.html](https://www.basketball-reference.com/leagues/NBA_2021_per_minute.html) 
+3.  This should be a number between 0 and 1 that measures the proportion of "quality" players in the team's rotation 
 
 ```{r}
 #| label: data-wrangling-for-basic-stats
@@ -219,7 +235,7 @@ Basic_df <- Basic_df |>
          "Champ", "Not Champ" ))
 ```
 
-### Results Part 1: Analysis of Basic Depth of Championship Winning Teams vs Other Playoff Teams
+### Results Part 1: Analysis of Basic Squad Depth of Championship Winning Teams vs Other Playoff Teams
 
 In this section, we evaluate the results of our basic model's calculation of team depth of championship winning teams and other teams. We expect that teams that win championships are likely better than teams that do not and should thus have a higher team depth. We want to determine whether there is an appreciable difference in squad depth for teams that win championships and teams that do not for our basic model.  
 
@@ -257,9 +273,9 @@ Basic_df |>
 
 Here we use a violin plot to gain a deeper understanding of where the data points lie. As opposed to the box plot, the violin plot allows us to recognize any local maximums and view how the data is actually distributed within the quartiles.
 
-As shown in the violin plot, non-champ teams have a larger spread when it comes to team depth, but most of the data is distributed very similarly to champion teams. There does appear to be a slightly higher number of champion teams that have a squad depth over 0.8. Both distributions are relatively normal distributed, suggesting that the permute shuffling statistical test is justified.
+As shown in the violin plot, non-champ teams have a larger spread when it comes to team depth, but most of the data is distributed very similarly to champion teams. There does appear to be a slightly higher number of champion teams that have a squad depth over 0.8. The championship teams' squad depth distribution is approximately normal, while the non-championship teams' squad depth distribution has three modes and a slight left skew.
 
-Statistical Test
+**Statistical Test**
 
 ```{r}
 #| label: basic-summarystat-depth
@@ -283,7 +299,7 @@ null_dist_basic <- Basic_df |>
 
 ```
 
-Here we use a difference of mean permute shuffle to determine if there is a true difference in the true mean team depth values for champions and non-champions. We use permute shuffling to test for significance because we are working with a sample dataset and want to determine the true values for the population.
+Here we use a difference of mean permute shuffle to determine if there is a true difference in the true mean team depth values for champions and non-champions. We use permute shuffling to test for significance because we are working with a sample dataset and want to determine the veracity of our hypotheses regarding the true values for the population.
 
 ```{r}
 #| label: null-vis-basic
@@ -296,7 +312,7 @@ using Basic Statistics",
 
 ```
 
-As shown above, there is a moderate likelihood that there is a mean difference greater than the observed mean difference in team depth when the null hypothesis is true. This is specifically shown in that when the true population mean is defined as 0, a medium portion of the distribution will have a mean difference that is greater than the observed mean difference for our sample. 
+As shown above, there is a moderate likelihood that there is a mean difference greater than the observed mean difference in team depth when the null hypothesis is true. This is specifically shown in that when the true population mean difference in basic squad depth is defined as 0, a medium portion of the distribution will have a mean difference that is greater than the observed mean difference for our sample. 
 
 ```{r}
 #| label: p-basic
@@ -304,33 +320,37 @@ null_dist_basic |>
   get_p_value(obs_stat = 0.035, direction = "right")
 ```
 
-The p value informs us of the probability of observing the results of a statistical test, given that the null hypothesis is true. The p value tells us that the probability of observing a squad depth difference greater than zero for champion and non-champion teams is 0.078, given that the null hypothesis is true and there is no difference between squad depth for these categories. Our determined p-value is above our value for alpha (0.05), allowing us to determine that there is not enough evidence to reject the null hypothesis and there is not a difference observed in team depth for champions and non-champions for the basic model. 
+The p value informs us of the probability of observing the squad depth difference between the two samples of 0.035 or more extreme, given that the null hypothesis is true. The p value tells us that the probability of observing a squad depth difference greater than 0.035 for champion and non-champion teams is 0.078, given that the null hypothesis is true and there is no difference between squad depth for these categories. Our determined p-value is above our value for alpha (0.05), allowing us to determine that there is not enough evidence to reject the null hypothesis and there is not a difference observed in team depth for champions and non-champions for the basic model. 
 
 **Overall Conclusion:**
 
-The box plot and violin plot show that both champion and non-champion teams have a similar distribution of team depth scores. Furthermore, our statistical testing led us to fail to reject the null hypothesis that there is no difference in the true mean squad depths. Thus, we can conclude that the basic model for predicting squad depth does not appear to align with the outcome of championships.
+The box plot and violin plot show that both champion and non-champion teams have a similar distribution of team depth scores. Furthermore, our statistical testing led us to fail to reject the null hypothesis that there is no difference in the true mean squad depths. Thus, we have weak and insufficient evidence to conclude that there is a significant difference in true mean squad depths.
 
 # Part 2: Advanced Stats
 
-Categories:
+Categories and respective Threshold Values:
 
 1.  Player Efficiency Rating \>=15 
 
-    1.  \>= 60th percentile of per from <https://www.basketball-reference.com/playoffs/NBA_2022_advanced.html> 
+    1.  15 is approximately the 60th percentile of PER, from basketball reference[^7], so we used it as our threshold value 
 
     2.  Player Efficiency Rating = (PTS + REB + AST + STL + BLK − Missed FG − Missed FT - TO) / GP.
+
+        1.  Note: STL is total steals, BLK is total blocks, Missed FG is total missed field goals, Missed FT is total missed free throws, TO is total turnovers, GP is number of games played
 
     3.  This is already calculated in the dataset.
 
 2.  Win Shares per 48 min \>= 0.1
 
-    1.  \>= 50th percentile (Win shares are distributed across a team so to get an accurate assessment of how many people contributed we need a bit more lenient threshold otherwise it would be egregiously small) 
+    1.  0.1 is approximately 50th percentile[^8] (Win shares are distributed across a team so to get an accurate assessment of how many people contributed we need a bit more lenient threshold otherwise it would be egregiously small)  
 
-    2.  Citation: <https://www.basketball-reference.com/playoffs/NBA_2022_advanced.html> 
+    2.  Based on the statistical contribution of everyone on the team, the total number of wins on the team gets proportionally distributed to each player, and we calculate the win shares each player contributed per 48 minutes (1 game)
 
-    3.  Based on the statistical contribution of everyone on the team, the total number of wins on the team gets proportionally distributed to each player, and we calculate the win shares each player contributed per 48 minutes (1 game)
+    3.  This is already calculated in the dataset.
 
-    4.  This is already calculated in the dataset.
+[^7]: <https://www.basketball-reference.com/playoffs/NBA_2022_advanced.html>
+
+[^8]: <https://www.basketball-reference.com/playoffs/NBA_2022_advanced.html>
 
 To calculate Advanced Depth per team:
 
@@ -388,7 +408,7 @@ Adv_df <- Adv_df |>
          Championship = if_else(team_id %in% c("1990DET", "1991CHI", "1992CHI", "1993CHI", "1994HOU", "1995HOU", "1996CHI", "1997CHI", "1998CHI", "1999SAS", "2000LAL", "2001LAL", "2002LAL", "2003SAS", "2004DET", "2005SAS", "2006MIA", "2007SAS", "2008BOS", "2009LAL", "2010LAL", "2011DAL", "2012MIA", "2013MIA", "2014SAS", "2015GSW", "2016CLE", "2017GSW", "2018GSW", "2019TOR", "2020LAL", "2021MIL", "2022GSW"), "Champ", "Not Champ" ))
 ```
 
-### Results Part 2
+### Results Part 2: Analysis of Advanced Squad Depth of Championship Winning Teams vs Other Playoff Teams
 
 In this section, we evaluate the results of our advanced model's calculation of team depth of championship winning teams and other teams. We expect that teams that win championships are likely better than teams that do not across their entire lineup and should thus have a higher team depth. We want to determine whether there is an appreciable difference in squad depth for teams that win championships and teams that do not for our basic model.
 
@@ -422,7 +442,7 @@ Adv_df |>
        y = "Team Depth (Defined by Adv Stats)")
 ```
 
-The violin plot showcases that there is limited overlap in the distributions of team depth for champion and non-champion teams. Furthermore, a substantial portion of the non-champion teams have a squad depth that is lower than the minimum value of squad depth for champion teams. Both distributions are relatively normally distributed, suggesting that the permute shuffling statistical test is justified.
+The violin plot showcases that there is limited overlap in the distributions of team depth for champion and non-champion teams. Furthermore, a substantial portion of the non-champion teams have a squad depth that is lower than the minimum value of squad depth for champion teams. Both distributions are relatively normally distributed.
 
 ```{r}
 #| label: adv-summarystat-depth
@@ -468,12 +488,12 @@ null_dist_adv |>
 
 The p-value is reported as 0, therefore we can assume that P \< 0.001
 
-The p-value informs us of the probability of observing the results of a statistical test or more extreme, given that the null hypothesis is true. The p value tells us that the probability of observing a squad depth difference greater than zero for champion and non-champion teams is \< 0.001, given that the null hypothesis is true and there is no difference between squad depth for these categories. Our determined p-value is below our value for alpha (0.05), allowing us to reject the null hypothesis and conclude our alternate hypothesis that there is a significant difference in team depth for champions and non-champions for the basic model. Specifically, champion team depth (using advanced method) is significantly higher than non-champion team depth.
+The p-value informs us of the probability of observing the difference seen between the two datasets or more extreme, given that the null hypothesis is true. The p value tells us that the probability of observing a squad depth difference greater than 0.245 for champion and non-champion teams is \< 0.001, given that the null hypothesis is true and there is no difference between squad depth for these categories. Our determined p-value is below our value for alpha (0.05), allowing us to reject the null hypothesis and conclude our alternate hypothesis that there is a significant difference in team depth for champions and non-champions for the basic model. Specifically, champion team depth (using advanced method) is significantly higher than non-champion team depth.
 
 \
 **Overall Conclusions:**
 
-Our box plot and violin plot provide evidence that there is a substantial difference in the distribution of team depth values for champions and non-champions and that champions generally had a higher team depth value as determined by our advance model. Furthermore, our hypothesis testing allowed us to conclude that there is enough evidence to reject the null hypothesis that there is no difference in true mean team depths between the categories. Thus, we can conclude the alternate hypothesis that there is a significant difference in team depth for champion and non-champion teams.
+Our box plot and violin plot provide strong evidence for the hypothesis that there is a substantial difference in the distribution of team depth values for champions and non-champions and that champions generally had a higher team depth value as determined by our advanced model. Furthermore, our hypothesis testing allowed us to conclude that there is enough evidence to reject the null hypothesis that there is no difference in true mean team depths between the categories. Thus, we can conclude the alternate hypothesis that there is a significant difference in team depth for champion and non-champion teams.
 
 # Part 3: Combo
 
@@ -514,7 +534,7 @@ Combo_df <- Combo_df |>
          "Champ", "Not Champ" ))
 ```
 
-### Results Part 3
+### Results Part 3: Analysis of Combined Squad Depth of Championship Winning Teams vs Other Playoff Teams
 
 In this section, we evaluated team depth of championship-winning teams and other teams using the combo stats, (# players who meet basic depth threshold + advanced depth threshold) / #rotation players, to define depth. We want to know if the team depth of championship winning teams is significantly higher than those of the team who did not win the championship.
 
@@ -623,7 +643,11 @@ Champ_model |>
 
 Generalized: $\log\Big(\frac{p}{1-p}\Big) = \beta_0 + \beta_1 \times Adv\_depth$
 
-Specific:  $\log\Big(\frac{p}{1-p}\Big) = 8.69 - 9.55 \times Adv\_depth$
+Specific:  $\log\Big(\frac{\hat{p}}{1-\hat{p}}\Big) = 8.69 - 9.55 \times Adv\_depth$
+
+The log odds of not winning the championship given the team depth is 0 is 8.69.
+
+For every one unit of increase in Adv_depth, we estimate a mean decrease of 9.55 in the log odds of not winning the championship.
 
 ```{r}
 #| label: model-vis

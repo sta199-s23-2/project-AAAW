@@ -20,69 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -167,25 +104,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction:</a></li>
-  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction:</a>
+  <ul class="collapse">
+  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling">Data Wrangling</a>
   <ul class="collapse">
   <li><a href="#data-cleaning-done-above" id="toc-data-cleaning-done-above" class="nav-link" data-scroll-target="#data-cleaning-done-above">Data Cleaning (Done Above)</a></li>
   <li><a href="#quantification-of-team-depth-using-basic-depth-advanced-depth-and-combo-depth" id="toc-quantification-of-team-depth-using-basic-depth-advanced-depth-and-combo-depth" class="nav-link" data-scroll-target="#quantification-of-team-depth-using-basic-depth-advanced-depth-and-combo-depth">Quantification of Team Depth using Basic Depth, Advanced Depth, and Combo Depth</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a>
+  <ul class="collapse">
   <li><a href="#analysis-methods-permute-with-normal-distribution-for-diff-in-means" id="toc-analysis-methods-permute-with-normal-distribution-for-diff-in-means" class="nav-link" data-scroll-target="#analysis-methods-permute-with-normal-distribution-for-diff-in-means">Analysis Methods: Permute with Normal distribution for diff in means</a></li>
   <li><a href="#modeling" id="toc-modeling" class="nav-link" data-scroll-target="#modeling">Modeling</a></li>
   </ul></li>
   <li><a href="#part-1-basic-stats" id="toc-part-1-basic-stats" class="nav-link" data-scroll-target="#part-1-basic-stats">Part 1: Basic stats</a>
   <ul class="collapse">
-  <li><a href="#results-part-1-analysis-of-basic-depth-of-championship-winning-teams-vs-other-playoff-teams" id="toc-results-part-1-analysis-of-basic-depth-of-championship-winning-teams-vs-other-playoff-teams" class="nav-link" data-scroll-target="#results-part-1-analysis-of-basic-depth-of-championship-winning-teams-vs-other-playoff-teams">Results Part 1: Analysis of Basic Depth of Championship Winning Teams vs Other Playoff Teams</a></li>
+  <li><a href="#results-part-1-analysis-of-basic-squad-depth-of-championship-winning-teams-vs-other-playoff-teams" id="toc-results-part-1-analysis-of-basic-squad-depth-of-championship-winning-teams-vs-other-playoff-teams" class="nav-link" data-scroll-target="#results-part-1-analysis-of-basic-squad-depth-of-championship-winning-teams-vs-other-playoff-teams">Results Part 1: Analysis of Basic Squad Depth of Championship Winning Teams vs Other Playoff Teams</a></li>
   </ul></li>
   <li><a href="#part-2-advanced-stats" id="toc-part-2-advanced-stats" class="nav-link" data-scroll-target="#part-2-advanced-stats">Part 2: Advanced Stats</a>
   <ul class="collapse">
-  <li><a href="#results-part-2" id="toc-results-part-2" class="nav-link" data-scroll-target="#results-part-2">Results Part 2</a></li>
+  <li><a href="#results-part-2-analysis-of-advanced-squad-depth-of-championship-winning-teams-vs-other-playoff-teams" id="toc-results-part-2-analysis-of-advanced-squad-depth-of-championship-winning-teams-vs-other-playoff-teams" class="nav-link" data-scroll-target="#results-part-2-analysis-of-advanced-squad-depth-of-championship-winning-teams-vs-other-playoff-teams">Results Part 2: Analysis of Advanced Squad Depth of Championship Winning Teams vs Other Playoff Teams</a></li>
   </ul></li>
   <li><a href="#part-3-combo" id="toc-part-3-combo" class="nav-link" data-scroll-target="#part-3-combo">Part 3: Combo</a>
   <ul class="collapse">
-  <li><a href="#results-part-3" id="toc-results-part-3" class="nav-link" data-scroll-target="#results-part-3">Results Part 3</a></li>
+  <li><a href="#results-part-3-analysis-of-combined-squad-depth-of-championship-winning-teams-vs-other-playoff-teams" id="toc-results-part-3-analysis-of-combined-squad-depth-of-championship-winning-teams-vs-other-playoff-teams" class="nav-link" data-scroll-target="#results-part-3-analysis-of-combined-squad-depth-of-championship-winning-teams-vs-other-playoff-teams">Results Part 3: Analysis of Combined Squad Depth of Championship Winning Teams vs Other Playoff Teams</a></li>
   </ul></li>
   <li><a href="#real-life-application-logistic-model-that-predicts-championship-win-using-combo-depth" id="toc-real-life-application-logistic-model-that-predicts-championship-win-using-combo-depth" class="nav-link" data-scroll-target="#real-life-application-logistic-model-that-predicts-championship-win-using-combo-depth">Real Life Application: Logistic Model that Predicts Championship Win Using Combo Depth</a>
   <ul class="collapse">
@@ -215,24 +157,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
 <section id="introduction" class="level1">
 <h1>Introduction:</h1>
-<p>The National Basketball Association (NBA) is the most popular premiere basketball league in the world (https://www.history.com/this-day-in-history/nba-is-born). It produces data from every one of the 400-500 players in the league every season, leading to several million data points across NBA history (https://www.nba.com/stats). Every year, many models are developed to evaluate team strength and predict the success of the team.</p>
-<p>Team depth is the overall quality of players in a sports team, especially those besides the team’s star players. (https://www.elartedf.com/examining-squad-depth-importance/). A team with good depth has competent players on both their starting lineup and their bench, which allows the team to withstand injuries and to have more flexibility for strategic adjustments. However, despite the importance of team depth, there is no established metric to measure it in the NBA. Quantitative analysis of the connection between team depth and team success is still missing. Many current models that predict the winner of the NBA did not consider team depth as a factor. For instance, the state-of-the-art NBA prediction model developed by Cheng et al used 14 basic technical features, such as 3 points, field goals, and number of steals without considering the team depth (https://www.mdpi.com/1099-4300/18/12/450). We believe that the team depth is an important factor that greatly impacts the result of the play-off games. Performing an analysis on this question allows us to develop a systematic method to better understand and assess this often-neglected factor.</p>
+<p>The National Basketball Association (NBA) is the most popular premiere basketball league in the world<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. It produces data from every one of the 400-500 players in the league every season, leading to several million data points across NBA history<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Every year, many models are developed to evaluate team strength and predict the success of the team.</p>
+<p>Team depth is the overall quality of players in a sports team, especially those besides the team’s star players<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. A team with good depth has competent players on both their starting lineup and their bench, which allows the team to withstand injuries and to have more flexibility for strategic adjustments. However, despite the importance of team depth, there is no established metric to measure it in the NBA. Quantitative analysis of the connection between team depth and team success is still missing. Many current models that predict the winner of the NBA did not consider team depth as a factor. For instance, the state-of-the-art NBA prediction model developed by Cheng et al used 14 basic technical features, such as 3 points, field goals, and number of steals without considering the team depth<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. We believe that the team depth is an important factor that greatly impacts the result of the play-off games. Performing an analysis on this question allows us to develop a systematic method to better understand and assess this often-neglected factor.</p>
 <p>In this study, we investigate if the championship winning teams have a significantly greater team depth than the rest of the field. We measure team depth in 3 different methods to quantify team depth: (1) Basic statistics approach, (2) Advanced statistics, (3) Combo of Basic and Advanced statistics. We hypothesize that with all 3 measurements, the depths of championship winning teams would be significantly higher than those of the other teams because team depth has a positive effect on the team’s performance. We will create a model to predict championship win using team depth, demonstrating the real world value of our findings.</p>
-<p>NBA play-off data (https://www.kaggle.com/datasets/robertsunderhaft/nba-playoffs) from 1990-2022 was collected by Robert Sunderhaft, who web-scraped it from Basketball Reference, a public database of NBA statistics collated by Sports Reference LLC. He constantly updates the dataset and the last update was 9 months ago. We consider basic quantitative statistics such as points per game, assists per game, and rebounds per game to construct team depth in the basics statistics approach. We consider advanced quantitative statistics such as Player Efficiency Rating and win share to construct team depth in the advanced statistics approach. We use all basic and advanced statistics in the combo approach. Championship win data was not in the initial dataset but will be manually labeled. This will be the categorical data that our logistic model will be predicting.</p>
-<p>Although there are no obvious ethical issues with the NBA data, there are some functional limitations. For instance, the “basketball skill” is not a guaranteed variable and can change with each game. Another issue that arises is that some data, like percentages, blocks, turnovers, and other advanced statistics, weren’t collected for players early in this dataset, so there are null values instead.</p>
+<p>NBA play-off data<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> from 1990-2022 was collected by Robert Sunderhaft, who web-scraped it from Basketball Reference, a public database of NBA statistics collated by Sports Reference LLC. He constantly updates the dataset and the last update was 9 months ago. We consider basic quantitative statistics such as points per game, assists per game, and rebounds per game to construct team depth in the basics statistics approach. We consider advanced quantitative statistics such as Player Efficiency Rating and win share to construct team depth in the advanced statistics approach. We use all basic and advanced statistics in the combo approach. Information as to whether or not any given team won a championship was not in the initial dataset, but will be manually added using a list of past NBA champions. This column will also be the categorical data that our logistic model will be predicting.</p>
+<p>Although there are no obvious ethical issues with the NBA data, there are some functional limitations. For instance, the “basketball skill” of a given player is not an easily definable variable and can change with each game. To combat this, we clearly defined mathematical formulas for squad depth through three strategies (simple statistics, advanced statistics, and combined statistics). Another issue that arises is that some data, like percentages, blocks, turnovers, and certain advanced statistics, weren’t collected for players in the early years of this dataset, so there are null values instead. To avoid this issue, we selected only those players who played after 1990, when all data values were calculated. Furthermore, for each specific squad depth calculation, we dropped NAs to ensure better analysis and predictive ability.</p>
 <p>In regards to the specific hypothesis that we are addressing, the null hypothesis states that the true squad depth for champions minus the true squad depth for non-champions will equal zero, meaning that there is no statistical difference between the two measured teams. Our alternate hypothesis is that the true squad depth for champions minus the true squad depth for non-champions will be greater than zero, signifying a significant statistical relationship. This means that we can reject the null hypothesis if we were to get a p-value less than .05 and we cannot fail to reject it if it is greater than .05.</p>
 <p><span class="math inline">\(H_0:\)</span> <span class="math inline">\(\mu_{champ} - \mu_{nochamp} = 0\)</span></p>
 <p><span class="math inline">\(H_A:\)</span> <span class="math inline">\(\mu_{champ} - \mu_{nochamp} &gt; 0\)</span></p>
-</section>
-<section id="methodology" class="level1">
-<h1>Methodology</h1>
+<p><strong>Legend</strong>:</p>
+<table class="table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 89%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(H_0\)</span></th>
+<th>Null Hypothesis: The true squad depth for champions minus the true squad depth for non-champions will equal zero.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(H_a\)</span></td>
+<td>Alternate hypothesis: The true squad depth for champions minus the true squad depth for non-champions will be greater than zero.</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\bar{x_c}\)</span></td>
+<td>Sample mean squad depth for champions</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\bar{x_n}\)</span></td>
+<td>Sample mean squad depth for champions</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\mu_c\)</span></td>
+<td><p>Population mean squad depth for champions</p>
+<p><br>
+</p></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mu_n\)</span></td>
+<td>Population mean squad depth for non-champions</td>
+</tr>
+</tbody>
+</table>
+<section id="data-wrangling" class="level2">
+<h2 class="anchored" data-anchor-id="data-wrangling">Data Wrangling</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>AAAW_playoff_stats <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/AAAW_updatedplayoffStats.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 10648 Columns: 51
 ── Column specification ────────────────────────────────────────────────────────
@@ -243,7 +219,6 @@ dbl (48): season, age, g, gs, mp_per_g, fg_per_g, fga_per_g, fg_pct, fg3_per...
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(AAAW_playoff_stats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 10,648
 Columns: 51
@@ -301,14 +276,9 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>NBA_df <span class="ot">&lt;-</span> AAAW_playoff_stats <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(season <span class="sc">&gt;=</span> <span class="dv">1990</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>NBA_df <span class="ot">&lt;-</span> NBA_df <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">team_id =</span> <span class="fu">paste</span>(season, team_id, <span class="at">sep =</span> <span class="st">""</span>))</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(NBA_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 51
   season player   pos     age team_id     g    gs mp_pe…¹ fg_pe…² fga_p…³ fg_pct
@@ -329,9 +299,7 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>NBA_df <span class="ot">&lt;-</span> NBA_df <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(g <span class="sc">&gt;=</span> <span class="dv">4</span>,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>         mp_per_g <span class="sc">&gt;=</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
 <section id="data-cleaning-done-above" class="level3">
 <h3 class="anchored" data-anchor-id="data-cleaning-done-above">Data Cleaning (Done Above)</h3>
@@ -346,117 +314,55 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 <p>Rotation players are those with more than 10 minutes per game on average).</p>
 <p>We propose 3 different ways to define quality player, thus creating 3 ways to quantify team depth (Basic Depth, Advanced Depth, Combo Depth).</p>
 </section>
+</section>
+</section>
+<section id="methodology" class="level1">
+<h1>Methodology</h1>
 <section id="analysis-methods-permute-with-normal-distribution-for-diff-in-means" class="level3">
 <h3 class="anchored" data-anchor-id="analysis-methods-permute-with-normal-distribution-for-diff-in-means">Analysis Methods: Permute with Normal distribution for diff in means</h3>
-<p>Permuting allows us to construct a null distribution by randomizing the observations by Championship and Non-championship. Permuting to test for significance also allows us to measure the quality of the inference we make.&nbsp; Specifically, in this case, we use constructed datasest of the null hypothesis (depth_championship - depth_nonchampions == 0) by the permute approach. This process is repeated for the basic, advanced, and combo stats. We use permute shuffling to construct the probability that the observed difference in depth parameters is as different as or more different than they are between championship and non-championship teams. The permute shuffling allows us to randomize the observation which will minimize the effect of confounding variables on the mean team depth. Additionally, using permute shuffling is justified by the fact that there are 33 championship winning teams and 400+ non-championship winning teams, giving a big enough n for both to make the comparison viable.</p>
+<p>Permuting allows us to construct a null distribution by randomizing the observations by whether a team won a championship (Championship) or not(Non-championship). Permuting to test for significance also allows us to measure the quality of the inference we make. Specifically, in this case, we use a modified data set to adjust the existing data to the theoretical null hypothesis (so that depth_championship - depth_nonchampions == 0) to set up the permute approach. This process is repeated for the basic, advanced, and combo stats. We use permute shuffling to construct the probability that the observed difference in squad depth (for basic, advanced, and combo) is as different as or more different than they are between the championship and non-championship teams in the synthesized null distribution. The permute shuffling allows us to randomize the observations which will minimize the effect of confounding variables, such as year-specific rule changes, on the mean team depth. Additionally, using permute shuffling is justified by the fact that there are 33 championship-winning teams and 400+ non-championship-winning teams, giving a big enough n for both to make the comparison viable.</p>
 </section>
 <section id="modeling" class="level3">
 <h3 class="anchored" data-anchor-id="modeling">Modeling</h3>
-<p>If our hypothesis holds true and the team depth does have an effect on championship, we will identify the quantification of team depth that resulted in the smallest p value (greatest significant difference). We will then fit this team depth metric to a logistic model to predict whether the team wins the championship, showing the real-life application of our statistical finding.</p>
+<p>If our alternate hypothesis holds true and the squad depth is significantly higher for championship teams, we will identify the quantification of team depth that resulted in the smallest p-value (greatest significant difference). We will then fit this team depth metric to a logistic model to predict whether the team wins the championship, showing the real-life application of our statistical finding.</p>
 <p><strong>Legend</strong>:</p>
-<table class="table">
-<colgroup>
-<col style="width: 9%">
-<col style="width: 90%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><span class="math inline">\(H_0\)</span></th>
-<th>Null Hypothesis: The true squad depth for champions minus the true squad depth for non-champions will equal zero.</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(H_a\)</span></td>
-<td>Alternate hypothesis: The true squad depth for champions minus the true squad depth for non-champions will be greater than zero.</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\bar{x_c}\)</span></td>
-<td>Sample mean squad depth for champions</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(\bar{x_n}\)</span></td>
-<td>Sample mean squad depth for champions</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\mu_c\)</span></td>
-<td><p>Population mean squad depth for champions</p>
-<p><br>
-</p></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(\mu_n\)</span></td>
-<td>Population mean squad depth for non-champions</td>
-</tr>
-</tbody>
-</table>
 <p>For now, let’s start with visualizing and analyzing each group of stats.</p>
 </section>
 </section>
 <section id="part-1-basic-stats" class="level1">
 <h1>Part 1: Basic stats</h1>
-<p>Categories:</p>
+<p>Categories and their Respective Thresholds:</p>
 <ol type="1">
 <li><p>Points Per 36 minutes: (points per game / minutes per game) *36 &gt; 16</p>
 <ol type="1">
-<li>&gt; ~60th percentile of pp36 from website below&nbsp;</li>
+<li>16 pp36 is approximately the 60th percentile of pp36, per basketball reference<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>, so we decided to use it as our threshold.&nbsp;</li>
 </ol></li>
 <li><p>Rebounds Per 36 minutes: (rebounds per game / minutes per game) *36 &gt; 6.5</p>
 <ol type="1">
-<li>&gt; ~60th percentile of rp36 from website below</li>
+<li>6.5 rp36 is approximately the 60th percentile of rp36 from website below, per basketball reference.</li>
 </ol></li>
 <li><p>Assists Per 36 minutes: (assists per game / minutes per game) *36 &gt; 3.5</p>
 <ol type="1">
-<li>&gt; ~60th percentile of ap36 from website below</li>
+<li>3.5 ap36 is approximately the 60th percentile of ap36 from website below, per basketball reference.</li>
 </ol></li>
 </ol>
+<p>We used the 60th percentile as our threshold value for these basic statistics because we wanted to selectively choose for players who were substantially better than average (thus not making the threshold the 50th percentile) but also not being so selective that the squad depth statistics are nearly 0. However, the specific choice of using the 60th percentile in that range (as supposed to 55th or 67th for example) was an arbitrary choice.</p>
 <p>To calculate Basic Depth per team:</p>
 <ol type="1">
 <li><p>Numerator = #players who met the pp36 threshold | #players who met the rp36 threshold | #players who met the ap36 threshold</p></li>
-<li><p>Denominator = #players in rotation(played &gt;=10 ppg)</p></li>
-<li><p>This should be a number between 0 and 1 that measures the proportion of “quality” players in the team’s rotation</p></li>
+<li><p>Denominator = #players in rotation (played &gt;=10 minutes per game)</p></li>
+<li><p>This should be a number between 0 and 1 that measures the proportion of “quality” players in the team’s rotation&nbsp;</p></li>
 </ol>
-<p>Citation: <a href="https://www.basketball-reference.com/leagues/NBA_2021_per_minute.html">https://www.basketballreference.com/leagues/NBA_2021_per_minute.html</a>&nbsp;</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>NBA_df_basic <span class="ot">&lt;-</span> NBA_df <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pp_36 =</span> pts_per_g <span class="sc">/</span> mp_per_g <span class="sc">*</span> <span class="dv">36</span>,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">rp_36 =</span> trb_per_g <span class="sc">/</span> mp_per_g <span class="sc">*</span> <span class="dv">36</span>,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">ap_36 =</span> ast_per_g <span class="sc">/</span> mp_per_g <span class="sc">*</span> <span class="dv">36</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>NBA_df_basic <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> pp_36)) <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Points Per 36 Minutes"</span>,</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Players"</span>,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of Points Per 36 Minutes Across</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="st">    NBA Playoff Players"</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/dist_basic_stats-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>NBA_df_basic <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> rp_36)) <span class="sc">+</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.5</span>, <span class="at">fill =</span> <span class="st">"orange"</span>) <span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Rebounds Per 36 Minutes"</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Players"</span>,</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of Rebounds Per 36 Minutes Across</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="st">    NBA Playoff Players"</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/dist_basic_stats-2.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>NBA_df_basic <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> ap_36)) <span class="sc">+</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.3</span>, <span class="at">fill =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Assists Per 36 Minutes"</span>,</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Players"</span>,</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of Assists Per 36 Minutes Across</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="st">    NBA Playoff Players"</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/dist_basic_stats-3.png" class="img-fluid" width="672"></p>
 </div>
@@ -465,20 +371,6 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 <p>The rebounds per 36 minutes distribution is right skewed with a median of approximately 5 rp36 and a mean of around 6 rp36.</p>
 <p>The assists per 36 minutes distribution is right skewed with a median of approximately 2.5 ap36 and a mean of around 3 ap36.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Qual_player_df_basic <span class="ot">&lt;-</span> NBA_df_basic <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pp_36 <span class="sc">&gt;</span> <span class="dv">16</span> <span class="sc">|</span> rp_36 <span class="sc">&gt;</span> <span class="fl">6.5</span> <span class="sc">|</span> ap_36 <span class="sc">&gt;</span> <span class="fl">3.5</span>) <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(team_id) <span class="sc">|&gt;</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count_qual =</span> <span class="fu">n</span>())</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>All_rot_players_df <span class="ot">&lt;-</span> NBA_df <span class="sc">|&gt;</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(team_id) <span class="sc">|&gt;</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count_rot =</span> <span class="fu">n</span>())</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>Basic_df <span class="ot">&lt;-</span> Qual_player_df_basic <span class="sc">|&gt;</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(All_rot_players_df, <span class="at">by =</span> <span class="st">"team_id"</span>)</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>Basic_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 496 × 3
    team_id count_qual count_rot
@@ -497,29 +389,12 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Basic_df <span class="ot">&lt;-</span> Basic_df <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Basic_depth =</span> count_qual <span class="sc">/</span> count_rot,</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">Championship =</span> <span class="fu">if_else</span>(team_id <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"1990DET"</span>, <span class="st">"1991CHI"</span>, <span class="st">"1992CHI"</span>,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>         <span class="st">"1993CHI"</span>, <span class="st">"1994HOU"</span>, <span class="st">"1995HOU"</span>,<span class="st">"1996CHI"</span>, <span class="st">"1997CHI"</span>, <span class="st">"1998CHI"</span>, </span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>         <span class="st">"1999SAS"</span>, <span class="st">"2000LAL"</span>, <span class="st">"2001LAL"</span>, <span class="st">"2002LAL"</span>, <span class="st">"2003SAS"</span>, <span class="st">"2004DET"</span>,</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>         <span class="st">"2005SAS"</span>, <span class="st">"2006MIA"</span>, <span class="st">"2007SAS"</span>, <span class="st">"2008BOS"</span>, <span class="st">"2009LAL"</span>, <span class="st">"2010LAL"</span>,</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>         <span class="st">"2011DAL"</span>, <span class="st">"2012MIA"</span>, <span class="st">"2013MIA"</span>, <span class="st">"2014SAS"</span>, <span class="st">"2015GSW"</span>, <span class="st">"2016CLE"</span>,</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>         <span class="st">"2017GSW"</span>, <span class="st">"2018GSW"</span>, <span class="st">"2019TOR"</span>, <span class="st">"2020LAL"</span>, <span class="st">"2021MIL"</span>, <span class="st">"2022GSW"</span>), </span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Champ"</span>, <span class="st">"Not Champ"</span> ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
-<section id="results-part-1-analysis-of-basic-depth-of-championship-winning-teams-vs-other-playoff-teams" class="level3">
-<h3 class="anchored" data-anchor-id="results-part-1-analysis-of-basic-depth-of-championship-winning-teams-vs-other-playoff-teams">Results Part 1: Analysis of Basic Depth of Championship Winning Teams vs Other Playoff Teams</h3>
+<section id="results-part-1-analysis-of-basic-squad-depth-of-championship-winning-teams-vs-other-playoff-teams" class="level3">
+<h3 class="anchored" data-anchor-id="results-part-1-analysis-of-basic-squad-depth-of-championship-winning-teams-vs-other-playoff-teams">Results Part 1: Analysis of Basic Squad Depth of Championship Winning Teams vs Other Playoff Teams</h3>
 <p>In this section, we evaluate the results of our basic model’s calculation of team depth of championship winning teams and other teams. We expect that teams that win championships are likely better than teams that do not and should thus have a higher team depth. We want to determine whether there is an appreciable difference in squad depth for teams that win championships and teams that do not for our basic model. &nbsp;</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Basic_df <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Championship, <span class="at">y =</span> Basic_depth,  <span class="at">fill =</span> Championship)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Basic Depth of Champions vs Non-Champions"</span>,</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Team"</span>,</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Team Depth (Defined by Basic Stats)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/basic-barplot-depth-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -527,26 +402,14 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 <p>Here we present the squad depth of champions and non-champions in a box-plot format. This allows for a side-by-side comparison of the medians, quartiles, and spread for squad depth for both categories of teams.</p>
 <p>The box-plot above shows that there is a limited difference in team depth between champion and non champion teams. It appears that for champion teams, team depth has a tighter spread, a slightly higher median value than for non-champion teams, and quartiles are similarly clustered around the median for both categories.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Basic_df <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Championship, <span class="at">y =</span> Basic_depth,  <span class="at">fill =</span> Championship)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Basic Depth of Champions vs Non-Champions"</span>,</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Team"</span>,</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Team Depth (Defined by Basic Stats)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/basic-violin-depth-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Here we use a violin plot to gain a deeper understanding of where the data points lie. As opposed to the box plot, the violin plot allows us to recognize any local maximums and view how the data is actually distributed within the quartiles.</p>
-<p>As shown in the violin plot, non-champ teams have a larger spread when it comes to team depth, but most of the data is distributed very similarly to champion teams. There does appear to be a slightly higher number of champion teams that have a squad depth over 0.8. Both distributions are relatively normal distributed, suggesting that the permute shuffling statistical test is justified.</p>
-<p>Statistical Test</p>
+<p>As shown in the violin plot, non-champ teams have a larger spread when it comes to team depth, but most of the data is distributed very similarly to champion teams. There does appear to be a slightly higher number of champion teams that have a squad depth over 0.8. The championship teams’ squad depth distribution is approximately normal, while the non-championship teams’ squad depth distribution has three modes and a slight left skew.</p>
+<p><strong>Statistical Test</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Basic_df <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Championship) <span class="sc">|&gt;</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">mean</span>(Basic_depth))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   Championship `mean(Basic_depth)`
@@ -557,30 +420,16 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 </div>
 <p>Point Estimate: <span class="math inline">\(\bar{x_c} - \bar{x_n}\)</span> = 0.035</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4723</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>null_dist_basic <span class="ot">&lt;-</span> Basic_df <span class="sc">|&gt;</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> Basic_depth, <span class="at">explanatory =</span> Championship) <span class="sc">|&gt;</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"Champ"</span>, <span class="st">"Not Champ"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
-<p>Here we use a difference of mean permute shuffle to determine if there is a true difference in the true mean team depth values for champions and non-champions. We use permute shuffling to test for significance because we are working with a sample dataset and want to determine the true values for the population.</p>
+<p>Here we use a difference of mean permute shuffle to determine if there is a true difference in the true mean team depth values for champions and non-champions. We use permute shuffling to test for significance because we are working with a sample dataset and want to determine the veracity of our hypotheses regarding the true values for the population.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(null_dist_basic) <span class="sc">+</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> <span class="fl">0.035</span>, <span class="at">direction =</span> <span class="st">"greater"</span>) <span class="sc">+</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Null Distribution of (Champion Depth - Non-Champion Depth) </span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="st">using Basic Statistics"</span>,</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Difference (Champion Depth - Non-Champion Depth)"</span>,</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/null-vis-basic-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>As shown above, there is a moderate likelihood that there is a mean difference greater than the observed mean difference in team depth when the null hypothesis is true. This is specifically shown in that when the true population mean is defined as 0, a medium portion of the distribution will have a mean difference that is greater than the observed mean difference for our sample.&nbsp;</p>
+<p>As shown above, there is a moderate likelihood that there is a mean difference greater than the observed mean difference in team depth when the null hypothesis is true. This is specifically shown in that when the true population mean difference in basic squad depth is defined as 0, a medium portion of the distribution will have a mean difference that is greater than the observed mean difference for our sample.&nbsp;</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>null_dist_basic <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> <span class="fl">0.035</span>, <span class="at">direction =</span> <span class="st">"right"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   p_value
@@ -588,25 +437,27 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 1   0.078</code></pre>
 </div>
 </div>
-<p>The p value informs us of the probability of observing the results of a statistical test, given that the null hypothesis is true. The p value tells us that the probability of observing a squad depth difference greater than zero for champion and non-champion teams is 0.078, given that the null hypothesis is true and there is no difference between squad depth for these categories. Our determined p-value is above our value for alpha (0.05), allowing us to determine that there is not enough evidence to reject the null hypothesis and there is not a difference observed in team depth for champions and non-champions for the basic model.&nbsp;</p>
+<p>The p value informs us of the probability of observing the squad depth difference between the two samples of 0.035 or more extreme, given that the null hypothesis is true. The p value tells us that the probability of observing a squad depth difference greater than 0.035 for champion and non-champion teams is 0.078, given that the null hypothesis is true and there is no difference between squad depth for these categories. Our determined p-value is above our value for alpha (0.05), allowing us to determine that there is not enough evidence to reject the null hypothesis and there is not a difference observed in team depth for champions and non-champions for the basic model.&nbsp;</p>
 <p><strong>Overall Conclusion:</strong></p>
-<p>The box plot and violin plot show that both champion and non-champion teams have a similar distribution of team depth scores. Furthermore, our statistical testing led us to fail to reject the null hypothesis that there is no difference in the true mean squad depths. Thus, we can conclude that the basic model for predicting squad depth does not appear to align with the outcome of championships.</p>
+<p>The box plot and violin plot show that both champion and non-champion teams have a similar distribution of team depth scores. Furthermore, our statistical testing led us to fail to reject the null hypothesis that there is no difference in the true mean squad depths. Thus, we have weak and insufficient evidence to conclude that there is a significant difference in true mean squad depths.</p>
 </section>
 </section>
 <section id="part-2-advanced-stats" class="level1">
 <h1>Part 2: Advanced Stats</h1>
-<p>Categories:</p>
+<p>Categories and respective Threshold Values:</p>
 <ol type="1">
 <li><p>Player Efficiency Rating &gt;=15&nbsp;</p>
 <ol type="1">
-<li><p>&gt;= 60th percentile of per from <a href="https://www.basketball-reference.com/playoffs/NBA_2022_advanced.html" class="uri">https://www.basketball-reference.com/playoffs/NBA_2022_advanced.html</a>&nbsp;</p></li>
-<li><p>Player Efficiency Rating = (PTS + REB + AST + STL + BLK − Missed FG − Missed FT - TO) / GP.</p></li>
+<li><p>15 is approximately the 60th percentile of PER, from basketball reference<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>, so we used it as our threshold value&nbsp;</p></li>
+<li><p>Player Efficiency Rating = (PTS + REB + AST + STL + BLK − Missed FG − Missed FT - TO) / GP.</p>
+<ol type="1">
+<li>Note: STL is total steals, BLK is total blocks, Missed FG is total missed field goals, Missed FT is total missed free throws, TO is total turnovers, GP is number of games played</li>
+</ol></li>
 <li><p>This is already calculated in the dataset.</p></li>
 </ol></li>
 <li><p>Win Shares per 48 min &gt;= 0.1</p>
 <ol type="1">
-<li><p>&gt;= 50th percentile (Win shares are distributed across a team so to get an accurate assessment of how many people contributed we need a bit more lenient threshold otherwise it would be egregiously small)&nbsp;</p></li>
-<li><p>Citation: <a href="https://www.basketball-reference.com/playoffs/NBA_2022_advanced.html" class="uri">https://www.basketball-reference.com/playoffs/NBA_2022_advanced.html</a>&nbsp;</p></li>
+<li><p>0.1 is approximately 50th percentile<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> (Win shares are distributed across a team so to get an accurate assessment of how many people contributed we need a bit more lenient threshold otherwise it would be egregiously small)&nbsp;&nbsp;</p></li>
 <li><p>Based on the statistical contribution of everyone on the team, the total number of wins on the team gets proportionally distributed to each player, and we calculate the win shares each player contributed per 48 minutes (1 game)</p></li>
 <li><p>This is already calculated in the dataset.</p></li>
 </ol></li>
@@ -618,36 +469,12 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 <li><p>This should be a number between 0 and 1 that measures the proportion of “quality” players in the team’s rotation but based on advanced stats this time</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>Qual_player_df_adv <span class="ot">&lt;-</span> NBA_df <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(per <span class="sc">&gt;=</span> <span class="dv">15</span> <span class="sc">|</span> ws_per_48 <span class="sc">&gt;=</span> <span class="fl">0.1</span>) <span class="sc">|&gt;</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(team_id) <span class="sc">|&gt;</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count_qual =</span> <span class="fu">n</span>())</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>Adv_df <span class="ot">&lt;-</span> Qual_player_df_adv <span class="sc">|&gt;</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(All_rot_players_df, <span class="at">by =</span> <span class="st">"team_id"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>NBA_df <span class="sc">|&gt;</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> per)) <span class="sc">+</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Player Efficiency Rating"</span>,</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Players"</span>,</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of Player Efficiency Rating Across</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="st">    NBA Playoff Players"</span></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/dist_adv_stats-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>NBA_df <span class="sc">|&gt;</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> ws_per_48)) <span class="sc">+</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.02</span>, <span class="at">fill =</span> <span class="st">"orange"</span>) <span class="sc">+</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Win Shares Per 48 Minutes"</span>,</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Players"</span>,</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of Win Shares Per 48 Minutes Across</span></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="st">    NBA Playoff Players"</span></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/dist_adv_stats-2.png" class="img-fluid" width="672"></p>
 </div>
@@ -655,47 +482,24 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 <p>The PER distribution is approximately normal with a center at around 13.</p>
 <p>The WS/48 distribution is approximately normal with a center at around 0.1.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>Adv_df <span class="ot">&lt;-</span> Adv_df <span class="sc">|&gt;</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Adv_depth =</span> count_qual <span class="sc">/</span> count_rot,</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">Championship =</span> <span class="fu">if_else</span>(team_id <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"1990DET"</span>, <span class="st">"1991CHI"</span>, <span class="st">"1992CHI"</span>, <span class="st">"1993CHI"</span>, <span class="st">"1994HOU"</span>, <span class="st">"1995HOU"</span>, <span class="st">"1996CHI"</span>, <span class="st">"1997CHI"</span>, <span class="st">"1998CHI"</span>, <span class="st">"1999SAS"</span>, <span class="st">"2000LAL"</span>, <span class="st">"2001LAL"</span>, <span class="st">"2002LAL"</span>, <span class="st">"2003SAS"</span>, <span class="st">"2004DET"</span>, <span class="st">"2005SAS"</span>, <span class="st">"2006MIA"</span>, <span class="st">"2007SAS"</span>, <span class="st">"2008BOS"</span>, <span class="st">"2009LAL"</span>, <span class="st">"2010LAL"</span>, <span class="st">"2011DAL"</span>, <span class="st">"2012MIA"</span>, <span class="st">"2013MIA"</span>, <span class="st">"2014SAS"</span>, <span class="st">"2015GSW"</span>, <span class="st">"2016CLE"</span>, <span class="st">"2017GSW"</span>, <span class="st">"2018GSW"</span>, <span class="st">"2019TOR"</span>, <span class="st">"2020LAL"</span>, <span class="st">"2021MIL"</span>, <span class="st">"2022GSW"</span>), <span class="st">"Champ"</span>, <span class="st">"Not Champ"</span> ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
-<section id="results-part-2" class="level3">
-<h3 class="anchored" data-anchor-id="results-part-2">Results Part 2</h3>
+<section id="results-part-2-analysis-of-advanced-squad-depth-of-championship-winning-teams-vs-other-playoff-teams" class="level3">
+<h3 class="anchored" data-anchor-id="results-part-2-analysis-of-advanced-squad-depth-of-championship-winning-teams-vs-other-playoff-teams">Results Part 2: Analysis of Advanced Squad Depth of Championship Winning Teams vs Other Playoff Teams</h3>
 <p>In this section, we evaluate the results of our advanced model’s calculation of team depth of championship winning teams and other teams. We expect that teams that win championships are likely better than teams that do not across their entire lineup and should thus have a higher team depth. We want to determine whether there is an appreciable difference in squad depth for teams that win championships and teams that do not for our basic model.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>Adv_df <span class="sc">|&gt;</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Championship, <span class="at">y =</span> Adv_depth,  <span class="at">fill =</span> Championship)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Advanced Depth of Champions vs Non-Champions"</span>,</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Team"</span>,</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Team Depth (Defined by Adv Stats)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/adv-barplot-depth-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>As shown in the box plot, there is a substantial difference in the team depth for champion and non-champion teams. The median squad depth of champion teams and non champion teams is approximately 0.75 and 0.5 respectively, and 1st and 3rd quartiles do not overlap between the two categories. The squad depth for champion teams has a much smaller spread relative to that of the non-champion teams.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>Adv_df <span class="sc">|&gt;</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Championship, <span class="at">y =</span> Adv_depth,  <span class="at">fill =</span> Championship)</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Advanced Depth of Champions vs Non-Champions"</span>,</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Team"</span>,</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Team Depth (Defined by Adv Stats)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/adv-violinplot-depth-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>The violin plot showcases that there is limited overlap in the distributions of team depth for champion and non-champion teams. Furthermore, a substantial portion of the non-champion teams have a squad depth that is lower than the minimum value of squad depth for champion teams. Both distributions are relatively normally distributed, suggesting that the permute shuffling statistical test is justified.</p>
+<p>The violin plot showcases that there is limited overlap in the distributions of team depth for champion and non-champion teams. Furthermore, a substantial portion of the non-champion teams have a squad depth that is lower than the minimum value of squad depth for champion teams. Both distributions are relatively normally distributed.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>Adv_df <span class="sc">|&gt;</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Championship) <span class="sc">|&gt;</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">mean</span>(Adv_depth))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   Championship `mean(Adv_depth)`
@@ -706,22 +510,10 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 </div>
 <p>Point Estimate: <span class="math inline">\(\bar{x_c} - \bar{x_n}\)</span> = 0.245</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4723</span>)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>null_dist_adv <span class="ot">&lt;-</span> Adv_df <span class="sc">|&gt;</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> Adv_depth, <span class="at">explanatory =</span> Championship) <span class="sc">|&gt;</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"Champ"</span>, <span class="st">"Not Champ"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
 <p>We use permute shuffling again for the same reason as we did for basic stats.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(null_dist_adv) <span class="sc">+</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> <span class="fl">0.245</span>, <span class="at">direction =</span> <span class="st">"greater"</span>) <span class="sc">+</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Advanced Distribution of (Champion Depth - Non-Champion Depth) </span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="st">using Basic Statistics"</span>,</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Difference (Champion Depth - Non-Champion Depth)"</span>,</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in min(diff(unique_loc)): no non-missing arguments to min; returning Inf</code></pre>
 </div>
@@ -731,8 +523,6 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 </div>
 <p>In the null distribution above, we see that there is functionally 0 probability that when the null hypothesis is true that our true mean difference is greater than what we observed in our sample, which is consistent with our p &lt; 0.001 calculation from earlier.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>null_dist_adv <span class="sc">|&gt;</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> <span class="fl">0.245</span>, <span class="at">direction =</span> <span class="st">"right"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Please be cautious in reporting a p-value of 0. This result is an
 approximation based on the number of `reps` chosen in the `generate()` step. See
@@ -746,10 +536,10 @@ approximation based on the number of `reps` chosen in the `generate()` step. See
 </div>
 </div>
 <p>The p-value is reported as 0, therefore we can assume that P &lt; 0.001</p>
-<p>The p-value informs us of the probability of observing the results of a statistical test or more extreme, given that the null hypothesis is true. The p value tells us that the probability of observing a squad depth difference greater than zero for champion and non-champion teams is &lt; 0.001, given that the null hypothesis is true and there is no difference between squad depth for these categories. Our determined p-value is below our value for alpha (0.05), allowing us to reject the null hypothesis and conclude our alternate hypothesis that there is a significant difference in team depth for champions and non-champions for the basic model. Specifically, champion team depth (using advanced method) is significantly higher than non-champion team depth.</p>
+<p>The p-value informs us of the probability of observing the difference seen between the two datasets or more extreme, given that the null hypothesis is true. The p value tells us that the probability of observing a squad depth difference greater than 0.245 for champion and non-champion teams is &lt; 0.001, given that the null hypothesis is true and there is no difference between squad depth for these categories. Our determined p-value is below our value for alpha (0.05), allowing us to reject the null hypothesis and conclude our alternate hypothesis that there is a significant difference in team depth for champions and non-champions for the basic model. Specifically, champion team depth (using advanced method) is significantly higher than non-champion team depth.</p>
 <p><br>
 <strong>Overall Conclusions:</strong></p>
-<p>Our box plot and violin plot provide evidence that there is a substantial difference in the distribution of team depth values for champions and non-champions and that champions generally had a higher team depth value as determined by our advance model. Furthermore, our hypothesis testing allowed us to conclude that there is enough evidence to reject the null hypothesis that there is no difference in true mean team depths between the categories. Thus, we can conclude the alternate hypothesis that there is a significant difference in team depth for champion and non-champion teams.</p>
+<p>Our box plot and violin plot provide strong evidence for the hypothesis that there is a substantial difference in the distribution of team depth values for champions and non-champions and that champions generally had a higher team depth value as determined by our advanced model. Furthermore, our hypothesis testing allowed us to conclude that there is enough evidence to reject the null hypothesis that there is no difference in true mean team depths between the categories. Thus, we can conclude the alternate hypothesis that there is a significant difference in team depth for champion and non-champion teams.</p>
 </section>
 </section>
 <section id="part-3-combo" class="level1">
@@ -762,68 +552,27 @@ approximation based on the number of `reps` chosen in the `generate()` step. See
 </ol>
 <p>Overall, these 3 quantifications (basic, advanced, combo) of team depth will each be tested to see if championship-winning teams would have a significantly higher team depth.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>NBA_df_combo <span class="ot">&lt;-</span> NBA_df <span class="sc">|&gt;</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pp_36 =</span> pts_per_g <span class="sc">/</span> mp_per_g <span class="sc">*</span> <span class="dv">36</span>,</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">rp_36 =</span> trb_per_g <span class="sc">/</span> mp_per_g <span class="sc">*</span> <span class="dv">36</span>,</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">ap_36 =</span> ast_per_g <span class="sc">/</span> mp_per_g <span class="sc">*</span> <span class="dv">36</span>)</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>Qual_player_df_combo <span class="ot">&lt;-</span> NBA_df_combo <span class="sc">|&gt;</span></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(pp_36 <span class="sc">&gt;</span> <span class="dv">16</span> <span class="sc">|</span> rp_36 <span class="sc">&gt;</span> <span class="fl">6.5</span> <span class="sc">|</span> ap_36 <span class="sc">&gt;</span> <span class="fl">3.5</span>, </span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>         per <span class="sc">&gt;=</span> <span class="dv">15</span> <span class="sc">|</span> ws_per_48 <span class="sc">&gt;=</span> <span class="fl">0.1</span>) <span class="sc">|&gt;</span></span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(team_id) <span class="sc">|&gt;</span></span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count_qual =</span> <span class="fu">n</span>())</span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>Combo_df <span class="ot">&lt;-</span> Qual_player_df_combo <span class="sc">|&gt;</span></span>
-<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(All_rot_players_df, <span class="at">by =</span> <span class="st">"team_id"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>Combo_df <span class="ot">&lt;-</span> Combo_df <span class="sc">|&gt;</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Combo_depth =</span> count_qual <span class="sc">/</span> count_rot,</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">Championship =</span> <span class="fu">if_else</span>(team_id <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"1990DET"</span>, <span class="st">"1991CHI"</span>, <span class="st">"1992CHI"</span>,</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>         <span class="st">"1993CHI"</span>, <span class="st">"1994HOU"</span>, <span class="st">"1995HOU"</span>,<span class="st">"1996CHI"</span>, <span class="st">"1997CHI"</span>, <span class="st">"1998CHI"</span>, </span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>         <span class="st">"1999SAS"</span>, <span class="st">"2000LAL"</span>, <span class="st">"2001LAL"</span>, <span class="st">"2002LAL"</span>, <span class="st">"2003SAS"</span>, <span class="st">"2004DET"</span>,</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>         <span class="st">"2005SAS"</span>, <span class="st">"2006MIA"</span>, <span class="st">"2007SAS"</span>, <span class="st">"2008BOS"</span>, <span class="st">"2009LAL"</span>, <span class="st">"2010LAL"</span>,</span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>         <span class="st">"2011DAL"</span>, <span class="st">"2012MIA"</span>, <span class="st">"2013MIA"</span>, <span class="st">"2014SAS"</span>, <span class="st">"2015GSW"</span>, <span class="st">"2016CLE"</span>,</span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>         <span class="st">"2017GSW"</span>, <span class="st">"2018GSW"</span>, <span class="st">"2019TOR"</span>, <span class="st">"2020LAL"</span>, <span class="st">"2021MIL"</span>, <span class="st">"2022GSW"</span>), </span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Champ"</span>, <span class="st">"Not Champ"</span> ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
-<section id="results-part-3" class="level3">
-<h3 class="anchored" data-anchor-id="results-part-3">Results Part 3</h3>
+<section id="results-part-3-analysis-of-combined-squad-depth-of-championship-winning-teams-vs-other-playoff-teams" class="level3">
+<h3 class="anchored" data-anchor-id="results-part-3-analysis-of-combined-squad-depth-of-championship-winning-teams-vs-other-playoff-teams">Results Part 3: Analysis of Combined Squad Depth of Championship Winning Teams vs Other Playoff Teams</h3>
 <p>In this section, we evaluated team depth of championship-winning teams and other teams using the combo stats, (# players who meet basic depth threshold + advanced depth threshold) / #rotation players, to define depth. We want to know if the team depth of championship winning teams is significantly higher than those of the team who did not win the championship.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>Combo_df <span class="sc">|&gt;</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Championship, <span class="at">y =</span> Combo_depth,  <span class="at">fill =</span> Championship)</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Combo Depth of Champions vs Non-Champions"</span>,</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Team"</span>,</span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Team Depth (Defined by Combo Stats)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/combo-barplot-depth-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>As can be seen in the box plot above, there is a significant difference in squad depth for champion and non-champion teams. The median squad depth of champion teams falls around .60 while the medium squad depth of the non-champion team falls a little below .50. There is also no quartile overlap between the two variables meaning that there is little doubt about the greater squad depth of the champion team. The two variables measured have similar ranges.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>Combo_df <span class="sc">|&gt;</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Championship, <span class="at">y =</span> Combo_depth,  <span class="at">fill =</span> Championship)</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Combo Depth of Champions vs Non-Champions"</span>,</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Team"</span>,</span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Team Depth (Defined by Combo Stats)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/combo-violin-depth-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>For the champ team the highest frequency of squad depth falls around .60 again, and for not champ teams it falls around .50, suggesting that the champ team’s combo depth is higher than the other teams. Further, what we get from this graph is a more widespread, normal distribution of all squad depths, justifying the use of permute shuffling statistical tests.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>Combo_df <span class="sc">|&gt;</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Championship) <span class="sc">|&gt;</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">mean</span>(Combo_depth))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   Championship `mean(Combo_depth)`
@@ -834,22 +583,10 @@ approximation based on the number of `reps` chosen in the `generate()` step. See
 </div>
 <p>Point Estimate: <span class="math inline">\(\bar{x_c} - \bar{x_n}\)</span> = 0.188</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4723</span>)</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>null_dist_combo <span class="ot">&lt;-</span> Combo_df <span class="sc">|&gt;</span></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> Combo_depth, <span class="at">explanatory =</span> Championship) <span class="sc">|&gt;</span></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"Champ"</span>, <span class="st">"Not Champ"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
 <p>We use permute shuffling for the same reasons as we do for basic and advanced stats.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(null_dist_combo) <span class="sc">+</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> <span class="fl">0.188</span>, <span class="at">direction =</span> <span class="st">"greater"</span>) <span class="sc">+</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Combo Distribution of (Champion Depth - Non-Champion Depth) </span></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="st">using Basic Statistics"</span>,</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Difference (Champion Depth - Non-Champion Depth)"</span>,</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in min(diff(unique_loc)): no non-missing arguments to min; returning Inf</code></pre>
 </div>
@@ -859,8 +596,6 @@ approximation based on the number of `reps` chosen in the `generate()` step. See
 </div>
 <p>This graph shows the frequency of difference in squad depth from Champion teams vs non champion teams, assuming the null hypothesis was true. The difference that had the highest frequency was 0 difference. The probability that we observe the sample mean difference as large or larger than the observed difference (.188), looks to be pretty much 0, which is consistent with our p&lt;0.001 observation.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>null_dist_combo <span class="sc">|&gt;</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> <span class="fl">0.188</span>, <span class="at">direction =</span> <span class="st">"right"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Please be cautious in reporting a p-value of 0. This result is an
 approximation based on the number of `reps` chosen in the `generate()` step. See
@@ -883,16 +618,9 @@ approximation based on the number of `reps` chosen in the `generate()` step. See
 <h1>Real Life Application: Logistic Model that Predicts Championship Win Using Combo Depth</h1>
 <p>This model goes a step further and does not solely look at the difference in squad depth between the two variables. It instead takes a real world scenario (a championship win) and predicts the probability of each variable achieving that scenario. This model will predict the probability of a championship team winning the championship vs a non-championship team based on the advanced data set (the variables that made up the advanced squad depth). We used advanced squad depth because that had the most significant difference between the championship and non-championship</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>Adv_df <span class="ot">&lt;-</span> Adv_df <span class="sc">|&gt;</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">Championship =</span> <span class="fu">as.factor</span>(Championship))</span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>Champ_model <span class="ot">&lt;-</span> <span class="fu">logistic_reg</span>() <span class="sc">|&gt;</span></span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">'glm'</span>) <span class="sc">|&gt;</span></span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(Championship <span class="sc">~</span> Adv_depth, <span class="at">data =</span> Adv_df, <span class="at">family =</span> <span class="st">'binomial'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>Champ_model <span class="sc">|&gt;</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
   term        estimate std.error statistic  p.value
@@ -902,109 +630,42 @@ approximation based on the number of `reps` chosen in the `generate()` step. See
 </div>
 </div>
 <p>Generalized: <span class="math inline">\(\log\Big(\frac{p}{1-p}\Big) = \beta_0 + \beta_1 \times Adv\_depth\)</span></p>
-<p>Specific:&nbsp; <span class="math inline">\(\log\Big(\frac{p}{1-p}\Big) = 8.69 - 9.55 \times Adv\_depth\)</span></p>
+<p>Specific:&nbsp; <span class="math inline">\(\log\Big(\frac{\hat{p}}{1-\hat{p}}\Big) = 8.69 - 9.55 \times Adv\_depth\)</span></p>
+<p>The log odds of not winning the championship given the team depth is 0 is 8.69.</p>
+<p>For every one unit of increase in Adv_depth, we estimate a mean decrease of 9.55 in the log odds of not winning the championship.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>Adv_df <span class="ot">&lt;-</span> Adv_df <span class="sc">|&gt;</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pred_prob =</span> <span class="fu">predict</span>(Champ_model<span class="sc">$</span>fit, <span class="at">type =</span> <span class="st">"response"</span>))</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Adv_df) <span class="sc">+</span> </span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Adv_depth, <span class="at">y =</span> <span class="fu">as.numeric</span>(Championship) <span class="sc">-</span><span class="dv">1</span>, </span>
-<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">color =</span> Championship)) <span class="sc">+</span> </span>
-<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> Adv_depth, <span class="at">y =</span> pred_prob)) <span class="sc">+</span> </span>
-<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Logistic Model of Adv_depth on Championship"</span>,</span>
-<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Team Depth from Advanced Statistics"</span>, </span>
-<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Probability of Team Not Winning Championship"</span>, </span>
-<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Champion or Not"</span></span>
-<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>       )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/model-vis-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The y axis is the probability of the team not winning the championship. We can see the dots are representing what the actual observation is whether a team wins a championship or not. Overall, the logistic model has good accuracy as it captures the general trend that a lower team depth leads to higher probability of not winning a championship. However, from the distribution of the dots, teams with advanced team depth &gt; 0.5 contains both championship and non-championship teams, making it hard for the model to predict the success of the team purely based on the team depth.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5</span>) <span class="co">#Make sure we have the same random numbers</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>Adv_df <span class="ot">&lt;-</span> Adv_df <span class="sc">|&gt;</span></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">Championship =</span> <span class="fu">as.factor</span>(Championship))</span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>Adv_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(Adv_df, <span class="at">prop =</span> <span class="fl">0.60</span>) <span class="co">#training will get 80%, testing get 20% data</span></span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> <span class="fu">training</span>(Adv_split) <span class="co">#define train data</span></span>
-<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> <span class="fu">testing</span>(Adv_split) <span class="co">#define test data</span></span>
-<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>Combo_df <span class="ot">&lt;-</span> Combo_df <span class="sc">|&gt;</span></span>
-<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">Championship =</span> <span class="fu">as.factor</span>(Championship))</span>
-<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>Combo_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(Combo_df, <span class="at">prop =</span> <span class="fl">0.60</span>) <span class="co">#training will get 80%, testing get 20% data</span></span>
-<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a>train_data_c <span class="ot">&lt;-</span> <span class="fu">training</span>(Combo_split) <span class="co">#define train data</span></span>
-<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a>test_data_c <span class="ot">&lt;-</span> <span class="fu">testing</span>(Combo_split) <span class="co">#define test data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>Adv_model <span class="ot">&lt;-</span> <span class="fu">logistic_reg</span>() <span class="sc">|&gt;</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">'glm'</span>) <span class="sc">|&gt;</span></span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(Championship <span class="sc">~</span> Adv_depth, <span class="at">data =</span> train_data, <span class="at">family =</span> <span class="st">'binomial'</span>)</span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(Adv_model)<span class="sc">$</span>AIC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 107.3966</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>Combo_model <span class="ot">&lt;-</span> <span class="fu">logistic_reg</span>() <span class="sc">|&gt;</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">'glm'</span>) <span class="sc">|&gt;</span></span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(Championship <span class="sc">~</span> Combo_depth, <span class="at">data =</span> train_data_c, <span class="at">family =</span> <span class="st">'binomial'</span>)</span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(Combo_model)<span class="sc">$</span>AIC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 129.2284</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(Adv_model, test_data, <span class="at">type =</span> <span class="st">"prob"</span>) <span class="sc">|&gt;</span> <span class="co"># use the value to predict the probability of spam</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(test_data <span class="sc">|&gt;</span> <span class="fu">select</span>(Championship))</span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>pred_c <span class="ot">&lt;-</span> <span class="fu">predict</span>(Combo_model, test_data_c, <span class="at">type =</span> <span class="st">"prob"</span>) <span class="sc">|&gt;</span> <span class="co"># use the value to predict the probability of spam</span></span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(test_data_c <span class="sc">|&gt;</span> <span class="fu">select</span>(Championship))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>pred <span class="sc">|&gt;</span></span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">roc_curve</span>(</span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">truth =</span> Championship,</span>
-<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">.pred_Not Champ</span><span class="st">`</span>,</span>
-<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">event_level =</span> <span class="st">"second"</span> <span class="co">#which level is a success? spam</span></span>
-<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span></span>
-<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"ROC of Adv_depth model"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/ROC%20curve-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>pred <span class="sc">|&gt;</span></span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">roc_auc</span>(</span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">truth =</span> Championship,</span>
-<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">.pred_Not Champ</span><span class="st">`</span>,</span>
-<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">event_level =</span> <span class="st">"second"</span> <span class="co">#which level is a success? spam</span></span>
-<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 1 roc_auc binary         0.856</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>pred_c <span class="sc">|&gt;</span></span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">roc_curve</span>(</span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">truth =</span> Championship,</span>
-<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">.pred_Not Champ</span><span class="st">`</span>,</span>
-<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">event_level =</span> <span class="st">"second"</span> <span class="co">#which level is a success? spam</span></span>
-<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>() <span class="sc">+</span></span>
-<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"ROC of Combo_depth model"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/ROC%20curve-2.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>pred_c <span class="sc">|&gt;</span></span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">roc_auc</span>(</span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">truth =</span> Championship,</span>
-<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">.pred_Not Champ</span><span class="st">`</span>,</span>
-<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">event_level =</span> <span class="st">"second"</span> <span class="co">#which level is a success? spam</span></span>
-<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
@@ -1021,7 +682,20 @@ approximation based on the number of `reps` chosen in the `generate()` step. See
 </section>
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>https://www.history.com/this-day-in-history/nba-is-born<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>https://www.nba.com/stats<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>https://www.elartedf.com/examining-squad-depth-importance/<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>https://www.mdpi.com/1099-4300/18/12/450<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>https://www.kaggle.com/datasets/robertsunderhaft/nba-playoffs<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p><a href="https://www.basketball-reference.com/leagues/NBA_2021_per_minute.html">https://www.basketballreference.com/leagues/NBA_2021_per_minute.html</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p><a href="https://www.basketball-reference.com/playoffs/NBA_2022_advanced.html" class="uri">https://www.basketball-reference.com/playoffs/NBA_2022_advanced.html</a><a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p><a href="https://www.basketball-reference.com/playoffs/NBA_2022_advanced.html" class="uri">https://www.basketball-reference.com/playoffs/NBA_2022_advanced.html</a><a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
