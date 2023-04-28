@@ -115,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#literature-review" id="toc-literature-review" class="nav-link" data-scroll-target="#literature-review">Literature Review</a></li>
   <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a>
   <ul class="collapse">
-  <li><a href="#analysis-methods-permute-with-normal-distribution-for-diff-in-means" id="toc-analysis-methods-permute-with-normal-distribution-for-diff-in-means" class="nav-link" data-scroll-target="#analysis-methods-permute-with-normal-distribution-for-diff-in-means">Analysis Methods: Permute with Normal distribution for diff in means</a></li>
+  <li><a href="#hypothesis-testing-methods-permute-for-diff-in-means" id="toc-hypothesis-testing-methods-permute-for-diff-in-means" class="nav-link" data-scroll-target="#hypothesis-testing-methods-permute-for-diff-in-means">Hypothesis Testing Methods: Permute for diff in means</a></li>
   <li><a href="#modeling" id="toc-modeling" class="nav-link" data-scroll-target="#modeling">Modeling</a></li>
   </ul></li>
   <li><a href="#part-1-basic-stats" id="toc-part-1-basic-stats" class="nav-link" data-scroll-target="#part-1-basic-stats">Part 1: Basic stats</a>
@@ -130,7 +130,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#results-part-3-analysis-of-combined-squad-depth-of-championship-winning-teams-vs-other-playoff-teams" id="toc-results-part-3-analysis-of-combined-squad-depth-of-championship-winning-teams-vs-other-playoff-teams" class="nav-link" data-scroll-target="#results-part-3-analysis-of-combined-squad-depth-of-championship-winning-teams-vs-other-playoff-teams">Results Part 3: Analysis of Combined Squad Depth of Championship Winning Teams vs Other Playoff Teams</a></li>
   </ul></li>
-  <li><a href="#real-life-application-logistic-model-that-predicts-championship-win-using-combo-depth" id="toc-real-life-application-logistic-model-that-predicts-championship-win-using-combo-depth" class="nav-link" data-scroll-target="#real-life-application-logistic-model-that-predicts-championship-win-using-combo-depth">Real Life Application: Logistic Model that Predicts Championship Win Using Combo Depth</a>
+  <li><a href="#logistic-model-methodology-and-results" id="toc-logistic-model-methodology-and-results" class="nav-link" data-scroll-target="#logistic-model-methodology-and-results">Logistic Model: Methodology and Results</a>
   <ul class="collapse">
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   </ul></li>
@@ -167,9 +167,9 @@ ul.task-list li input[type="checkbox"] {
 <p>In this study, we aim to find this connection by investigating if the championship winning teams have a significantly greater team depth than the rest of the field. We measure team depth in 3 different methods to quantify team depth: (1) Basic statistics approach, (2) Advanced statistics, (3) Combo of Basic and Advanced statistics. We hypothesize that with all 3 measurements, the depths of championship winning teams would be significantly higher than those of the other teams because team depth has a positive effect on the team’s performance. We will then create a model to predict championship win using team depth, demonstrating the real world value of our findings.</p>
 <p>NBA play-off data<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> from 1990-2022 was collected by Robert Sunderhaft, who web-scraped it from Basketball Reference, a public database of NBA statistics collated by Sports Reference LLC. He constantly updates the dataset and the last update was 9 months ago. We consider basic quantitative statistics such as points per game, assists per game, and rebounds per game to construct team depth in the basics statistics approach. We consider advanced quantitative statistics such as Player Efficiency Rating and win share to construct team depth in the advanced statistics approach (see methodology for specific calculation of these team depth quantitative variables). We use all basic and advanced statistics in the combo approach. Information as to whether or not any given team won a championship was not in the initial dataset, but will be manually added using a list of past NBA champions. This column will also be the categorical data that our logistic model will be predicting.</p>
 <p>Although there are no obvious ethical issues with the NBA data, there are some functional limitations. For instance, the “basketball skill” of a given player is not an easily definable variable and can change with each game. To combat this, we clearly defined mathematical formulas for squad depth through three strategies (simple statistics, advanced statistics, and combined statistics). Another issue that arises is that some data, like percentages, blocks, turnovers, and certain advanced statistics, weren’t collected for players in the early years of this dataset, so there are null values instead. To avoid this issue, we selected only those players who played after 1990, when all data values were calculated. Furthermore, for each specific squad depth calculation, we dropped NAs to ensure better analysis and predictive ability.</p>
-<p>In regards to the specific hypothesis that we are addressing, the null hypothesis states that the true squad depth for champions minus the true squad depth for non-champions will equal zero, meaning that there is no statistical difference between the two measured teams. Our alternate hypothesis is that the true squad depth for champions minus the true squad depth for non-champions will be greater than zero, signifying a significant statistical relationship. This means that we can reject the null hypothesis if we were to get a p-value less than .05 and we cannot fail to reject it if it is greater than .05.</p>
-<p><span class="math inline">\(H_0:\)</span> <span class="math inline">\(\mu_{champ} - \mu_{nochamp} = 0\)</span></p>
-<p><span class="math inline">\(H_A:\)</span> <span class="math inline">\(\mu_{champ} - \mu_{nochamp} &gt; 0\)</span></p>
+<p>We decided to use a hypothesis test because we are comparing two different squad depth distributions for a significant difference rather than trying to predict a specific population parameter. In regards to the specific hypothesis that we are addressing, the null hypothesis states that the true squad depth for champions minus the true squad depth for non-champions will equal zero, meaning that there is no statistical difference between the two measured teams. Our alternate hypothesis is that the true squad depth for champions minus the true squad depth for non-champions will be greater than zero, signifying a significant statistical relationship. This means that we can reject the null hypothesis if we were to get a p-value less than .05 and we cannot fail to reject it if it is greater than .05.</p>
+<p><span class="math inline">\(H_0:\)</span> <span class="math inline">\(\mu_{c} - \mu_{n} = 0\)</span></p>
+<p><span class="math inline">\(H_A:\)</span> <span class="math inline">\(\mu_{c} - \mu_{n} &gt; 0\)</span></p>
 <p><strong>Legend</strong>:</p>
 <table class="table">
 <colgroup>
@@ -323,14 +323,14 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 </section>
 <section id="methodology" class="level1">
 <h1>Methodology</h1>
-<section id="analysis-methods-permute-with-normal-distribution-for-diff-in-means" class="level3">
-<h3 class="anchored" data-anchor-id="analysis-methods-permute-with-normal-distribution-for-diff-in-means">Analysis Methods: Permute with Normal distribution for diff in means</h3>
+<section id="hypothesis-testing-methods-permute-for-diff-in-means" class="level3">
+<h3 class="anchored" data-anchor-id="hypothesis-testing-methods-permute-for-diff-in-means">Hypothesis Testing Methods: Permute for diff in means</h3>
 <p>Permuting allows us to construct a null distribution by randomizing the observations by whether a team won a championship (Championship) or not(Non-championship). Permuting to test for significance also allows us to measure the quality of the inference we make. Specifically, in this case, we use a modified data set to adjust the existing data to the theoretical null hypothesis (so that depth_championship - depth_nonchampions == 0) to set up the permute approach. This process is repeated for the basic, advanced, and combo stats. We use permute shuffling to construct the probability that the observed difference in squad depth (for basic, advanced, and combo) is as different as or more different than they are between the championship and non-championship teams in the synthesized null distribution. The permute shuffling allows us to randomize the observations which will minimize the effect of confounding variables, such as year-specific rule changes, on the mean team depth. Additionally, using permute shuffling is justified by the fact that there are 33 championship-winning teams and 400+ non-championship-winning teams, giving a big enough n for both to make the comparison viable.</p>
+<p>Furthermore, we use permute shuffle because we want to eliminate other confounding variables such as a given year’s pace of play or different referees’ thresholds for calling fouls. Thus, the random permute shuffle across eras regardless of championship or non-championship minimizes those other factors and creates the true null distribution without the implied relationship between squad depth and championship. This allows us to have a distribution to compare our data to in order to observe the extent of the difference in squad depth across the championship variable.</p>
 </section>
 <section id="modeling" class="level3">
 <h3 class="anchored" data-anchor-id="modeling">Modeling</h3>
-<p>If our alternate hypothesis holds true and the squad depth is significantly higher for championship teams, we will identify the quantification of team depth that resulted in the smallest p-value (greatest significant difference). We will then fit this team depth metric to a logistic model to predict whether the team wins the championship, showing the real-life application of our statistical finding.</p>
-<p><strong>Legend</strong>:</p>
+<p>If our alternate hypothesis holds true and the squad depth is significantly higher for championship teams, we will identify the quantification of team depth that resulted in the smallest p-value (greatest significant difference). We will then fit this team depth metric to a logistic model to predict whether the team wins the championship, showing the real-life application of our statistical finding. We use a logistic model because we are predicting a categorical variable with two outcomes (championship or no championship) based on the predictive numerical variable of squad depth.</p>
 <p>For now, let’s start with visualizing and analyzing each group of stats.</p>
 </section>
 </section>
@@ -519,20 +519,12 @@ $ ws_per_48        &lt;dbl&gt; 0.228, -0.104, 0.094, 0.049, 0.049, 0.063, 0.182,
 </div>
 <p>We use permute shuffling again for the same reason as we did for basic stats.</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in min(diff(unique_loc)): no non-missing arguments to min; returning Inf</code></pre>
-</div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/null-vis-adv-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>In the null distribution above, we see that there is functionally 0 probability that when the null hypothesis is true that our true mean difference is greater than what we observed in our sample, which is consistent with our p &lt; 0.001 calculation from earlier.</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Please be cautious in reporting a p-value of 0. This result is an
-approximation based on the number of `reps` chosen in the `generate()` step. See
-`?get_p_value()` for more information.</code></pre>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   p_value
@@ -592,20 +584,12 @@ approximation based on the number of `reps` chosen in the `generate()` step. See
 </div>
 <p>We use permute shuffling for the same reasons as we do for basic and advanced stats.</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in min(diff(unique_loc)): no non-missing arguments to min; returning Inf</code></pre>
-</div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/null-vis-combo-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>This graph shows the frequency of difference in squad depth from Champion teams vs non champion teams, assuming the null hypothesis was true. The difference that had the highest frequency was 0 difference. The probability that we observe the sample mean difference as large or larger than the observed difference (.188), looks to be pretty much 0, which is consistent with our p&lt;0.001 observation.</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Please be cautious in reporting a p-value of 0. This result is an
-approximation based on the number of `reps` chosen in the `generate()` step. See
-`?get_p_value()` for more information.</code></pre>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   p_value
@@ -619,8 +603,8 @@ approximation based on the number of `reps` chosen in the `generate()` step. See
 <p>Based on all three of these analysis methods, we found that there is a statistically significant difference between the combo squad depth of champion teams vs non champion teams. This aligns with our alternate hypothesis that the championship winning team has a significantly greater team depth than non-champion teams. The depths of championship winning teams were significantly higher than those of the other teams.</p>
 </section>
 </section>
-<section id="real-life-application-logistic-model-that-predicts-championship-win-using-combo-depth" class="level1">
-<h1>Real Life Application: Logistic Model that Predicts Championship Win Using Combo Depth</h1>
+<section id="logistic-model-methodology-and-results" class="level1">
+<h1>Logistic Model: Methodology and Results</h1>
 <p>This model goes a step further and does not solely look at the difference in squad depth between the two variables. It instead takes a real world scenario (a championship win) and predicts the probability of each variable achieving that scenario. This model will predict the probability of a championship team winning the championship vs a non-championship team based on the advanced data set (the variables that made up the advanced squad depth). We used advanced squad depth because that had the most significant difference between the championship and non-championship</p>
 <div class="cell">
 
@@ -655,6 +639,7 @@ approximation based on the number of `reps` chosen in the `generate()` step. See
 <pre><code>[1] 129.2284</code></pre>
 </div>
 </div>
+<p>The AIC from the advanced model is 107.4, and the AIC from the combined model is 129.2.</p>
 <div class="cell">
 
 </div>
@@ -702,8 +687,8 @@ approximation based on the number of `reps` chosen in the `generate()` step. See
 <p>Since we had strong evidence for the alternate hypotheses that advanced and combo team depth are significantly higher in championship-winning teams, we made 2 logistic models to predict if a team won a championship using advanced and combo team depth respectively. The advanced team depth model has an AUC of 0.856 and AIC of 107.4. The combo team depth model has an AUC of 0.852 and AIC of 129.2. The advanced team depth model yielded the best result in terms of both AUC and AIC (107.4). With a high AUC, the advanced team depth model more successfully captured the trend and made more accurate predictions of the probability of a given team winning the championship.</p>
 <section id="discussion" class="level2">
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
-<p>Overall, our results show that championship-winning teams have greater squad depth than non-champion teams in advanced and combo approach. Since the quantification of team depth is specifically tuned to NBA statistics, the results are not generalizable to other leagues. If the NBA season is not independent of each other because players play for the same team across multiple seasons, this means that our result can only be applicable to our dataset or similar dataset for the play-off from 1990 to 2021. Since both advanced and combo team depth are significantly higher in championship winning teams, we made 2 logistic models to predict if a team won championship using advanced and combo team depth respectively. Our logistic model showed that the one with advanced team depth yielded the best result in terms of both AUC (0.856) and lowest AIC (107.4). With a high AUC, the model successfully captured the trend and made accurate predictions of the championship winning teams. In addition, the analysis pipeline we developed in our study provided a systematic method to better understand this often-neglected factor of team depth.</p>
-<p>However, some limitations and questions remain that, if addressed, would provide better understanding of team depth and better model for championship prediction. Firstly, we only considered 3 ways to define team depth. In the future, we will consider more statistics such as the financial breakdown and numbers of possessions to evaluate team depth. In addition, for our predictive model of championship wins, many factors beyond team strength also determine championship wins. We will add more of these factors such as player efficiency and team field goal percentage to improve our logistic model. Additionally, injury might be a big confounding variable that decreases the overall strength of the team while not being reflected in team depth calculation. Therefore, in the future, the calculations of team depth could adjust for these confounding variables like injuries.</p>
+<p>Overall, our hypothesis test results showed that championship-winning teams had a significantly greater true mean squad depth than non-champion teams, which we found using both the advanced and combined squad depth approach. Since the quantification of team depth is specifically tuned to NBA statistics, the results are not generalizable to other basketball leagues. If the NBA season is not independent of each other because players play for the same team across multiple seasons, this means that our result can only be applicable to our dataset or a similar dataset for the NBA playoffs from 1990 to 2021. Since both the advanced and combined team depth were significantly higher in championship winning teams, we made 2 logistic models to predict if a team won a championship using advanced and combo team depth respectively. Our logistic model showed that the advanced squad depth calculations and resulting predictive model yielded the best result in terms of both the highest AUC (0.856) and lowest AIC (107.4). With a high AUC, the model made reasonably accurate predictions of whether or not a given team won a championship. In addition, the analysis pipeline we developed in our study provided a systematic method to better understand the often-neglected factor of squad depth.</p>
+<p>However, some limitations and questions remain that, if addressed, would provide better understanding of team depth and a better model for championship prediction. Firstly, we only considered 3 calculations of team depth. In the future, we will consider more statistics, such as production per unit salary and pace of play, to evaluate team depth. In addition, for our predictive model of championship wins, many factors beyond the individual statistics that were used to calculate squad depth also determine championship wins. We will add more of these factors such as team field goal percentage and lineup box-plus-minus to improve our logistic model in an additive or interactive manner alongside advanced squad depth. Additionally, injuries to a quality rotation player might be a big confounding variable that decreases the overall strength of the team while not being reflected in team depth calculation. Therefore, in the future, the calculations of team depth could adjust for these confounding variables like injuries.</p>
 <p><br>
 </p>
 
